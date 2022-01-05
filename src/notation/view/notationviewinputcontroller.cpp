@@ -81,7 +81,7 @@ void NotationViewInputController::init()
     }
 
     globalContext()->currentMasterNotationChanged().onNotify(this, [this]() {
-        if (m_isZoomInited == false) {
+        if (!m_isZoomInited) {
             initZoom();
         }
     });
