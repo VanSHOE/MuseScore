@@ -79,6 +79,12 @@ void NotationViewInputController::init()
             m_view->showContextMenu(selectionType(), m_view->fromLogical(selectionElementPos()).toQPointF(), true);
         });
     }
+
+    globalContext()->currentMasterNotationChanged().onNotify(this, [this]() {
+        if (m_isZoomInited == false) {
+            initZoom();
+        }
+    });
 }
 
 void NotationViewInputController::initZoom()
