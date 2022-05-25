@@ -47,8 +47,6 @@ MenuItemList NotationContextMenuModel::makeItemsByElementType(ElementType elemen
         return makeSystemTextItems();
     case ElementType::TIMESIG:
         return makeTimeSignatureItems();
-    case ElementType::INSTRUMENT_NAME:
-        return makeInstrumentNameItems();
     case ElementType::HARMONY:
         return makeHarmonyItems();
     case ElementType::INSTRUMENT_CHANGE:
@@ -139,15 +137,6 @@ MenuItemList NotationContextMenuModel::makeTimeSignatureItems()
     MenuItemList items = makeElementItems();
     items << makeSeparator();
     items << makeMenuItem("time-signature-properties");
-
-    return items;
-}
-
-MenuItemList NotationContextMenuModel::makeInstrumentNameItems()
-{
-    MenuItemList items = makeElementItems();
-    items << makeSeparator();
-    items << makeMenuItem("staff-properties");
 
     return items;
 }

@@ -47,7 +47,6 @@ private:
     uicomponents::MenuItemList makeStaffTextItems();
     uicomponents::MenuItemList makeSystemTextItems();
     uicomponents::MenuItemList makeTimeSignatureItems();
-    uicomponents::MenuItemList makeInstrumentNameItems();
     uicomponents::MenuItemList makeHarmonyItems();
     uicomponents::MenuItemList makeSelectItems();
     uicomponents::MenuItemList makeElementItems();
