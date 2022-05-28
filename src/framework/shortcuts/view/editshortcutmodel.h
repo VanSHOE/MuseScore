@@ -53,6 +53,7 @@ public:
 
     Q_INVOKABLE void addToOriginSequence();
     Q_INVOKABLE void replaceOriginSequence();
+    Q_INVOKABLE void clearConflicts();
 
 signals:
     void allShortcutsChanged(const QVariantList& shortcuts);

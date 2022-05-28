@@ -94,6 +94,7 @@ FocusScope {
 
     signal clicked(var mouse)
     signal pressAndHold(var mouse)
+    signal doubleClicked(var mouse)
 
     objectName: root.text
 
@@ -275,13 +276,17 @@ FocusScope {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
         hoverEnabled: true
 
         onClicked: function(mouse) {
             navigation.requestActiveByInteraction()
 
             root.clicked(mouse)
+        }
+
+        onDoubleClicked: {
+            root.doubleClicked(mouse)
         }
 
         onPressed: {

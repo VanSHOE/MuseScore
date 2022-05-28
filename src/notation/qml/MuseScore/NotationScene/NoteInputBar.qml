@@ -25,6 +25,8 @@ import MuseScore.NotationScene 1.0
 import MuseScore.UiComponents 1.0
 import MuseScore.Ui 1.0
 
+
+import MuseScore.Shortcuts 1.0
 import "internal"
 
 Item {
@@ -48,6 +50,29 @@ Item {
         enabled: root.enabled && root.visible
         accessible.name: qsTrc("notation", "Note Input toolbar")
     }
+    ShortcutsModel {
+        id: shortcutsModel
+        selection: shortcutsView.sourceSelection
+    }
+
+
+    EditShortcutDialog {
+        id: editShortcutDialog
+
+        onApplySequenceRequested: function(newSequence) {
+            shortcutsModel.applySequenceToShortcut('nat', newSequence)
+            console.log("ugh")
+            shortcutsModel.apply()
+        }
+
+        property bool canEditCurrentShortcut: Boolean(shortcutsModel.currentShortcut)
+
+        function startEditShortcut(shortcut2change) {
+            editShortcutDialog.startEdit(shortcut2change, shortcutsModel.shortcuts(), true)
+        }
+    }
+
+
 
     NoteInputBarModel {
         id: noteInputModel
@@ -87,6 +112,7 @@ Item {
 
     Component.onCompleted: {
         noteInputModel.load()
+        shortcutsModel.load()
     }
 
     GridViewSectional {
@@ -143,11 +169,11 @@ Item {
             }
 
             mouseArea.pressAndHoldInterval: 200
-            mouseArea.acceptedButtons: hasMenu && itemModel.isMenuSecondary
-                                       ? Qt.LeftButton | Qt.RightButton
-                                       : Qt.LeftButton
+            mouseArea.acceptedButtons:  Qt.LeftButton | Qt.RightButton
+
 
             function toggleMenuOpened() {
+
                 menuLoader.toggleOpened(item.subitems)
             }
 
@@ -156,16 +182,20 @@ Item {
             }
 
             onClicked: function(mouse) {
-                if (menuLoader.isMenuOpened // If already menu open, close it
-                        || (hasMenu // Or if can open menu
-                            && (!itemModel.isMenuSecondary // And _should_ open menu
-                                || mouse.button === Qt.RightButton))) {
-                    toggleMenuOpened()
-                    return
-                }
+                //                if (menuLoader.isMenuOpened // If already menu open, close it
+                //                        || (hasMenu // Or if can open menu
+                //                            && (!itemModel.isMenuSecondary // And _should_ open menu
+                //                                || mouse.button === Qt.RightButton))) {
+                //                    console.log("Opening Menu :(")
+                //                    toggleMenuOpened()
+                //                    return
+                //                }
 
                 if (mouse.button === Qt.LeftButton) {
                     handleMenuItem()
+                }
+                else if(mouse.button === Qt.RightButton) {
+                    showCellMenu()
                 }
             }
 
@@ -176,6 +206,10 @@ Item {
 
                 toggleMenuOpened()
             }
+//            onDoubleClicked: {
+//                console.log("Double clicked on:" + item.title)
+//                editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut('nat'))
+//            }
 
             Canvas {
                 visible: Boolean(itemModel) && itemModel.isMenuSecondary
@@ -200,6 +234,34 @@ Item {
                     ctx.lineTo(0, height);
                     ctx.closePath();
                     ctx.fill();
+                }
+            }
+
+            function showCellMenu() {
+                contextMenu.toggleOpened(contextMenu.items, mouseArea.mouseX, mouseArea.mouseY)
+            }
+
+            StyledMenuLoader {
+                id: contextMenu
+
+                property var modelIndex: null
+                property bool canEdit: true
+
+                property var items: [
+                    { id: "add", title: qsTrc("notation", "Assign Shortcut"), icon: IconCode.CONFIGURE, enabled: true },
+                    { id: "remove", title: qsTrc("notation","Clear current shortcut"), icon: IconCode.DELETE_TANK, enabled: true }
+                ]
+
+                onHandleMenuItem: {
+                    switch(itemId) {
+                    case "add":
+                        editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut('nat'))
+                        break
+                    case "remove":
+                        shortcutsModel.clearSequenceOfShortcut('nat')
+                        shortcutsModel.apply()
+                        break
+                    }
                 }
             }
 

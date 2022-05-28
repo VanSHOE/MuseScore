@@ -26,6 +26,11 @@
         <ctx>any</ctx>
     </SC>
     <SC>
+        <key>nat</key>
+        <seq></seq>
+        <ctx>any</ctx>
+    </SC>
+    <SC>
         <key>nav-prev-section</key>
         <seq>Shift+F6</seq>
         <seq>Shift+`</seq>

@@ -32,10 +32,20 @@ Dialog {
 
     signal applySequenceRequested(var newSequence)
 
-    function startEdit(shortcut, allShortcuts) {
+//    function
+
+
+    function startEdit(shortcut, allShortcuts, reset) {
+        if(reset === undefined) {
+            reset = false
+        }
+        if(reset) {
+            model.clearConflicts()
+        }
         open()
         model.load(shortcut, allShortcuts)
         content.forceActiveFocus()
+
     }
 
     height: 240
