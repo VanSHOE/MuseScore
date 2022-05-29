@@ -33,7 +33,7 @@ Dialog {
     signal applySequenceRequested(var newSequence, var shortcut2change)
 
 //    function
-
+    property bool fromUI: false
 
     function startEdit(shortcut, allShortcuts, reset) {
         if(reset === undefined) {
@@ -41,6 +41,7 @@ Dialog {
         }
         if(reset) {
             model.clearConflicts()
+            root.fromUI = true
         }
         open()
         model.load(shortcut, allShortcuts)
@@ -174,7 +175,7 @@ Dialog {
 
                     text: qsTrc("global", "Add")
                     enabled: model.canApplyInputtedSequence
-
+                    visible: root.fromUI ? false : true
                     onClicked: {
                         model.addToOriginSequence()
                     }
@@ -182,8 +183,7 @@ Dialog {
 
                 FlatButton {
                     width: parent.buttonWidth
-
-                    text: qsTrc("global", "Replace")
+                    text: root.fromUI ? qsTrc("global", "Assign") : qsTrc("global", "Replace")
                     enabled: model.canApplyInputtedSequence
 
                     onClicked: {
