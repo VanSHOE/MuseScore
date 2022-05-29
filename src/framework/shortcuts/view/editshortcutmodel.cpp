@@ -44,13 +44,13 @@ void EditShortcutModel::load(const QVariant& originShortcut, const QVariantList&
     QVariantMap originShortcutMap = originShortcut.toMap();
     QString originCtx = originShortcutMap.value("context", ANY_CONTEXT).toString();
     m_originAction = originShortcutMap.value("action").toString();
-  /*  LOGE() << originShortcutMap.value("title").toString();
-    LOGE() << "BEGIN";
-    for (auto k: originShortcutMap.keys())
-    {
-        LOGE() << k;
-    }
-    LOGE() << "OVER";*/
+    /*  LOGE() << originShortcutMap.value("title").toString();
+      LOGE() << "BEGIN";
+      for (auto k: originShortcutMap.keys())
+      {
+          LOGE() << k;
+      }
+      LOGE() << "OVER";*/
     bool isOriginCtxAny = originCtx == ANY_CONTEXT;
     for (const QVariant& shortcut : allShortcuts) {
         if (isOriginCtxAny) {
@@ -127,35 +127,15 @@ void EditShortcutModel::validateInputtedSequence()
     m_errorMessage.clear();
 
     QString input = inputtedSequence();
-    int i = 0;
-    int j = 0;
-    LOGE() << "ERROR SHORTCUTS SIZE:" << m_potentialConflictShortcuts.size();
-    for (const QVariant& ss : m_potentialConflictShortcuts) {
-        QVariantMap sss = ss.toMap();
-        if ("Natural" == sss.value("title").toString()) {
-            j++;
-        }
-    }
-    LOGE() << j;
+
     for (const QVariant& shortcut : m_potentialConflictShortcuts) {
         QVariantMap sc = shortcut.toMap();
 
         if (sc.value("sequence").toString() == input) {
-            //QString title = sc.value("title").toString();
-            //i++;
-
-            LOGE() << sc.value("title").toString();
-            for (const QVariant& ss : m_potentialConflictShortcuts) {
-                QVariantMap sss = ss.toMap();
-                if (sc.value("title").toString() == sss.value("title").toString()) {
-                    i++;
-                }
-            }
-            //return;
+            QString title = sc.value("title").toString();
+            m_errorMessage = qtrc("shortcuts", "Shortcut conflicts with %1").arg(title);
+            return;
         }
-    }
-    if (i) {
-        m_errorMessage = qtrc("shortcuts", "Shortcut conflicts with %1").arg(i);
     }
 }
 
