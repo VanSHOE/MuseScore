@@ -43,13 +43,21 @@ void EditShortcutModel::load(const QVariant& originShortcut, const QVariantList&
 
     QVariantMap originShortcutMap = originShortcut.toMap();
     QString originCtx = originShortcutMap.value("context", ANY_CONTEXT).toString();
+    m_originAction = originShortcutMap.value("action").toString();
+  /*  LOGE() << originShortcutMap.value("title").toString();
+    LOGE() << "BEGIN";
+    for (auto k: originShortcutMap.keys())
+    {
+        LOGE() << k;
+    }
+    LOGE() << "OVER";*/
     bool isOriginCtxAny = originCtx == ANY_CONTEXT;
     for (const QVariant& shortcut : allShortcuts) {
         if (isOriginCtxAny) {
             m_potentialConflictShortcuts << shortcut;
             continue;
         }
-        
+
         QVariantMap map = shortcut.toMap();
         QString ctx = map.value("context", ANY_CONTEXT).toString();
 
@@ -124,8 +132,7 @@ void EditShortcutModel::validateInputtedSequence()
     LOGE() << "ERROR SHORTCUTS SIZE:" << m_potentialConflictShortcuts.size();
     for (const QVariant& ss : m_potentialConflictShortcuts) {
         QVariantMap sss = ss.toMap();
-        if ("Natural" == sss.value("title").toString())
-        {
+        if ("Natural" == sss.value("title").toString()) {
             j++;
         }
     }
@@ -136,21 +143,20 @@ void EditShortcutModel::validateInputtedSequence()
         if (sc.value("sequence").toString() == input) {
             //QString title = sc.value("title").toString();
             //i++;
-            
+
             LOGE() << sc.value("title").toString();
             for (const QVariant& ss : m_potentialConflictShortcuts) {
                 QVariantMap sss = ss.toMap();
-                if (sc.value("title").toString() == sss.value("title").toString())
-                {
+                if (sc.value("title").toString() == sss.value("title").toString()) {
                     i++;
                 }
-              
             }
             //return;
         }
     }
-    if(i)
+    if (i) {
         m_errorMessage = qtrc("shortcuts", "Shortcut conflicts with %1").arg(i);
+    }
 }
 
 QString EditShortcutModel::originSequenceInNativeFormat() const
@@ -199,4 +205,10 @@ void EditShortcutModel::addToOriginSequence()
 QString EditShortcutModel::inputtedSequence() const
 {
     return m_inputtedSequence.toString();
+}
+
+QString EditShortcutModel::originAction() const
+{
+    LOGE() << "Action in cpp: " << m_originAction;
+    return m_originAction;
 }

@@ -26,7 +26,32 @@
         <ctx>any</ctx>
     </SC>
     <SC>
+        <key>pad-rest</key>
+        <seq></seq>
+        <ctx>any</ctx>
+    </SC>
+    <SC>
+        <key>flat</key>
+        <seq></seq>
+        <ctx>any</ctx>
+    </SC>
+    <SC>
+        <key>flat2</key>
+        <seq></seq>
+        <ctx>any</ctx>
+    </SC>
+    <SC>
         <key>nat</key>
+        <seq></seq>
+        <ctx>any</ctx>
+    </SC>
+    <SC>
+        <key>sharp</key>
+        <seq></seq>
+        <ctx>any</ctx>
+    </SC>
+    <SC>
+        <key>sharp2</key>
         <seq></seq>
         <ctx>any</ctx>
     </SC>

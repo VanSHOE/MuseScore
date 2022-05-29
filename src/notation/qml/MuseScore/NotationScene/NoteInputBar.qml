@@ -59,9 +59,8 @@ Item {
     EditShortcutDialog {
         id: editShortcutDialog
 
-        onApplySequenceRequested: function(newSequence) {
-            shortcutsModel.applySequenceToShortcut('nat', newSequence)
-            console.log("ugh")
+        onApplySequenceRequested: function(newSequence, shortcutAction) {
+            shortcutsModel.applySequenceToShortcut(shortcutAction, newSequence)
             shortcutsModel.apply()
         }
 
@@ -140,6 +139,7 @@ Item {
 
             property var item: Boolean(itemModel) ? itemModel.itemRole : null
             property var hasMenu: Boolean(item) && item.subitems.length !== 0
+//            property var action: Boolean(item) ? item.action : ""
 
             width: gridView.cellWidth
             height: gridView.cellWidth
@@ -152,7 +152,7 @@ Item {
             icon: Boolean(item) ? item.icon : IconCode.NONE
             iconFont: ui.theme.toolbarIconsFont
 
-            toolTipTitle: Boolean(item) ? item.title : ""
+            toolTipTitle: Boolean(item) ? item.title + "(" + item.action + ")" : ""
             toolTipDescription: Boolean(item) ? item.description : ""
             toolTipShortcut: Boolean(item) ? item.shortcuts : ""
 
@@ -182,21 +182,21 @@ Item {
             }
 
             onClicked: function(mouse) {
-                //                if (menuLoader.isMenuOpened // If already menu open, close it
-                //                        || (hasMenu // Or if can open menu
-                //                            && (!itemModel.isMenuSecondary // And _should_ open menu
-                //                                || mouse.button === Qt.RightButton))) {
-                //                    console.log("Opening Menu :(")
-                //                    toggleMenuOpened()
-                //                    return
-                //                }
-
-                if (mouse.button === Qt.LeftButton) {
-                    handleMenuItem()
+                if (menuLoader.isMenuOpened // If already menu open, close it
+                        || (hasMenu // Or if can open menu
+                            && (!itemModel.isMenuSecondary // And _should_ open menu
+                                || mouse.button === Qt.RightButton))) {
+                    console.log("Opening secondary Menu :(")
+                    toggleMenuOpened()
+                    return
                 }
                 else if(mouse.button === Qt.RightButton) {
                     showCellMenu()
                 }
+                else if (mouse.button === Qt.LeftButton) {
+                    handleMenuItem()
+                }
+
             }
 
             onPressAndHold: {
@@ -255,10 +255,11 @@ Item {
                 onHandleMenuItem: {
                     switch(itemId) {
                     case "add":
-                        editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut('nat'))
+                        console.log("Adding shortcut for: " + btn.item.action)
+                        editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut(btn.item.action))
                         break
                     case "remove":
-                        shortcutsModel.clearSequenceOfShortcut('nat')
+                        shortcutsModel.clearSequenceOfShortcut(btn.item.action)
                         shortcutsModel.apply()
                         break
                     }

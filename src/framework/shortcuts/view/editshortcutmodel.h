@@ -34,6 +34,7 @@ class EditShortcutModel : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString originSequence READ originSequenceInNativeFormat NOTIFY originSequenceChanged)
+    Q_PROPERTY(QString originAction READ originAction)
     Q_PROPERTY(QString inputtedSequence READ inputtedSequenceInNativeFormat NOTIFY inputtedSequenceChanged)
     Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY inputtedSequenceChanged)
     Q_PROPERTY(bool canApplyInputtedSequence READ canApplyInputtedSequence NOTIFY inputtedSequenceChanged)
@@ -43,6 +44,7 @@ public:
 
     QString originSequenceInNativeFormat() const;
     QString inputtedSequenceInNativeFormat() const;
+    QString originAction() const;
     QString errorMessage() const;
     bool canApplyInputtedSequence() const;
 
@@ -70,6 +72,7 @@ private:
     QVariantList m_potentialConflictShortcuts;
     QKeySequence m_inputtedSequence;
     QString m_originSequence;
+    QString m_originAction;
     QString m_errorMessage;
 };
 }

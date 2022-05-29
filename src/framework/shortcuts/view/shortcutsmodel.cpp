@@ -161,6 +161,7 @@ QVariant ShortcutsModel::getShortcut(QString action)
         if (action == QString::fromStdString(shortcut.action)) {
             QVariantMap obj;
             obj["title"] = actionTitle(shortcut.action);
+            obj["action"] = QString::fromStdString(shortcut.action);
             obj["sequence"] = QString::fromStdString(shortcut.sequencesAsString());
             obj["context"] = QString::fromStdString(shortcut.context);
             return obj;
@@ -235,6 +236,7 @@ void ShortcutsModel::applySequenceToShortcut(QString action, const QString& newS
 {
     int i = 0;
     LOGE() << "prev size:" << m_shortcuts.size();
+    LOGE() << "Applying shortcut to: " + action;
     for (Shortcut& shortcut : m_shortcuts) {
         if (action == QString::fromStdString(shortcut.action)) {
             shortcut.sequences = Shortcut::sequencesFromString(newSequence.toStdString());

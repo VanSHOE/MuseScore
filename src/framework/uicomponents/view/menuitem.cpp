@@ -24,7 +24,7 @@
 #include <QVariantMap>
 
 #include "shortcuts/shortcutstypes.h"
-
+#include "log.h"
 using namespace mu::uicomponents;
 using namespace mu::ui;
 
@@ -83,6 +83,11 @@ QList<MenuItem*> MenuItem::subitems() const
 UiAction MenuItem::action() const
 {
     return m_action;
+}
+
+QString mu::uicomponents::MenuItem::actionCode() const
+{
+    return QString::fromStdString(m_action.code);
 }
 
 mu::actions::ActionData MenuItem::args() const

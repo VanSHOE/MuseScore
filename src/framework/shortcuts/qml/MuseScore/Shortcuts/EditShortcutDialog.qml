@@ -30,7 +30,7 @@ import MuseScore.Shortcuts 1.0
 Dialog {
     id: root
 
-    signal applySequenceRequested(var newSequence)
+    signal applySequenceRequested(var newSequence, var shortcut2change)
 
 //    function
 
@@ -44,6 +44,7 @@ Dialog {
         }
         open()
         model.load(shortcut, allShortcuts)
+        console.log(model.originAction + " is the action.")
         content.forceActiveFocus()
 
     }
@@ -59,7 +60,7 @@ Dialog {
         id: model
 
         onApplyNewSequenceRequested: function(newSequence) {
-            root.applySequenceRequested(newSequence)
+            root.applySequenceRequested(newSequence, model.originAction)
             root.accept()
         }
     }

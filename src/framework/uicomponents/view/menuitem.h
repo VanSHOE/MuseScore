@@ -54,6 +54,7 @@ class MenuItem : public QObject, public async::Asyncable
     Q_PROPERTY(QString title READ title NOTIFY actionChanged)
     Q_PROPERTY(QString description READ description_property NOTIFY actionChanged)
     Q_PROPERTY(QString section READ section NOTIFY sectionChanged)
+    Q_PROPERTY(QString action READ actionCode NOTIFY actionChanged)
 
     Q_PROPERTY(int icon READ icon_property NOTIFY actionChanged)
 
@@ -85,6 +86,7 @@ public:
     QList<MenuItem*> subitems() const;
 
     ui::UiAction action() const;
+    QString actionCode() const;
     ui::UiActionState state() const;
     actions::ActionData args() const;
 
