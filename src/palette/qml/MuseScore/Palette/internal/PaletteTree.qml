@@ -345,6 +345,7 @@ StyledListView {
             }
 
             onDoubleClicked: {
+//                console.log("Got double clicked")
                 if (paletteProvider.isSingleClickToOpenPalette) {
                     return;
                 }

@@ -620,12 +620,19 @@ StyledGridView {
                 property bool canEdit: true
 
                 property var items: [
+                    { id: "assign", title: qsTrc("palette", "Assign"), enabled: true },
                     { id: "delete", title: qsTrc("palette", "Delete"), icon: IconCode.DELETE_TANK, enabled: contextMenu.canEdit },
                     { id: "properties", title: qsTrc("palette", "Properties…"), enabled: contextMenu.canEdit }
                 ]
 
                 onHandleMenuItem: {
                     switch(itemId) {
+                    case "assign":
+                        if (!paletteView.paletteController.applyPaletteElement(paletteCell.modelIndex, ui.keyboardModifiers())) {
+                            updateSelection()
+                            console.log("ok")
+                        }
+                        break
                     case "delete":
                         paletteView.paletteController.remove(contextMenu.modelIndex)
                         break
