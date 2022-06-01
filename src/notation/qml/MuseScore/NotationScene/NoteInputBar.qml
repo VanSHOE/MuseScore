@@ -62,6 +62,7 @@ Item {
         onApplySequenceRequested: function(newSequence, shortcutAction) {
             shortcutsModel.applySequenceToShortcut(shortcutAction, newSequence)
             shortcutsModel.apply()
+            noteInputModel.load()
         }
 
         property bool canEditCurrentShortcut: Boolean(shortcutsModel.currentShortcut)
@@ -152,7 +153,7 @@ Item {
             icon: Boolean(item) ? item.icon : IconCode.NONE
             iconFont: ui.theme.toolbarIconsFont
 
-            toolTipTitle: Boolean(item) ? item.title + "(" + item.action + ")" : ""
+            toolTipTitle: Boolean(item) ? item.title/* + "(" + item.action + ")"*/ : ""
             toolTipDescription: Boolean(item) ? item.description : ""
             toolTipShortcut: Boolean(item) ? item.shortcuts : ""
 
@@ -207,8 +208,8 @@ Item {
                 toggleMenuOpened()
             }
 //            onDoubleClicked: {
-//                console.log("Double clicked on:" + item.title)
-//                editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut('nat'))
+//                console.log("Adding shortcut for: " + btn.item.action)
+//                editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut(btn.item.action))
 //            }
 
             Canvas {
@@ -261,6 +262,7 @@ Item {
                     case "remove":
                         shortcutsModel.clearSequenceOfShortcut(btn.item.action)
                         shortcutsModel.apply()
+                        noteInputModel.load()
                         break
                     }
                 }
