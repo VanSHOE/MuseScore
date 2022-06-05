@@ -29,10 +29,15 @@
 #include "ipaletteprovider.h"
 #include "async/asyncable.h"
 
+#include "actions/iactionsdispatcher.h"
+#include "actions/actionable.h"
+
 #include "modularity/ioc.h"
 #include "iinteractive.h"
 #include "ipaletteconfiguration.h"
 #include "context/iglobalcontext.h"
+
+#include <unordered_map>
 
 namespace mu::engraving {
 class AbstractPaletteController;
@@ -199,12 +204,13 @@ public:
 //   PaletteProvider
 // ========================================================
 
-class PaletteProvider : public QObject, public mu::palette::IPaletteProvider, public mu::async::Asyncable
+class PaletteProvider : public QObject, public mu::palette::IPaletteProvider, public mu::async::Asyncable, public mu::actions::Actionable
 {
     Q_OBJECT
 
     INJECT(palette, mu::palette::IPaletteConfiguration, configuration)
     INJECT(palette, mu::framework::IInteractive, interactive)
+    INJECT(palette, actions::IActionsDispatcher, dispatcher)
 
     Q_PROPERTY(QAbstractItemModel * mainPaletteModel READ mainPaletteModel NOTIFY mainPaletteChanged)
     Q_PROPERTY(mu::engraving::AbstractPaletteController * mainPaletteController READ mainPaletteController NOTIFY mainPaletteChanged)
@@ -310,6 +316,8 @@ private:
     UserPaletteController* m_customElementsPaletteController = nullptr;
 
     mu::async::Channel<mu::engraving::ElementPtr> m_addCustomItemRequested;
+
+    std::unordered_map<QString, mu::engraving::EngravingItem*> umap;
 };
 } // namespace Ms
 

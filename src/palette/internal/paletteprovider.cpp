@@ -29,6 +29,8 @@
 #include <QMimeData>
 #include <QStandardPaths>
 
+#include <unordered_map>
+
 #include "libmscore/keysig.h"
 #include "libmscore/timesig.h"
 
@@ -647,7 +649,32 @@ QAbstractItemModel* PaletteProvider::mainPaletteModel()
     } else {
         m_mainPalette = m_visibilityFilterModel;
     }
+    LOGE() << "BEGIN ROW COUNT";
+    umap.clear();
+    QString s = "";
+    int ctr = 0;
+    for (int i = 0; i < m_mainPalette->rowCount(); i++) {
+        LOGE() << i;
+        for (int j = 0; j < m_mainPalette->rowCount(m_mainPalette->index(i, 0)); j++) {
+            auto it = m_mainPalette->index(j, 0, m_mainPalette->index(i, 0));
+            const PaletteCell* cell = m_mainPalette->data(it, PaletteTreeModel::PaletteCellRole).value<const PaletteCell*>();
+            if (!cell || !cell->element) {
+                continue;
+            }
 
+            auto el = cell->element.get();
+            auto ac_name = cell->name.toLower().replace(' ', '_').replace('\'', '_').replace('"', '_');
+            ac_name = "plui_" + ac_name;
+            LOGE() << el->_name() << ": " << cell->name << ";" << cell->id << ac_name;
+            s += "'" + ac_name + "',";
+            ctr++;
+            umap[ac_name]= cell->element.get();
+            dispatcher()->reg(this, ac_name.toStdString(), [this, ac_name]() { LOGE() << "You are trying to call: " << ac_name;/*globalContext()->currentNotation()->interaction()->applyPaletteElement(umap[ac_name]);*/ });
+        }
+    }
+    LOGE() << s;
+    LOGE() << ctr;
+    LOGE() << "END ROW COUNT";
     return m_mainPalette;
 }
 
