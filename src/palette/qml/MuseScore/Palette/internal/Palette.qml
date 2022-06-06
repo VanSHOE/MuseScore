@@ -216,7 +216,6 @@ StyledGridView {
 
     ShortcutsModel {
         id: shortcutsModel
-        selection: shortcutsView.sourceSelection
     }
 
 
@@ -226,7 +225,6 @@ StyledGridView {
         onApplySequenceRequested: function(newSequence, shortcutAction) {
             shortcutsModel.applySequenceToShortcut(shortcutAction, newSequence)
             shortcutsModel.apply()
-            noteInputModel.load()
         }
 
         property bool canEditCurrentShortcut: Boolean(shortcutsModel.currentShortcut)
@@ -552,7 +550,7 @@ StyledGridView {
                 visible: !parent.paletteDrag || parent.dragCopy
             }
 
-            hint: model.toolTip
+            hint: model.cellAction
 
             navigation.accessible.name: model.accessibleText
 
@@ -661,11 +659,11 @@ StyledGridView {
                         //                            updateSelection()
                         //                            console.log("ok")
                         //                        }
-                        console.log("Adding shortcut for: " + "nat")
-                        editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut("nat"))
+                        console.log("Adding shortcut for: " + model.cellAction)
+                        editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut(model.cellAction))
                         break
                     case "delshortcut":
-                        shortcutsModel.clearSequenceOfShortcut("nat")
+                        shortcutsModel.clearSequenceOfShortcut(model.cellAction)
                         shortcutsModel.apply()
                         break
                     case "delete":

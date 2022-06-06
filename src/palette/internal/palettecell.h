@@ -95,6 +95,7 @@ public:
     QString name; // used for tool tip
     qreal mag { 1.0 };
     QString tag;
+    QString action;
 
     bool drawStaff { false };
     double xoffset { 0.0 }; // in spatium units of "gscore"

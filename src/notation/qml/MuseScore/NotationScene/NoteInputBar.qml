@@ -52,7 +52,6 @@ Item {
     }
     ShortcutsModel {
         id: shortcutsModel
-        selection: shortcutsView.sourceSelection
     }
 
 

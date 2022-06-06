@@ -362,6 +362,8 @@ QVariant PaletteTreeModel::data(const QModelIndex& index, int role) const
         }
         case CellActiveRole:
             return cell->active;
+        case CellActionRole:
+            return cell->action;
         default:
             break;
         }
@@ -499,6 +501,17 @@ bool PaletteTreeModel::setData(const QModelIndex& index, const QVariant& value, 
                 return true;
             }
             return false;
+        case CellActionRole:
+            if (value.canConvert<QString>()) {
+                const QString val = value.toString();
+                if (val != cell->action) {
+                    cell->action = val;
+                    emit dataChanged(index, index, { CellActionRole });
+                }
+                return true;
+            }
+            return false;
+
         case MimeDataRole: {
             const QVariantMap map = value.toMap();
 
@@ -553,6 +566,7 @@ QHash<int, QByteArray> PaletteTreeModel::roleNames() const
     roles[EditableRole] = "editable";
     roles[PaletteExpandedRole] = "expanded";
     roles[CellActiveRole] = "cellActive";
+    roles[CellActionRole] = "cellAction";
     roles[Qt::AccessibleTextRole] = "accessibleText";
     return roles;
 }

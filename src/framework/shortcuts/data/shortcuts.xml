@@ -1268,4 +1268,4037 @@
     <seq>Ctrl+Shift+F10</seq>
     <ctx>notation-focused</ctx>
     </SC>
+
+<SC>
+    <key>plui_system_break</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_page_break</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_section_break</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_group_measures</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_staff_spacer_down</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_staff_spacer_up</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_staff_spacer_fixed_down</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_staff_type_change</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_insert_vertical_frame</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_insert_horizontal_frame</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_insert_text_frame</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_insert_one_measure</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_grace_low_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_grace_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_grace_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_grace_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_grace_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_grace_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_grace_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_grace_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_grace_high_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_grace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_doubling_on_low_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_doubling_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_doubling_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_doubling_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_doubling_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_doubling_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_doubling_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doubling_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doubling_on_high_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_strike_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grip</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_d_throw</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doubling_on_low_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doubling_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doubling_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doubling_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doubling_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doubling_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doubling_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_doubling_on_low_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_doubling_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_doubling_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_doubling_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_doubling_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_doubling_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_doubling_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_strike_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_strike_on_high_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_strike_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grip</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grip</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_birl</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_d_throw</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_heavy_d_throw</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_taorluath</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_birl</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bubbly</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_heavy_d_throw</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_taorluath</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_taorluath</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_double_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_double_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_double_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_double_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_double_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_double_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_double_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_double_strike_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_double_strike_on_high_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_grip_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_grip_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_grip_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_grip_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_grip_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_grip_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_grip_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_grip_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_grip_on_high_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_pele_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_pele_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_pele_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_pele_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_pele_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_pele_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_pele_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_pele_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_grip_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_grip_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_grip_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_grip_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_grip_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_grip_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_grip_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grip_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grip_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grip_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grip_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grip_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grip_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grip_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grip_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bubbly</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_birl</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_birl</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pele_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pele_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pele_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pele_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pele_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pele_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pele_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grace_note_pele_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grace_note_pele_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grace_note_pele_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grace_note_pele_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grace_note_pele_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grace_note_pele_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grace_note_pele_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_grace_note_pele_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_double_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_double_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_double_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_double_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_double_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_double_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_double_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_double_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_double_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_double_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_double_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_double_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_double_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_double_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_double_strike_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_strike_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_strike_on_high_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_triple_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_triple_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_triple_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_triple_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_triple_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_triple_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_triple_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_triple_strike_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_triple_strike_on_high_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_triple_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_triple_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_triple_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_triple_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_triple_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_triple_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_grace_note_triple_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_triple_strike_on_low_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_triple_strike_on_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_triple_strike_on_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_triple_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_triple_strike_on_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_triple_strike_on_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_triple_strike_on_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_triple_strike_on_high_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_accordion_coupler_dot</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_left_hand,_2_ranks,_empty</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_left_hand,_3_ranks,_empty_(square)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_right_hand,_3_ranks,_empty</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_right_hand,_4_ranks,_empty</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_diatonic_accordion_clef</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_2_ranks,_16__stop_(round)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_2_ranks,_8__stop_+_16__stop_(round)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_2_ranks,_8__stop_(round)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_2_ranks,_full_master_(round)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_2_ranks,_master_+_16__stop_(round)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_2_ranks,_master_(round)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_3_ranks,_2__stop_+_8__stop_(square)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_3_ranks,_2__stop_(square)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_3_ranks,_8__stop_(square)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_3_ranks,_double_8__stop_(square)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_hand,_3_ranks,_2__stop_+_double_8__stop_(tutti)_(square)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pull</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_push</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_8__stop_+_upper_tremolo_8__stop_+_16__stop_(accordion)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_lower_tremolo_8__stop_+_8__stop_+_upper_tremolo_8__stop_(authentic_musette)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_8__stop_+_16__stop_(bandoneón)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_16__stop_(bassoon)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_8__stop_(clarinet)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_lower_tremolo_8__stop_+_8__stop_+_upper_tremolo_8__stop_+_16__stop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_4__stop_+_lower_tremolo_8__stop_+_8__stop_+_upper_tremolo_8__stop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_4__stop_+_lower_tremolo_8__stop_+_8__stop_+_upper_tremolo_8__stop_+_16__stop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_4__stop_+_8__stop_+_16__stop_(harmonium)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_4__stop_+_8__stop_+_upper_tremolo_8__stop_(imitation_musette)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_lower_tremolo_8__stop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_4__stop_+_lower_tremolo_8__stop_+_upper_tremolo_8__stop_+_16__stop_(master)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_4__stop_+_8__stop_(oboe)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_4__stop_+_16__stop_(organ)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_4__stop_(piccolo)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_lower_tremolo_8__stop_+_upper_tremolo_8__stop_+_16__stop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_4__stop_+_lower_tremolo_8__stop_+_upper_tremolo_8__stop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_lower_tremolo_8__stop_+_upper_tremolo_8__stop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_upper_tremolo_8__stop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_3_ranks,_8__stop_+_upper_tremolo_8__stop_(violin)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_4_ranks,_alto</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_4_ranks,_bass/alto</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_4_ranks,_master</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_4_ranks,_soft_bass</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_4_ranks,_soft_tenor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_4_ranks,_soprano</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_hand,_4_ranks,_tenor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_ricochet_(2_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_ricochet_(3_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_ricochet_(4_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_ricochet_(5_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_ricochet_(6_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_ricochet_for_stem_(2_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_ricochet_for_stem_(3_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_ricochet_for_stem_(4_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_ricochet_for_stem_(5_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_combining_ricochet_for_stem_(6_tones)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_c</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_cm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_c7</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_d</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_d7</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_e</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_em</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_e7</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_f7</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_gm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g7</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_a</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_am</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_a7</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_b</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_b7</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_rh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_rh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_rh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_rh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_rh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_lh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_lh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_lh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_lh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_lh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_lh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_lh_guitar_fingering_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_string_number_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_string_number_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_string_number_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_string_number_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_string_number_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_string_number_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_string_number_%1</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thumb_position</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right-hand_fingering,_thumb</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right-hand_fingering,_first_finger</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right-hand_fingering,_second_finger</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right-hand_fingering,_third_finger</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_eighth_through_stem</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_16th_through_stem</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_32nd_through_stem</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_64th_through_stem</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_buzz_roll</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_eighth_between_notes</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_16th_between_notes</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_32nd_between_notes</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_64th_between_notes</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_arpeggio</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_up_arpeggio</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_down_arpeggio</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bracket_arpeggio</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_up_arpeggio_straight</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_down_arpeggio_straight</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_straight_glissando</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_wavy_glissando</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fall</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_doit</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_plop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_scoop</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_slide_out_down</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_slide_out_up</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_slide_in_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_slide_in_below</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_inverted_turn</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_turn_with_slash</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_turn</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_trill</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_short_trill</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_mordent</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_tremblement</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_prall_mordent</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_up_prall</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_mordent_with_upper_prefix</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_up_mordent</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_down_mordent</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_prall_down</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_prall_up</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_line_prall</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_slide</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_flat</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_natural</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_sharp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_sharp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_flat</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_sharp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triple_flat</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_natural_flat</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_natural_sharp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_add_parentheses_to_element</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_add_brackets_to_accidental</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_acciaccatura</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_appoggiatura</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grace:_quarter</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grace:_16th</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grace:_32nd</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grace:_8th_after</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grace:_16th_after</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grace:_32nd_after</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bracket</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_brace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_square</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fermata_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_short_fermata_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_long_fermata_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_long_fermata_(henze)_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_short_fermata_(henze)_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_very_long_fermata_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_very_short_fermata_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_breath_mark_(comma)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_breath_mark_(tick-like)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_breath_mark_(salzedo)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_breath_mark_(upbow-like)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_curved_caesura</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_caesura</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_short_caesura</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_thick_caesura</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_caesura</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_treble_clef</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_treble_clef_8va_alta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_treble_clef_15ma_alta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_treble_clef_8va_bassa</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_treble_clef_15ma_bassa</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_treble_clef_8va_bassa_on_2nd_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_treble_clef_optional_8va_bassa</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_french_violin_clef</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_soprano_clef</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_mezzo-soprano_clef</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_alto_clef</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_tenor_clef</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_baritone_clef_(c_clef)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bass_clef</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bass_clef_8va_alta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bass_clef_15ma_alta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bass_clef_8va_bassa</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bass_clef_15ma_bassa</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_baritone_clef_(f_clef)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_subbass_clef</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_percussion</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_percussion_2</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_tablature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_tablature_4_lines</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g_major,_e_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_d_major,_b_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_a_major,_f♯_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_e_major,_c♯_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_b_major,_g♯_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_f♯_major,_d♯_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_c♯_major,_a♯_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_c♭_major,_a♭_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_g♭_major,_e♭_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_d♭_major,_b♭_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_a♭_major,_f_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_e♭_major,_c_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_b♭_major,_g_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_f_major,_d_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_c_major,_a_minor</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_open/atonal</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_key_signature</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_2/4</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_3/4</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_4/4</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_5/4</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_6/4</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_3/8</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_6/8</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_7/8</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_9/8</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_12/8</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_common_time</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_cut_time</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_2/2</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_3/2</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_4/2</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_cut_time_(bach)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_cut_triple_time_(9/8)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_accent_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_staccato_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_staccatissimo_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_tenuto_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_louré_(tenuto-staccato)_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_marcato_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_accent-staccato_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_laissez_vibrer_(l.v.)_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_marcato-staccato_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_marcato-tenuto_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_staccatissimo_stroke_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_staccatissimo_wedge_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_stress_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_tenuto-accent_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_unstress_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_soft_accent_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_soft_accent-staccato_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_soft_accent-tenuto_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_soft_accent-tenuto-staccato_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fade_in</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fade_out</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_volume_swell</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_sawtooth_line_segment</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_wide_sawtooth_line_segment</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_vibrato_large,_faster</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_vibrato_large,_slowest</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_open</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_muted_(closed)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_harmonic</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_up_bow</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_down_bow</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_snap_pizzicato_above</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_bend</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_tremolo_bar</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_normal</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_cross</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_plus</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_xcircle</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_with_x</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triangle_up</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_triangle_down</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_slashed_(forwards)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_slashed_(backwards)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_diamond</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_diamond_(old)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_circled</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_circled_large</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_large_arrow</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_alt._brevis</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_slash</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_sol</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_la</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fa</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_mi</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_do</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_re</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_ti</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_add_parentheses_to_element</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_slur</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_crescendo_hairpin</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_diminuendo_hairpin</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_crescendo_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_diminuendo_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dynamic_+_hairpin</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_prima_volta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_seconda_volta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_terza_volta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_seconda_volta,_open</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_8va_alta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_8va_bassa</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_15ma_alta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_15ma_bassa</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_22ma_alta</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_22ma_bassa</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pedal_(with_ped_and_line)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pedal_(with_ped_and_asterisk)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pedal_(straight_hooks)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pedal_(angled_end_hook)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pedal_(both_hooks_angled)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pedal_(angled_start_hook)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_trill_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_upprall_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_downprall_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_prallprall_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_text_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_line</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_ambitus</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_let_ring</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_guitar_vibrato</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_guitar_vibrato_wide</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_vibrato_sawtooth</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_tremolo_sawtooth_wide</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_palm_mute</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_single_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_double_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_(start)_repeat_sign</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_(end)_repeat_sign</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dashed_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_final_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_and_left_repeat_sign</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dotted_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_reverse_final_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_heavy_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_heavy_double_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dashed_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_tick_barline_2</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_short_barline</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_short_barline_2</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_staff_text</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_expression_text</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_instrument_change</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_rehearsal_mark</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_straight</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_system_text</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_measure_number</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_swing</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_note_=_80_bpm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_quarter_note_=_80_bpm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_eighth_note_=_80_bpm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dotted_half_note_=_80_bpm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dotted_quarter_note_=_80_bpm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dotted_eighth_note_=_80_bpm</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_grave</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_largo</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_lento</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_larghetto</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_adagio</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_andante</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_andantino</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_moderato</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_allegretto</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_allegro_moderato</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_allegro</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_vivace</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_presto</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_prestissimo</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_quarter_note_=_dotted_quarter_note_metric_modulation</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dotted_quarter_note_=_quarter_note_metric_modulation</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_half_note_=_quarter_note_metric_modulation</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_quarter_note_=_half_note_metric_modulation</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_eighth_note_=_eighth_note_metric_modulation</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_quarter_note_=_quarter_note_metric_modulation</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_dotted_eighth_note_=_quarter_note_metric_modulation</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_ppp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_p</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_mp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_mf</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_f</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_ff</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fff</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_pf</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_sf</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_sfz</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_sff</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_sffz</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_sfp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_sfpp</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_rfz</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_rf</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fz</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_m</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_r</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_s</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_z</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_n</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_repeat_last_bar</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_repeat_last_two_bars</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_repeat_last_four_bars</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_segno</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_segno_variation</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_coda</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_varied_coda</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_fine</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_to_coda</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_to_coda_(symbol)</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_da_capo</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_da_capo_al_fine</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_da_capo_al_coda</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_d.s._al_coda</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_d.s._al_fine</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_d.s.</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_left_(start)_repeat_sign</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_(end)_repeat_sign</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_right_and_left_repeat_sign</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_beam_start</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_beam_middle</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_no_beam</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
+<SC>
+    <key>plui_auto_beam</key>
+    <seq></seq>
+    <ctx>any</ctx>
+    </SC>
+
   </Shortcuts>
