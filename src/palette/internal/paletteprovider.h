@@ -211,7 +211,7 @@ class PaletteProvider : public QObject, public mu::palette::IPaletteProvider, pu
     INJECT(palette, mu::palette::IPaletteConfiguration, configuration)
     INJECT(palette, mu::framework::IInteractive, interactive)
     INJECT(palette, actions::IActionsDispatcher, dispatcher)
-
+    INJECT(notation, context::IGlobalContext, globalContext)
     Q_PROPERTY(QAbstractItemModel * mainPaletteModel READ mainPaletteModel NOTIFY mainPaletteChanged)
     Q_PROPERTY(mu::engraving::AbstractPaletteController * mainPaletteController READ mainPaletteController NOTIFY mainPaletteChanged)
 

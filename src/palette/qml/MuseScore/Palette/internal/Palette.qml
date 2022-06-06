@@ -24,6 +24,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.15
 import QtQml.Models 2.2
 
+import MuseScore.Shortcuts 1.0
 import MuseScore.Palette 1.0
 import MuseScore.UiComponents 1.0
 import MuseScore.Ui 1.0
@@ -208,6 +209,33 @@ StyledGridView {
         id: dragDropReorderTimer
         interval: 400
     }
+
+    Component.onCompleted: {
+        shortcutsModel.load()
+    }
+
+    ShortcutsModel {
+        id: shortcutsModel
+        selection: shortcutsView.sourceSelection
+    }
+
+
+    EditShortcutDialog {
+        id: editShortcutDialog
+
+        onApplySequenceRequested: function(newSequence, shortcutAction) {
+            shortcutsModel.applySequenceToShortcut(shortcutAction, newSequence)
+            shortcutsModel.apply()
+            noteInputModel.load()
+        }
+
+        property bool canEditCurrentShortcut: Boolean(shortcutsModel.currentShortcut)
+
+        function startEditShortcut(shortcut2change) {
+            editShortcutDialog.startEdit(shortcut2change, shortcutsModel.shortcuts(), true)
+        }
+    }
+
 
     PaletteGrid {
         id: grid
@@ -620,7 +648,8 @@ StyledGridView {
                 property bool canEdit: true
 
                 property var items: [
-                    { id: "assign", title: qsTrc("palette", "Assign"), enabled: true },
+                    { id: "assign", title: qsTrc("palette", "Assign Shortcut"), enabled: true },
+                    { id: "delshortcut", title: qsTrc("palette", "Clear Current Shortcut"), enabled: true },
                     { id: "delete", title: qsTrc("palette", "Delete"), icon: IconCode.DELETE_TANK, enabled: contextMenu.canEdit },
                     { id: "properties", title: qsTrc("palette", "Properties…"), enabled: contextMenu.canEdit }
                 ]
@@ -628,10 +657,16 @@ StyledGridView {
                 onHandleMenuItem: {
                     switch(itemId) {
                     case "assign":
-                        if (!paletteView.paletteController.applyPaletteElement(paletteCell.modelIndex, ui.keyboardModifiers())) {
-                            updateSelection()
-                            console.log("ok")
-                        }
+                        //                        if (!paletteView.paletteController.applyPaletteElement(paletteCell.modelIndex, ui.keyboardModifiers())) {
+                        //                            updateSelection()
+                        //                            console.log("ok")
+                        //                        }
+                        console.log("Adding shortcut for: " + "nat")
+                        editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut("nat"))
+                        break
+                    case "delshortcut":
+                        shortcutsModel.clearSequenceOfShortcut("nat")
+                        shortcutsModel.apply()
                         break
                     case "delete":
                         paletteView.paletteController.remove(contextMenu.modelIndex)

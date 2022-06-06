@@ -669,7 +669,7 @@ QAbstractItemModel* PaletteProvider::mainPaletteModel()
             s += "'" + ac_name + "',";
             ctr++;
             umap[ac_name]= cell->element.get();
-            dispatcher()->reg(this, ac_name.toStdString(), [this, ac_name]() { LOGE() << "You are trying to call: " << ac_name;/*globalContext()->currentNotation()->interaction()->applyPaletteElement(umap[ac_name]);*/ });
+            dispatcher()->reg(this, ac_name.toStdString(), [this, ac_name]() { /*LOGE() << "You are trying to call: " << ac_name;*/globalContext()->currentNotation()->interaction()->applyPaletteElement(umap[ac_name]); });
         }
     }
     LOGE() << s;
