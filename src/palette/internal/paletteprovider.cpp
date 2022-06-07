@@ -664,16 +664,15 @@ QAbstractItemModel* PaletteProvider::mainPaletteModel()
 
             //cell->name = QString("NAME");
             auto el = cell->element.get();
-            auto ac_name = cell->name.toLower().replace(' ', '_').replace('\'', '_').replace('"', '_');
-            ac_name = "plui_" + ac_name;
+            auto ac_name = cell->action;
             //LOGE() << el->_name() << ": " << cell->name << ";" << cell->id << ac_name;
             s += "'" + ac_name + "',";
+//            LOGE() << ac_name;
             ctr++;
             umap[ac_name]= cell->element.get();
             dispatcher()->reg(this, ac_name.toStdString(), [this, ac_name]() { /*LOGE() << "You are trying to call: " << ac_name;*/
                 globalContext()->currentNotation()->interaction()->applyPaletteElement(umap[ac_name]);
             });
-            m_mainPalette->setData(it, ac_name, PaletteTreeModel::CellActionRole); // TOO SLOW!
         }
     }
     LOGE() << s;
