@@ -34,6 +34,7 @@ Item {
     property alias model: sortFilterProxyModel.sourceModel
 
     property bool readOnly: false
+    property bool categorized: false
 
     property string keyRoleName: "key"
     property string keyTitle: qsTrc("uicomponents", "Key")
@@ -204,6 +205,18 @@ Item {
             item: model
 
             property var modelIndex: sortFilterProxyModel.index(model.index, 0)
+
+            height: root.categorized ? 0 : 34
+            opacity: root.categorized ? 0 : 1
+            visible: opacity != 0
+
+            Behavior on height {
+                NumberAnimation {duration : 200 }
+            }
+
+            Behavior on opacity {
+                NumberAnimation {duration : 200 }
+            }
 
             keyRoleName: root.keyRoleName
             valueRoleName: root.valueRoleName
