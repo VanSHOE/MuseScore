@@ -175,7 +175,6 @@ bool PaletteCell::read(XmlReader& e)
 {
     bool add = true;
     name = e.attribute("name");
-    action = "plui_" + name.toLower().replace(' ', '_').replace('\'', '_').replace('"', '_');
 
     // using attributes instead of nested tags for
     // pre-3.3 version compatibility
@@ -225,7 +224,7 @@ bool PaletteCell::read(XmlReader& e)
     }
 
     setElementTranslated(translateElement);
-
+    action = "plui_" + translatedName().toLower().replace(' ', '_').replace('\'', '_').replace('"', '_');
     return add && element;
 }
 
