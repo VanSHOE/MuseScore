@@ -91,7 +91,8 @@ private:
         RoleTitle = Qt::UserRole + 1,
         RoleIcon,
         RoleSequence,
-        RoleSearchKey
+        RoleSearchKey,
+        RoleInitial
     };
 
     QList<Shortcut> m_shortcuts;

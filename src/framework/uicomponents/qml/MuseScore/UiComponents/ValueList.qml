@@ -171,7 +171,31 @@ Item {
 
     StyledListView {
         id: view
+        property var collapsed: ({})
+        function toggleSection (section) {
+            if (isSectionExpanded(section)) {
+                console.log("Hiding: " + section)
+                hideSection(section)
+            } else {
+                console.log("Opening: " + section + "with " + root.model["initial"])
+                showSection(section)
+            }
+        }
 
+        function isSectionExpanded(section){
+            console.log("Checking " + section)
+            return !(section in collapsed)
+        }
+
+        function showSection(section){
+            delete collapsed[section]
+            collapsedChanged()
+        }
+
+        function hideSection(section){
+            collapsed[section] = true
+            collapsedChanged()
+        }
         anchors.top: header.bottom
         anchors.left: parent.left
         anchors.leftMargin: background.border.width
@@ -181,6 +205,8 @@ Item {
         anchors.bottomMargin: background.border.width
 
         model: sortFilterProxyModel
+
+
 
         property NavigationPanel navigation: NavigationPanel {
             name: "ValueListPanel"
@@ -206,8 +232,8 @@ Item {
 
             property var modelIndex: sortFilterProxyModel.index(model.index, 0)
 
-            height: root.categorized ? 0 : 34
-            opacity: root.categorized ? 0 : 1
+            height: root.categorized && !view.isSectionExpanded(model["initial"]) ? 0 : 34
+            opacity: root.categorized && !view.isSectionExpanded(model["initial"]) ? 0 : 1
             visible: opacity != 0
 
             Behavior on height {
@@ -252,6 +278,7 @@ Item {
             }
 
             onClicked: {
+                console.log("Hitting: " + model["initial"])
                 selectionModel.select(modelIndex)
             }
 
@@ -266,6 +293,22 @@ Item {
             onFocusChanged: {
                 if (activeFocus) {
                     view.positionViewAtIndex(index, ListView.Contain)
+                }
+            }
+        }
+
+        section {
+            property: "initial"
+            criteria: ViewSection.FullString
+
+            delegate: ValueListSection {
+                text: "Second character: " + section
+                spacing: prv.spacing
+                sideMargin: prv.sideMargin
+                valueItemWidth: prv.valueItemWidth
+                expanded: view.isSectionExpanded(section)
+                onClickedUp: {
+                    view.toggleSection ( section )
                 }
             }
         }

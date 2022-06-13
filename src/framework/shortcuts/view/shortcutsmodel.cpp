@@ -55,6 +55,8 @@ QVariant ShortcutsModel::data(const QModelIndex& index, int role) const
         UiAction action = this->action(shortcut.action);
         return QString::fromStdString(action.code) + action.title + sequencesToNativeText(shortcut.sequences);
     }
+    case RoleInitial:
+        return this->action(shortcut.action).title.length() > 1 ? QString(this->action(shortcut.action).title.at(1)) : "NULL";
     }
 
     return QVariant();
@@ -78,11 +80,12 @@ int ShortcutsModel::rowCount(const QModelIndex&) const
 
 QHash<int, QByteArray> ShortcutsModel::roleNames() const
 {
-    static const QHash<int, QByteArray> roles {
+    static const QHash<int, QByteArray> roles{
         { RoleTitle, "title" },
         { RoleIcon, "icon" },
         { RoleSequence, "sequence" },
-        { RoleSearchKey, "searchKey" }
+        { RoleSearchKey, "searchKey" },
+        { RoleInitial, "initial" }
     };
 
     return roles;

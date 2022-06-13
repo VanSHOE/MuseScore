@@ -33,7 +33,7 @@ ValueList {
     valueTitle: qsTrc("shortcuts", "shortcut")
     iconRoleName: "icon"
     readOnly: true
-
+    categorized: true
     property var sourceModel: null
     property string searchText: ""
 
