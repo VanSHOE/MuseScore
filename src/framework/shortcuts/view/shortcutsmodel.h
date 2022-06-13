@@ -54,6 +54,7 @@ public:
     explicit ShortcutsModel(QObject* parent = nullptr);
 
     QVariant data(const QModelIndex& index, int role) const override;
+    const QVariant SectionName(const Shortcut& shortcut) const;
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QHash<int, QByteArray> roleNames() const override;
 
@@ -92,7 +93,9 @@ private:
         RoleIcon,
         RoleSequence,
         RoleSearchKey,
-        RoleInitial
+        RoleSection,
+        RoleSectionKey,
+        RoleSectionValue
     };
 
     QList<Shortcut> m_shortcuts;

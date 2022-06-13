@@ -45,6 +45,8 @@ Item {
     property string iconRoleName: "icon"
 
     property alias hasSelection: selectionModel.hasSelection
+    property alias keySorterRole: keySorter.roleName
+    property alias valueSorterRole: valueSorter.roleName
     readonly property var selection: sortFilterProxyModel.mapSelectionToSource(selectionModel.selection)
 
     property NavigationSection navigationSection: null
@@ -230,19 +232,21 @@ Item {
 
             item: model
 
+            clip: true
+
             property var modelIndex: sortFilterProxyModel.index(model.index, 0)
 
-            height: root.categorized && !view.isSectionExpanded(model["initial"]) ? 0 : 34
-            opacity: root.categorized && !view.isSectionExpanded(model["initial"]) ? 0 : 1
-            visible: opacity != 0
+            height: root.categorized && !view.isSectionExpanded(model["ownerSection"]) ? 0 : 34
+//            opacity: root.categorized && !view.isSectionExpanded(model["ownerSection"]) ? 0 : 1
+//            visible: opacity != 0
 
             Behavior on height {
                 NumberAnimation {duration : 200 }
             }
 
-            Behavior on opacity {
-                NumberAnimation {duration : 200 }
-            }
+//            Behavior on opacity {
+//                NumberAnimation {duration : 200 }
+//            }
 
             keyRoleName: root.keyRoleName
             valueRoleName: root.valueRoleName
@@ -278,7 +282,6 @@ Item {
             }
 
             onClicked: {
-                console.log("Hitting: " + model["initial"])
                 selectionModel.select(modelIndex)
             }
 
@@ -298,7 +301,7 @@ Item {
         }
 
         section {
-            property: "initial"
+            property: "ownerSection"
             criteria: ViewSection.FullString
 
             delegate: ValueListSection {
