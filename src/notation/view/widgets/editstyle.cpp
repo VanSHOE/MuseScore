@@ -87,6 +87,7 @@ static const QStringList ALL_PAGE_CODES {
     "figured-bass",
     "chord-symbols",
     "fretboard-diagrams",
+    "tablature-styles",
     "text-styles"
 };
 
@@ -654,7 +655,7 @@ EditStyle::EditStyle(QWidget* parent)
     musicalSymbolFont->clear();
     int idx = 0;
     for (auto i : mu::engraving::ScoreFont::scoreFonts()) {
-        musicalSymbolFont->addItem(i.name(), i.name());
+        musicalSymbolFont->addItem(i.name().toQString(), i.name().toQString());
         ++idx;
     }
 
@@ -697,8 +698,8 @@ EditStyle::EditStyle(QWidget* parent)
     // Figured Bass
     // ====================================================
 
-    std::list<QString> fbFontNames = mu::engraving::FiguredBass::fontNames();
-    for (const QString& family : fbFontNames) {
+    std::list<String> fbFontNames = mu::engraving::FiguredBass::fontNames();
+    for (const String& family : fbFontNames) {
         comboFBFont->addItem(family);
     }
     comboFBFont->setCurrentIndex(0);

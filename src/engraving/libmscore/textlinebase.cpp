@@ -321,7 +321,7 @@ void TextLineBaseSegment::layout()
         _endText->setTrack(track());
         _endText->layout();
     } else {
-        _endText->setXmlText("");
+        _endText->setXmlText(u"");
     }
 
     PointF pp1;
@@ -717,7 +717,7 @@ bool TextLineBase::setProperty(Pid id, const PropertyValue& v)
         break;
     case Pid::BEGIN_FONT_SIZE:
         if (v.toReal() <= 0) {
-            ASSERT_X(QString::asprintf("font size is %f", v.toReal()));
+            ASSERT_X(String("font size is %1").arg(v.toReal()));
         }
         setBeginFontSize(v.toReal());
         break;

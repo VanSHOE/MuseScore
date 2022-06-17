@@ -413,7 +413,7 @@ size_t Staff::bracketLevels() const
 //   partName
 //---------------------------------------------------------
 
-QString Staff::partName() const
+String Staff::partName() const
 {
     return _part->partName();
 }
@@ -487,7 +487,7 @@ Fraction Staff::currentClefTick(const Fraction& tick) const
     return Fraction::fromTicks(clefs.currentClefTick(tick.ticks()));
 }
 
-QString Staff::staffName() const
+String Staff::staffName() const
 {
     return TConv::toUserName(clefType(Fraction())._transposingClef);
 }
@@ -995,8 +995,8 @@ SwingParameters Staff::swing(const Fraction& tick) const
 {
     SwingParameters sp;
     int swingUnit = 0;
-    QByteArray ba = score()->styleSt(Sid::swingUnit).toLatin1();
-    DurationType unit = TConv::fromXml(ba.constData(), DurationType::V_INVALID);
+    ByteArray ba = score()->styleSt(Sid::swingUnit).toAscii();
+    DurationType unit = TConv::fromXml(ba.constChar(), DurationType::V_INVALID);
     int swingRatio = score()->styleI(Sid::swingRatio);
     if (unit == DurationType::V_EIGHTH) {
         swingUnit = Constants::division / 2;
@@ -1194,6 +1194,17 @@ const StaffType* Staff::staffTypeForElement(const EngravingItem* e) const
         return &_staffTypeList.staffType({ 0, 1 });
     }
     return &_staffTypeList.staffType(e->tick());
+}
+
+bool Staff::isStaffTypeStartFrom(const Fraction& tick) const
+{
+    return _staffTypeList.isStaffTypeStartFrom(tick);
+}
+
+void Staff::moveStaffType(const Fraction& from, const Fraction& to)
+{
+    _staffTypeList.moveStaffType(from, to);
+    staffTypeListChanged(from);
 }
 
 //---------------------------------------------------------

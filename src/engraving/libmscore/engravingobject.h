@@ -71,6 +71,7 @@ class Glissando;
 class GlissandoSegment;
 class SystemDivider;
 class RehearsalMark;
+class TripletFeel;
 class Harmony;
 class Volta;
 class Jump;
@@ -132,7 +133,6 @@ class StaffState;
 class Arpeggio;
 class Image;
 class ChordLine;
-class Slide;
 class SlurTieSegment;
 class FretDiagram;
 class StaffTypeChange;
@@ -326,6 +326,7 @@ public:
     CONVERT(GlissandoSegment,     GLISSANDO_SEGMENT)
     CONVERT(SystemDivider, SYSTEM_DIVIDER)
     CONVERT(RehearsalMark, REHEARSAL_MARK)
+    CONVERT(TripletFeel, TRIPLET_FEEL)
     CONVERT(Harmony,       HARMONY)
     CONVERT(Volta,         VOLTA)
     CONVERT(Jump,          JUMP)
@@ -393,7 +394,6 @@ public:
     CONVERT(Arpeggio,      ARPEGGIO)
     CONVERT(Image,         IMAGE)
     CONVERT(ChordLine,     CHORDLINE)
-    CONVERT(Slide,         SLIDE)
     CONVERT(FretDiagram,   FRET_DIAGRAM)
     CONVERT(Page,          PAGE)
     CONVERT(Text,          TEXT)
@@ -489,7 +489,7 @@ public:
 
     bool isStaffTextBase() const
     {
-        return isStaffText() || isSystemText() || isPlayTechAnnotation();
+        return isStaffText() || isSystemText() || isTripletFeel() || isPlayTechAnnotation();
     }
 };
 
@@ -649,6 +649,7 @@ CONVERT(Glissando)
 CONVERT(GlissandoSegment)
 CONVERT(SystemDivider)
 CONVERT(RehearsalMark)
+CONVERT(TripletFeel)
 CONVERT(Harmony)
 CONVERT(Volta)
 CONVERT(Jump)
@@ -723,7 +724,6 @@ CONVERT(StaffState)
 CONVERT(Arpeggio)
 CONVERT(Image)
 CONVERT(ChordLine)
-CONVERT(Slide)
 CONVERT(FretDiagram)
 CONVERT(Page)
 CONVERT(SystemText)

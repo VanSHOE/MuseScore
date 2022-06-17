@@ -24,8 +24,8 @@
 #include <functional>
 #include <unordered_set>
 #include <map>
-#include <QString>
 
+#include "types/string.h"
 #include "id.h"
 
 #include "infrastructure/draw/color.h"
@@ -139,8 +139,16 @@ enum class Orientation : signed char {
 };
 
 // P_TYPE::BEAM_MODE
+//! Note: for historical reasons, these have strange names
 enum class BeamMode : signed char {
-    AUTO, BEGIN, MID, END, NONE, BEGIN32, BEGIN64, INVALID = -1
+    INVALID = -1,
+    AUTO,
+    NONE,
+    BEGIN,
+    BEGIN32,
+    BEGIN64,
+    MID,
+    END
 };
 
 enum class DurationType : signed char {

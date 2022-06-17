@@ -550,7 +550,7 @@ void MeasureRW::writeMeasure(const Measure* measure, XmlWriter& xml, staff_idx_t
 {
     if (MScore::debugMode) {
         const int mno = measure->no() + 1;
-        xml.comment(QString("Measure %1").arg(mno));
+        xml.comment(String("Measure %1").arg(mno));
     }
     if (measure->_len != measure->m_timesig) {
         // this is an irregular measure
@@ -615,11 +615,13 @@ void MeasureRW::writeMeasure(const Measure* measure, XmlWriter& xml, staff_idx_t
         if (e->generated()) {
             continue;
         }
+
         bool writeSystem = writeSystemElements;
         if (e->systemFlag()) {
             ElementType et = e->type();
             if ((et == ElementType::REHEARSAL_MARK)
                 || (et == ElementType::SYSTEM_TEXT)
+                || (et == ElementType::TRIPLET_FEEL)
                 || (et == ElementType::PLAYTECH_ANNOTATION)
                 || (et == ElementType::JUMP)
                 || (et == ElementType::MARKER)
@@ -629,11 +631,13 @@ void MeasureRW::writeMeasure(const Measure* measure, XmlWriter& xml, staff_idx_t
                 writeSystem = (e->staffIdx() == staff); // always show these on appropriate staves
             }
         }
+
         if (e->staffIdx() != staff) {
-            if (e->systemFlag() && !writeSystem) {
+            if (!e->systemFlag() || (e->systemFlag() && !writeSystem)) {
                 continue;
             }
         }
+
         e->write(xml);
     }
     Q_ASSERT(measure->first());

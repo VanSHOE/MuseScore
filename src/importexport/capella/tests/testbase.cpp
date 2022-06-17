@@ -66,10 +66,10 @@ MasterScore* MTest::readScore(const QString& name)
         rv = compat::loadMsczOrMscx(score, path, false);
     } else if (suffix == "cap") {
         rv = iex::capella::importCapella(score, path);
-        score->setMetaTag("originalFormat", suffix);
+        score->setMetaTag(u"originalFormat", suffix);
     } else if (suffix == "capx") {
         rv = iex::capella::importCapXml(score, path);
-        score->setMetaTag("originalFormat", suffix);
+        score->setMetaTag(u"originalFormat", suffix);
     } else {
         rv = Score::FileError::FILE_UNKNOWN_TYPE;
     }
@@ -147,6 +147,6 @@ void MTest::initMTest(const QString& rootDir)
     mscore->init();
 
     root = rootDir;
-    loadInstrumentTemplates(":/data/instruments.xml");
+    loadInstrumentTemplates(u":/data/instruments.xml");
 }
 }

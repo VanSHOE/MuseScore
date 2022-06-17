@@ -90,6 +90,7 @@
 #include "textedit.h"
 #include "textline.h"
 #include "linkedobjects.h"
+#include "stafftypechange.h"
 
 #include "masterscore.h"
 
@@ -1611,7 +1612,7 @@ void EditText::redo(EditData*)
 
 void EditText::undoRedo()
 {
-    QString s = text->xmlText();
+    String s = text->xmlText();
     text->setXmlText(oldText);
     oldText = s;
     text->triggerLayout();
@@ -1773,7 +1774,7 @@ void ChangeStaffType::flip(EditData*)
 //   ChangePart
 //---------------------------------------------------------
 
-ChangePart::ChangePart(Part* _part, Instrument* i, const QString& s)
+ChangePart::ChangePart(Part* _part, Instrument* i, const String& s)
 {
     instrument = i;
     part       = _part;
@@ -1787,7 +1788,7 @@ ChangePart::ChangePart(Part* _part, Instrument* i, const QString& s)
 void ChangePart::flip(EditData*)
 {
     Instrument* oi = part->instrument(); //tick?
-    QString s      = part->partName();
+    String s      = part->partName();
     part->setInstrument(instrument);
     part->setPartName(partName);
 
@@ -1991,6 +1992,7 @@ std::vector<Clef*> InsertRemoveMeasures::getCourtesyClefs(Measure* m)
 void InsertRemoveMeasures::insertMeasures()
 {
     Score* score = fm->score();
+
     std::list<Clef*> clefs;
     std::vector<Clef*> prevMeasureClefs;
     std::list<KeySig*> keys;
@@ -2044,6 +2046,21 @@ void InsertRemoveMeasures::insertMeasures()
     }
 
     score->setLayoutAll();
+
+    if (Measure* nextMeasure = lm->nextMeasure()) {
+        for (staff_idx_t staffIdx = 0; staffIdx < score->nstaves(); ++staffIdx) {
+            Staff* staff = score->staff(staffIdx);
+            if (staff->isStaffTypeStartFrom(fm->tick())) {
+                staff->moveStaffType(fm->tick(), nextMeasure->tick());
+
+                for (auto el : nextMeasure->el()) {
+                    if (el && el->isStaffTypeChange()) {
+                        toStaffTypeChange(el)->setStaffType(staff->staffType(nextMeasure->tick()), false);
+                    }
+                }
+            }
+        }
+    }
 
     //
     // connect ties
@@ -2101,6 +2118,22 @@ void InsertRemoveMeasures::removeMeasures()
             break;
         }
     }
+
+    if (Measure* nextMeasure = lm->nextMeasure()) {
+        for (size_t staffIdx = 0; staffIdx < score->nstaves(); ++staffIdx) {
+            Staff* staff = score->staff(staffIdx);
+            if (staff->isStaffTypeStartFrom(nextMeasure->tick())) {
+                staff->moveStaffType(nextMeasure->tick(), fm->tick());
+
+                for (auto el : nextMeasure->el()) {
+                    if (el && el->isStaffTypeChange()) {
+                        toStaffTypeChange(el)->setStaffType(staff->staffType(fm->tick()), false);
+                    }
+                }
+            }
+        }
+    }
+
     score->measures()->remove(fm, lm);
 
     score->setUpTempoMap();
@@ -2256,7 +2289,7 @@ void SwapExcerpt::flip(EditData*)
 
 void ChangeExcerptTitle::flip(EditData*)
 {
-    QString s = title;
+    String s = title;
     title = excerpt->name();
     excerpt->setName(s);
     excerpt->masterScore()->setExcerptsChanged(true);
@@ -2473,7 +2506,7 @@ void ChangeTextLineProperty::flip(EditData* ed)
 
 void ChangeMetaText::flip(EditData*)
 {
-    QString s = score->metaTag(id);
+    String s = score->metaTag(id);
     score->setMetaTag(id, text);
     text = s;
 }
@@ -2741,7 +2774,7 @@ void ChangeStartEndSpanner::flip(EditData*)
 
 void ChangeMetaTags::flip(EditData*)
 {
-    std::map<QString, QString> t = score->metaTags();
+    std::map<String, String> t = score->metaTags();
     score->setMetaTags(metaTags);
     metaTags = t;
 }

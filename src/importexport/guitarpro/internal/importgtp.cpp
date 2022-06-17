@@ -69,7 +69,7 @@
 #include <libmscore/fret.h>
 #include <libmscore/instrtemplate.h>
 #include <libmscore/glissando.h>
-#include <libmscore/slide.h>
+#include <libmscore/chordline.h>
 #include <libmscore/instrtemplate.h>
 #include <libmscore/hairpin.h>
 #include <libmscore/ottava.h>
@@ -828,7 +828,7 @@ void GuitarPro::createSlide(int sl, ChordRest* cr, int staffIdx, Note* note)
                 s->setTick(prevSeg->tick());
                 s->setTrack(staffIdx);
                 s->setParent(prevChord->upNote());
-                s->setText("");
+                s->setText(u"");
                 s->setGlissandoType(GlissandoType::STRAIGHT);
                 if (sl == LEGATO_SLIDE) {
                     createSlur(true, staffIdx, prevChord);
@@ -850,30 +850,26 @@ void GuitarPro::createSlide(int sl, ChordRest* cr, int staffIdx, Note* note)
     }
     // slide out downwards (fall)
     if (sl & SLIDE_OUT_DOWN) {
-        Slide* sld = Factory::createSlide(mu::engraving::toChord(cr));
+        ChordLine* sld = Factory::createChordLine(mu::engraving::toChord(cr));
         sld->setChordLineType(ChordLineType::FALL);
-        sld->setNote(note);
         cr->add(sld);
     }
     // slide out upwards (doit)
     if (sl & SLIDE_OUT_UP) {
-        Slide* slu = Factory::createSlide(mu::engraving::toChord(cr));
+        ChordLine* slu = Factory::createChordLine(mu::engraving::toChord(cr));
         slu->setChordLineType(ChordLineType::DOIT);
-        slu->setNote(note);
         cr->add(slu);
     }
     // slide in from below (plop)
     if (sl & SLIDE_IN_BELOW) {
-        Slide* slb = Factory::createSlide(mu::engraving::toChord(cr));
+        ChordLine* slb = Factory::createChordLine(mu::engraving::toChord(cr));
         slb->setChordLineType(ChordLineType::PLOP);
-        slb->setNote(note);
         cr->add(slb);
     }
     // slide in from above (scoop)
     if (sl & SLIDE_IN_ABOVE) {
-        Slide* sla = Factory::createSlide(mu::engraving::toChord(cr));
+        ChordLine* sla = Factory::createChordLine(mu::engraving::toChord(cr));
         sla->setChordLineType(ChordLineType::SCOOP);
-        sla->setNote(note);
         cr->add(sla);
     }
 }
@@ -1545,7 +1541,7 @@ bool GuitarPro2::read(IODevice* io)
     composer     = readDelphiString();
     QString copyright = readDelphiString();
     if (!copyright.isEmpty()) {
-        score->setMetaTag("copyright", QString("%1").arg(copyright));
+        score->setMetaTag(u"copyright", copyright);
     }
 
     transcriber  = readDelphiString();
@@ -2220,7 +2216,7 @@ bool GuitarPro3::read(IODevice* io)
     composer     = readDelphiString();
     QString copyright = readDelphiString();
     if (!copyright.isEmpty()) {
-        score->setMetaTag("copyright", QString("%1").arg(copyright));
+        score->setMetaTag(u"copyright", copyright);
     }
 
     transcriber  = readDelphiString();
@@ -2986,7 +2982,7 @@ Score::FileError importGTP(MasterScore* score, mu::io::IODevice* io)
         return Score::FileError::FILE_NO_ERROR;
     }
 
-    score->loadStyle(":/engraving/styles/gp-style.mss");
+    score->loadStyle(u":/engraving/styles/gp-style.mss");
 
     if (!mu::engraving::MScore::lastError.isEmpty()) {
         LOGE() << mu::engraving::MScore::lastError;

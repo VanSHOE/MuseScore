@@ -672,7 +672,6 @@ void Chord::add(EngravingItem* e)
         _hook = toHook(e);
         break;
     case ElementType::CHORDLINE:
-    case ElementType::SLIDE:
         el().push_back(e);
         break;
     case ElementType::STEM_SLASH:
@@ -1012,6 +1011,9 @@ void Chord::computeUp()
             }
         }
         Measure* measure = findMeasure();
+        if (!cross && !_beam->userModified()) {
+            _up = _beam->up();
+        }
         if (!measure->explicitParent()) {
             // this method will be called later (from Measure::layoutCrossStaff) after the
             // system is completely laid out.
@@ -2193,6 +2195,10 @@ void Chord::layoutPitched()
     _spaceLw = lll;
     _spaceRw = rrr;
 
+    for (Note* note : _notes) {
+        note->layout2();
+    }
+
     for (EngravingItem* e : el()) {
         if (e->type() == ElementType::SLUR) {       // we cannot at this time as chordpositions are not fixed
             continue;
@@ -2209,10 +2215,6 @@ void Chord::layoutPitched()
                 _spaceRw = rx;
             }
         }
-    }
-
-    for (Note* note : _notes) {
-        note->layout2();
     }
 
     // align note-based fingerings

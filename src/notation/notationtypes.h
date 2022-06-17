@@ -146,7 +146,7 @@ using MidiArticulationList = QList<MidiArticulation>;
 using InstrumentTrackId = mu::engraving::InstrumentTrackId;
 using InstrumentTrackIdSet = mu::engraving::InstrumentTrackIdSet;
 
-static const QString COMMON_GENRE_ID("common");
+static const String COMMON_GENRE_ID("common");
 
 enum class DragMode
 {
@@ -531,7 +531,7 @@ struct ScoreConfig
 inline QString staffTypeToString(StaffTypeId type)
 {
     const StaffType* preset = StaffType::preset(type);
-    return preset ? preset->name() : QString();
+    return preset ? preset->name().toQString() : QString();
 }
 
 inline QList<StaffTypeId> allStaffTypes()

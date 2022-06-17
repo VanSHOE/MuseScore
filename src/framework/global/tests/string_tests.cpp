@@ -34,6 +34,25 @@ class Global_Types_StringTests : public ::testing::Test
 public:
 };
 
+TEST_F(Global_Types_StringTests, Char_Digit)
+{
+    {
+        //! GIVEN Some string
+        Char ch(u'2');
+        //! CHECK
+        EXPECT_TRUE(ch.isDigit());
+        EXPECT_EQ(ch.digitValue(), 2);
+    }
+
+    {
+        //! GIVEN Some string
+        Char ch(u'a');
+        //! CHECK
+        EXPECT_FALSE(ch.isDigit());
+        EXPECT_EQ(ch.digitValue(), -1);
+    }
+}
+
 TEST_F(Global_Types_StringTests, String_Construct)
 {
     {
@@ -206,6 +225,15 @@ TEST_F(Global_Types_StringTests, String_Replace)
         //! CHECK
         EXPECT_EQ(str, u"123de456de");
     }
+
+    {
+        //! GIVEN Some String
+        String str = u"123abc456abc";
+        //! DO
+        str.replace(u'a', u'x');
+        //! CHECK
+        EXPECT_EQ(str, u"123xbc456xbc");
+    }
 }
 
 TEST_F(Global_Types_StringTests, String_PlusAssign)
@@ -268,6 +296,15 @@ TEST_F(Global_Types_StringTests, String_SubStr)
         String newStr = str.left(2);
         //! CHECK
         EXPECT_EQ(newStr, u"12");
+    }
+
+    {
+        //! GIVEN Some String
+        String str = u"123abc";
+        //! DO
+        String newStr = str.right(2);
+        //! CHECK
+        EXPECT_EQ(newStr, u"bc");
     }
 }
 
@@ -357,6 +394,79 @@ TEST_F(Global_Types_StringTests, String_Args)
         String newStr = str.arg(u"123", u"abc");
         //! CHECK
         EXPECT_EQ(newStr, u"{123}, [abc]");
+    }
+}
+
+TEST_F(Global_Types_StringTests, String_Number)
+{
+    {
+        //! GIVEN Some double
+        double v = 2.0;
+        //! DO
+        String str = String::number(v);
+        //! CHECK
+        EXPECT_EQ(str, u"2");
+    }
+
+    {
+        //! GIVEN Some double
+        double v = 2.1;
+        //! DO
+        String str = String::number(v);
+        //! CHECK
+        EXPECT_EQ(str, u"2.1");
+    }
+
+    {
+        //! GIVEN Some double
+        double v = 2.01;
+        //! DO
+        String str = String::number(v);
+        //! CHECK
+        EXPECT_EQ(str, u"2.01");
+    }
+
+    {
+        //! GIVEN Some double
+        double v = 2.1231231;
+        //! DO
+        String str = String::number(v);
+        //! CHECK
+        EXPECT_EQ(str, u"2.123123");
+    }
+
+    {
+        //! GIVEN Some double
+        double v = 2.1231231;
+        //! DO
+        String str = String::number(v, 2);
+        //! CHECK
+        EXPECT_EQ(str, u"2.12");
+    }
+}
+
+TEST_F(Global_Types_StringTests, String_ToInt)
+{
+    {
+        //! GIVEN Some string
+        String s("2");
+        //! DO
+        bool ok = false;
+        int v = s.toInt(&ok);
+        //! CHECK
+        EXPECT_TRUE(ok);
+        EXPECT_EQ(v, 2);
+    }
+
+    {
+        //! GIVEN Some string
+        String s("2abc");
+        //! DO
+        bool ok = false;
+        int v = s.toInt(&ok);
+        //! CHECK
+        EXPECT_FALSE(ok);
+        EXPECT_EQ(v, 0);
     }
 }
 

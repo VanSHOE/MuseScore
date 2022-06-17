@@ -23,6 +23,8 @@
 // TODO LVI 2011-10-30: determine how to report import errors.
 // Currently all output (both debug and error reports) are done using LOGD.
 
+#include <QFile>
+
 #include "lexer.h"
 #include "writer.h"
 #include "parser.h"
@@ -235,11 +237,11 @@ void MsScWriter::beginMeasure(const Bww::MeasureBeginFlags mbf)
         volta->setTrack(0);
         volta->endings().clear();
         if (mbf.endingFirst) {
-            volta->setText("1");
+            volta->setText(u"1");
             volta->endings().push_back(1);
             ending = 1;
         } else {
-            volta->setText("2");
+            volta->setText(u"2");
             volta->endings().push_back(2);
             ending = 2;
         }
@@ -432,16 +434,16 @@ void MsScWriter::header(const QString title, const QString type,
     tempo = temp;
 
     if (!title.isEmpty()) {
-        score->setMetaTag("workTitle", title);
+        score->setMetaTag(u"workTitle", title);
     }
     // TODO re-enable following statement
     // currently disabled because it breaks the bww iotest
     // if (!type.isEmpty()) score->setMetaTag("workNumber", type);
     if (!composer.isEmpty()) {
-        score->setMetaTag("composer", composer);
+        score->setMetaTag(u"composer", composer);
     }
     if (!footer.isEmpty()) {
-        score->setMetaTag("copyright", footer);
+        score->setMetaTag(u"copyright", footer);
     }
 
     //  score->setWorkTitle(title);

@@ -1124,6 +1124,7 @@ bool NotationInteraction::isDropAccepted(const PointF& pos, Qt::KeyboardModifier
     case ElementType::TEMPO_TEXT:
     case ElementType::STAFF_TEXT:
     case ElementType::SYSTEM_TEXT:
+    case ElementType::TRIPLET_FEEL:
     case ElementType::PLAYTECH_ANNOTATION:
     case ElementType::NOTEHEAD:
     case ElementType::TREMOLO:
@@ -1277,6 +1278,7 @@ bool NotationInteraction::drop(const PointF& pos, Qt::KeyboardModifiers modifier
     case ElementType::TEMPO_TEXT:
     case ElementType::STAFF_TEXT:
     case ElementType::SYSTEM_TEXT:
+    case ElementType::TRIPLET_FEEL:
     case ElementType::PLAYTECH_ANNOTATION:
     case ElementType::NOTEHEAD:
     case ElementType::TREMOLO:
@@ -1523,7 +1525,7 @@ bool NotationInteraction::applyPaletteElement(mu::engraving::EngravingItem* elem
                 PointF pt(r.x() + r.width() * .5, r.y() + r.height() * .5);
                 pt += m->system()->page()->pos();
                 applyDropPaletteElement(score, m, element, modifiers, pt);
-                if (m == last) {
+                if ((m == last) || (element->type() == ElementType::BRACKET)) {
                     break;
                 }
             }
@@ -3263,6 +3265,7 @@ mu::Ret NotationInteraction::repeatSelection()
             }
             apply();
         }
+        return make_ok();
     }
 
     if (!selection.isRange()) {

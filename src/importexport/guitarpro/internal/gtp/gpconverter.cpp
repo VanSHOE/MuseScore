@@ -33,7 +33,7 @@
 #include "libmscore/rest.h"
 #include "libmscore/rehearsalmark.h"
 #include "libmscore/score.h"
-#include "libmscore/slide.h"
+#include "libmscore/chordline.h"
 #include "libmscore/slur.h"
 #include "libmscore/spanner.h"
 #include "libmscore/stafftext.h"
@@ -44,6 +44,7 @@
 #include "libmscore/tie.h"
 #include "libmscore/timesig.h"
 #include "libmscore/tremolo.h"
+#include "libmscore/tripletfeel.h"
 #include "libmscore/trill.h"
 #include "libmscore/tuplet.h"
 #include "libmscore/volta.h"
@@ -118,6 +119,25 @@ static QString harmonicText(const GPNote::Harmonic::Type& type)
 
     LOGE() << "wrong harmonic type";
     return QString();
+}
+
+static TripletFeelType tripletFeelType(GPMasterBar::TripletFeelType tf)
+{
+    static QMap<GPMasterBar::TripletFeelType, TripletFeelType> types {
+        { GPMasterBar::TripletFeelType::Triplet8th, TripletFeelType::TRIPLET_8TH },
+        { GPMasterBar::TripletFeelType::Triplet16th, TripletFeelType::TRIPLET_16TH },
+        { GPMasterBar::TripletFeelType::Dotted8th, TripletFeelType::DOTTED_8TH },
+        { GPMasterBar::TripletFeelType::Dotted16th, TripletFeelType::DOTTED_16TH },
+        { GPMasterBar::TripletFeelType::Scottish8th, TripletFeelType::SCOTTISH_8TH },
+        { GPMasterBar::TripletFeelType::Scottish16th, TripletFeelType::SCOTTISH_16TH },
+        { GPMasterBar::TripletFeelType::None, TripletFeelType::NONE }
+    };
+
+    if (types.contains(tf)) {
+        return types[tf];
+    }
+
+    return TripletFeelType::NONE;
 }
 
 static OttavaType ottavaType(GPBeat::OttavaType t)
@@ -670,21 +690,18 @@ void GPConverter::addSection(const GPMasterBar* mB, Measure* measure)
     }
 }
 
-void GPConverter::addTripletFeel(const GPMasterBar* mB, Measure* /*measure*/)
+void GPConverter::addTripletFeel(const GPMasterBar* mB, Measure* measure)
 {
     if (mB->tripletFeel() == _lastTripletFeel) {
-        return; // if last triplet of last measure is equal current dont create new staff text
+        return; // if last triplet of last measure is equal current dont create new system text
     }
 
-//    auto convertTripletFeel = [] (GPMasterBar::TripletFeelType tf) {
-//        if (tf == GPMasterBar::TripletFeelType::Triplet8th) return TripletFeelType::Triplet8th;
-//        else if (tf == GPMasterBar::TripletFeelType::Triplet16th) return TripletFeelType::Triplet16th;
-//        else if (tf == GPMasterBar::TripletFeelType::Dotted8th) return TripletFeelType::Dotted8th;
-//        else if (tf == GPMasterBar::TripletFeelType::Dotted16th) return TripletFeelType::Dotted16th;
-//        else if (tf == GPMasterBar::TripletFeelType::Scottish8th) return TripletFeelType::Scottish8th;
-//        else if (tf == GPMasterBar::TripletFeelType::Scottish16th) return TripletFeelType::Scottish16th;
-//        return TripletFeelType::None;
-//    };
+    Segment* segment = measure->getSegment(SegmentType::ChordRest, measure->tick());
+    TripletFeelType type = tripletFeelType(mB->tripletFeel());
+    TripletFeel* tripletFeel = Factory::createTripletFeel(segment, type);
+    _lastTripletFeel = mB->tripletFeel();
+    tripletFeel->setTrack(0);
+    segment->add(tripletFeel);
 }
 
 void GPConverter::addKeySig(const GPMasterBar* mB, Measure* measure)
@@ -1011,7 +1028,7 @@ void GPConverter::addContinuousSlideHammerOn()
             gl->setTick2(endNote->chord()->tick());
             gl->setEndElement(endNote);
             gl->setParent(startNote);
-            gl->setText("");
+            gl->setText(u"");
             gl->setGlissandoType(GlissandoType::STRAIGHT);
             _score->addElement(gl);
         }
@@ -1137,10 +1154,10 @@ void GPConverter::addTempoMap()
                 _lastGradualTempoChange->setTick2(tick);
                 if (realTemp > previousTempo) {
                     _lastGradualTempoChange->setTempoChangeType(GradualTempoChangeType::Accelerando);
-                    _lastGradualTempoChange->setBeginText("accel");
+                    _lastGradualTempoChange->setBeginText(u"accel");
                 } else {
                     _lastGradualTempoChange->setTempoChangeType(GradualTempoChangeType::Rallentando);
-                    _lastGradualTempoChange->setBeginText("rall");
+                    _lastGradualTempoChange->setBeginText(u"rall");
                 }
 
                 _score->addElement(_lastGradualTempoChange);
@@ -1549,11 +1566,10 @@ void GPConverter::addSingleSlide(const GPNote* gpnote, Note* note)
         if (gpnote->slides()[flagIdx]) {
             auto type = slideType(flagIdx);
 
-            Slide* slide = mu::engraving::Factory::createSlide(_score->dummy()->chord());
-            slide->setChordLineType(type.first);
-            note->chord()->add(slide);
-
-            slide->setNote(note);
+            ChordLine* cl = mu::engraving::Factory::createChordLine(_score->dummy()->chord());
+            cl->setChordLineType(type.first);
+            cl->setStraight(true);
+            note->chord()->add(cl);
 
             Note::Slide sl{ type.second, nullptr };
             note->attachSlide(sl);
@@ -1790,23 +1806,23 @@ void GPConverter::addDynamic(const GPBeat* gpb, ChordRest* cr)
 
     auto convertDynamic = [](GPBeat::DynamicType t) {
         if (t == GPBeat::DynamicType::FFF) {
-            return "fff";
+            return u"fff";
         } else if (t == GPBeat::DynamicType::FF) {
-            return "ff";
+            return u"ff";
         } else if (t == GPBeat::DynamicType::FF) {
-            return "ff";
+            return u"ff";
         } else if (t == GPBeat::DynamicType::F) {
-            return "f";
+            return u"f";
         } else if (t == GPBeat::DynamicType::MF) {
-            return "mf";
+            return u"mf";
         } else if (t == GPBeat::DynamicType::MP) {
-            return "mp";
+            return u"mp";
         } else if (t == GPBeat::DynamicType::P) {
-            return "p";
+            return u"p";
         } else if (t == GPBeat::DynamicType::PP) {
-            return "pp";
+            return u"pp";
         }
-        return "ppp";
+        return u"ppp";
     };
 
     Dynamic* dynamic = Factory::createDynamic(_score->dummy()->segment());

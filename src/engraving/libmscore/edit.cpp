@@ -762,50 +762,50 @@ TextBase* Score::addText(TextStyleType type, bool addToAllScores)
 
         SigEvent event = sigmap()->timesig(chordRest->tick());
         Fraction f = event.nominal();
-        QString text("<sym>metNoteQuarterUp</sym> = 80");
+        String text(u"<sym>metNoteQuarterUp</sym> = 80");
         switch (f.denominator()) {
         case 1:
-            text = "<sym>metNoteWhole</sym> = 80";
+            text = u"<sym>metNoteWhole</sym> = 80";
             break;
         case 2:
-            text = "<sym>metNoteHalfUp</sym> = 80";
+            text = u"<sym>metNoteHalfUp</sym> = 80";
             break;
         case 4:
-            text = "<sym>metNoteQuarterUp</sym> = 80";
+            text = u"<sym>metNoteQuarterUp</sym> = 80";
             break;
         case 8:
             if (f.numerator() % 3 == 0) {
-                text = "<sym>metNoteQuarterUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
+                text = u"<sym>metNoteQuarterUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
             } else {
-                text = "<sym>metNote8thUp</sym> = 80";
+                text = u"<sym>metNote8thUp</sym> = 80";
             }
             break;
         case 16:
             if (f.numerator() % 3 == 0) {
-                text = "<sym>metNote8thUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
+                text = u"<sym>metNote8thUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
             } else {
-                text = "<sym>metNote16thUp</sym> = 80";
+                text = u"<sym>metNote16thUp</sym> = 80";
             }
             break;
         case 32:
             if (f.numerator() % 3 == 0) {
-                text = "<sym>metNote16thUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
+                text = u"<sym>metNote16thUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
             } else {
-                text = "<sym>metNote32ndUp</sym> = 80";
+                text = u"<sym>metNote32ndUp</sym> = 80";
             }
             break;
         case 64:
             if (f.numerator() % 3 == 0) {
-                text = "<sym>metNote32ndUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
+                text = u"<sym>metNote32ndUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
             } else {
-                text = "<sym>metNote64thUp</sym> = 80";
+                text = u"<sym>metNote64thUp</sym> = 80";
             }
             break;
         case 128:
             if (f.numerator() % 3 == 0) {
-                text = "<sym>metNote64ndUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
+                text = u"<sym>metNote64ndUp</sym><sym>space</sym><sym>metAugmentationDot</sym> = 80";
             } else {
-                text = "<sym>metNote128thUp</sym> = 80";
+                text = u"<sym>metNote128thUp</sym> = 80";
             }
             break;
         default:
@@ -2149,6 +2149,7 @@ void Score::cmdFlip()
             note->undoChangeProperty(Pid::DOT_POSITION, PropertyValue::fromValue<DirectionV>(d));
         } else if (e->isTempoText()
                    || e->isSystemText()
+                   || e->isTripletFeel()
                    || e->isJump()
                    || e->isMarker()
                    || e->isStaffText()
@@ -2454,7 +2455,7 @@ void Score::deleteItem(EngravingItem* el)
             // Set input position
             // TODO If deleted element is last of a sequence, use prev?
             if (noteEntryMode()) {
-                score()->move("prev-chord");
+                score()->move(u"prev-chord");
             }
         }
     }
@@ -2639,7 +2640,7 @@ void Score::deleteItem(EngravingItem* el)
 
     case ElementType::TEXT:
         if ((el->explicitParent() && el->explicitParent()->isTBox()) || el->isTBox()) {
-            el->undoChangeProperty(Pid::TEXT, QString());
+            el->undoChangeProperty(Pid::TEXT, String());
         } else {
             undoRemoveElement(el);
         }
@@ -3340,11 +3341,11 @@ Hairpin* Score::addHairpin(HairpinType t, const Fraction& tickStart, const Fract
     Hairpin* pin = Factory::createHairpin(this->dummy()->segment());
     pin->setHairpinType(t);
     if (t == HairpinType::CRESC_LINE) {
-        pin->setBeginText("cresc.");
-        pin->setContinueText("(cresc.)");
+        pin->setBeginText(u"cresc.");
+        pin->setContinueText(u"(cresc.)");
     } else if (t == HairpinType::DECRESC_LINE) {
-        pin->setBeginText("dim.");
-        pin->setContinueText("(dim.)");
+        pin->setBeginText(u"dim.");
+        pin->setContinueText(u"(dim.)");
     }
     pin->setTrack(track);
     pin->setTrack2(track);
@@ -5134,6 +5135,7 @@ void Score::undoAddElement(EngravingItem* element, bool ctrlModifier)
 
     if ((et == ElementType::REHEARSAL_MARK)
         || (et == ElementType::SYSTEM_TEXT)
+        || (et == ElementType::TRIPLET_FEEL)
         || (et == ElementType::JUMP)
         || (et == ElementType::MARKER)
         || (et == ElementType::TEMPO_TEXT)
@@ -5300,6 +5302,7 @@ void Score::undoAddElement(EngravingItem* element, bool ctrlModifier)
             && et != ElementType::DYNAMIC
             && et != ElementType::STAFF_TEXT
             && et != ElementType::SYSTEM_TEXT
+            && et != ElementType::TRIPLET_FEEL
             && et != ElementType::PLAYTECH_ANNOTATION
             && et != ElementType::STICKING
             && et != ElementType::TREMOLO
@@ -5387,6 +5390,7 @@ void Score::undoAddElement(EngravingItem* element, bool ctrlModifier)
                     // this should be same list excluded in cloneStaff()
                     case ElementType::STAFF_TEXT:
                     case ElementType::SYSTEM_TEXT:
+                    case ElementType::TRIPLET_FEEL:
                     case ElementType::PLAYTECH_ANNOTATION:
                     case ElementType::FRET_DIAGRAM:
                     case ElementType::HARMONY:

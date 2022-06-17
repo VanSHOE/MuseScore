@@ -758,8 +758,8 @@ void Note::setTpcFromPitch()
 
 void Note::setTpc(int v)
 {
-    if (!tpcIsValid(v)) {
-        ASSERT_X(QString::asprintf("Note::setTpc: bad tpc %d", v));
+    IF_ASSERT_FAILED(tpcIsValid(v)) {
+        return;
     }
     _tpc[concertPitchIdx()] = v;
 }
@@ -795,24 +795,23 @@ int Note::tpc() const
 //   tpcUserName
 //---------------------------------------------------------
 
-QString Note::tpcUserName(const int tpc, const int pitch, const bool explicitAccidental)
+String Note::tpcUserName(const int tpc, const int pitch, const bool explicitAccidental)
 {
-    const auto pitchStr
-        = qtrc("InspectorAmbitus",
-               tpc2name(tpc, NoteSpellingType::STANDARD, NoteCaseType::AUTO, explicitAccidental).replace("b", "♭").replace("#",
-                                                                                                                           "♯").toUtf8().constData());
-    const auto octaveStr = QString::number(((pitch - static_cast<int>(tpc2alter(tpc))) / PITCH_DELTA_OCTAVE) - 1);
+    const String pitchStr = mtrc("engraving",
+                                 tpc2name(tpc, NoteSpellingType::STANDARD, NoteCaseType::AUTO, explicitAccidental)
+                                 .replace(u"b", u"♭").replace(u"#", u"♯").toUtf8().constChar());
+    const String octaveStr = String::number(((pitch - static_cast<int>(tpc2alter(tpc))) / PITCH_DELTA_OCTAVE) - 1);
 
-    return pitchStr + (explicitAccidental ? " " : "") + octaveStr;
+    return pitchStr + (explicitAccidental ? u" " : u"") + octaveStr;
 }
 
 //---------------------------------------------------------
 //   tpcUserName
 //---------------------------------------------------------
 
-QString Note::tpcUserName(const bool explicitAccidental) const
+String Note::tpcUserName(const bool explicitAccidental) const
 {
-    QString pitchName = tpcUserName(tpc(), epitch() + ottaveCapoFret(), explicitAccidental);
+    String pitchName = tpcUserName(tpc(), epitch() + ottaveCapoFret(), explicitAccidental);
 
     if (fixed() && headGroup() == NoteHeadGroup::HEAD_SLASH) {
         // see Note::accessibleInfo(), but we return what we have
@@ -827,14 +826,14 @@ QString Note::tpcUserName(const bool explicitAccidental) const
         return pitchName;
     }
 
-    QString pitchOffset;
+    String pitchOffset;
     if (tuning() != 0) {
         pitchOffset = QString::asprintf("%+.3f", tuning());
     }
 
     if (!concertPitch() && transposition()) {
-        QString soundingPitch = tpcUserName(tpc1(), ppitch(), explicitAccidental);
-        return QObject::tr("%1 (sounding as %2%3)").arg(pitchName, soundingPitch, pitchOffset);
+        String soundingPitch = tpcUserName(tpc1(), ppitch(), explicitAccidental);
+        return mtrc("engraving", "%1 (sounding as %2%3)").arg(pitchName, soundingPitch, pitchOffset);
     }
     return pitchName + pitchOffset;
 }
@@ -1808,12 +1807,12 @@ bool Note::acceptDrop(EditData& data) const
            || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::GRACE16_AFTER)
            || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::GRACE32_AFTER)
            || (noteType() == NoteType::NORMAL && type == ElementType::BAGPIPE_EMBELLISHMENT)
-           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_START)
-           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_MID)
-           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_NONE)
-           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_BEGIN_32)
-           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_BEGIN_64)
            || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_AUTO)
+           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_NONE)
+           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_BREAK_LEFT)
+           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_BREAK_INNER_8TH)
+           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_BREAK_INNER_16TH)
+           || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::BEAM_JOIN)
            || (type == ElementType::ACTION_ICON && toActionIcon(e)->actionType() == ActionIconType::PARENTHESES)
            || (type == ElementType::SYMBOL)
            || (type == ElementType::CLEF)
@@ -1823,6 +1822,7 @@ bool Note::acceptDrop(EditData& data) const
            || (type == ElementType::STAFF_TEXT)
            || (type == ElementType::PLAYTECH_ANNOTATION)
            || (type == ElementType::SYSTEM_TEXT)
+           || (type == ElementType::TRIPLET_FEEL)
            || (type == ElementType::STICKING)
            || (type == ElementType::TEMPO_TEXT)
            || (type == ElementType::BEND)
@@ -1935,12 +1935,12 @@ EngravingItem* Note::drop(EditData& data)
         case ActionIconType::GRACE32_AFTER:
             score()->setGraceNote(ch, pitch(), NoteType::GRACE32_AFTER, Constants::division / 8);
             break;
-        case ActionIconType::BEAM_START:
-        case ActionIconType::BEAM_MID:
-        case ActionIconType::BEAM_NONE:
-        case ActionIconType::BEAM_BEGIN_32:
-        case ActionIconType::BEAM_BEGIN_64:
         case ActionIconType::BEAM_AUTO:
+        case ActionIconType::BEAM_NONE:
+        case ActionIconType::BEAM_BREAK_LEFT:
+        case ActionIconType::BEAM_BREAK_INNER_8TH:
+        case ActionIconType::BEAM_BREAK_INNER_16TH:
+        case ActionIconType::BEAM_JOIN:
             return ch->drop(data);
             break;
         case ActionIconType::PARENTHESES:
@@ -2200,13 +2200,13 @@ void Note::layout()
         } else {
             _fretString = tab->fretString(_fret, _string, _deadNote);
             if (m_displayFret == DisplayFretOption::ArtificialHarmonic) {
-                _fretString = QString("%1 <%2>").arg(_fretString, QString::number(m_harmonicFret));
+                _fretString = String("%1 <%2>").arg(_fretString, String::number(m_harmonicFret));
             } else if (m_displayFret == DisplayFretOption::NaturalHarmonic) {
-                _fretString = QString("<%1>").arg(QString::number(m_harmonicFret));
+                _fretString = String("<%1>").arg(String::number(m_harmonicFret));
             }
         }
         if (parenthesis) {
-            _fretString = QString("(%1)").arg(_fretString);
+            _fretString = String("(%1)").arg(_fretString);
         }
         qreal w = tabHeadWidth(tab);     // !! use _fretString
         bbox().setRect(0.0, tab->fretBoxY() * mags, w, tab->fretBoxH() * mags);
@@ -2440,7 +2440,7 @@ NoteType Note::noteType() const
 //   noteTypeUserName
 //---------------------------------------------------------
 
-QString Note::noteTypeUserName() const
+String Note::noteTypeUserName() const
 {
     switch (noteType()) {
     case NoteType::ACCIACCATURA:

@@ -93,7 +93,7 @@ const char* Capella::errmsg[] = {
 static void addDynamic(Score*, Segment* s, int track, const char* name)
 {
     Dynamic* d = Factory::createDynamic(s);
-    d->setDynamicType(name);
+    d->setDynamicType(String::fromUtf8(name));
     d->setTrack(track);
     s->add(d);
 }
@@ -1066,7 +1066,7 @@ static Fraction readCapVoice(Score* score, CapVoice* cvoice, int staffIdx, const
                         trill->setTick(cr1->tick());
                         trill->setTick2(cr2->tick());
                         if (!(tro->trillSign)) {
-                            trill->setTrillType("prallprall");
+                            trill->setTrillType(u"prallprall");
                         }
                         score->addElement(trill);
                     }

@@ -57,7 +57,6 @@
 #include "chord.h"
 #include "fermata.h"
 #include "chordline.h"
-#include "slide.h"
 #include "accidental.h"
 #include "measurenumber.h"
 #include "mmrestrange.h"
@@ -93,6 +92,7 @@
 #include "sticking.h"
 #include "textframe.h"
 #include "tuplet.h"
+#include "tripletfeel.h"
 
 #include "log.h"
 
@@ -143,7 +143,6 @@ static const ElementName elementNames[] = {
     { ElementType::ARTICULATION,         "Articulation",         QT_TRANSLATE_NOOP("elementName", "Articulation") },
     { ElementType::FERMATA,              "Fermata",              QT_TRANSLATE_NOOP("elementName", "Fermata") },
     { ElementType::CHORDLINE,            "ChordLine",            QT_TRANSLATE_NOOP("elementName", "Chord line") },
-    { ElementType::SLIDE,                "Slide",                QT_TRANSLATE_NOOP("elementName", "Slide") },
     { ElementType::DYNAMIC,              "Dynamic",              QT_TRANSLATE_NOOP("elementName", "Dynamic") },
     { ElementType::BEAM,                 "Beam",                 QT_TRANSLATE_NOOP("elementName", "Beam") },
     { ElementType::HOOK,                 "Hook",                 QT_TRANSLATE_NOOP("elementName", "Flag") }, // internally called "Hook", but "Flag" in SMuFL, so here externally too
@@ -157,6 +156,7 @@ static const ElementName elementNames[] = {
     { ElementType::STAFF_TEXT,           "StaffText",            QT_TRANSLATE_NOOP("elementName", "Staff text") },
     { ElementType::SYSTEM_TEXT,          "SystemText",           QT_TRANSLATE_NOOP("elementName", "System text") },
     { ElementType::PLAYTECH_ANNOTATION,  "PlayTechAnnotation",   QT_TRANSLATE_NOOP("elementName", "Playing technique annotation") },
+    { ElementType::TRIPLET_FEEL,         "TripletFeel",          QT_TRANSLATE_NOOP("elementName", "Triplet feel") },
     { ElementType::REHEARSAL_MARK,       "RehearsalMark",        QT_TRANSLATE_NOOP("elementName", "Rehearsal mark") },
     { ElementType::INSTRUMENT_CHANGE,    "InstrumentChange",     QT_TRANSLATE_NOOP("elementName", "Instrument change") },
     { ElementType::STAFFTYPE_CHANGE,     "StaffTypeChange",      QT_TRANSLATE_NOOP("elementName", "Staff type change") },
@@ -272,7 +272,6 @@ EngravingItem* Factory::doCreateItem(ElementType type, EngravingItem* parent)
     case ElementType::ARTICULATION:      return new Articulation(parent->isChordRest() ? toChordRest(parent) : dummy->chord());
     case ElementType::FERMATA:           return new Fermata(parent);
     case ElementType::CHORDLINE:         return new ChordLine(parent->isChord() ? toChord(parent) : dummy->chord());
-    case ElementType::SLIDE:             return new Slide(parent->isChord() ? toChord(parent) : dummy->chord());
     case ElementType::ACCIDENTAL:        return new Accidental(parent);
     case ElementType::DYNAMIC:           return new Dynamic(parent->isSegment() ? toSegment(parent) : dummy->segment());
     case ElementType::TEXT:              return new Text(parent);
@@ -331,6 +330,7 @@ EngravingItem* Factory::doCreateItem(ElementType type, EngravingItem* parent)
     case ElementType::BAGPIPE_EMBELLISHMENT: return new BagpipeEmbellishment(parent);
     case ElementType::AMBITUS:           return new Ambitus(parent->isSegment() ? toSegment(parent) : dummy->segment());
     case ElementType::STICKING:          return new Sticking(parent->isSegment() ? toSegment(parent) : dummy->segment());
+    case ElementType::TRIPLET_FEEL:      return new TripletFeel(parent->isSegment() ? toSegment(parent) : dummy->segment());
 
     case ElementType::LYRICSLINE:
     case ElementType::TEXTLINE_BASE:
@@ -594,10 +594,6 @@ Segment* Factory::createSegment(Measure* parent, SegmentType type, const Fractio
     return s;
 }
 
-CREATE_ITEM_IMPL(Slide, ElementType::SLIDE, Chord, isAccessibleEnabled)
-COPY_ITEM_IMPL(Slide)
-MAKE_ITEM_IMPL(Slide, Chord)
-
 CREATE_ITEM_IMPL(Slur, ElementType::SLUR, EngravingItem, isAccessibleEnabled)
 MAKE_ITEM_IMPL(Slur, EngravingItem)
 
@@ -657,9 +653,9 @@ System* Factory::createSystem(Page * parent, bool isAccessibleEnabled)
     return s;
 }
 
-SystemText* Factory::createSystemText(Segment* parent, TextStyleType textStyleType, bool isAccessibleEnabled)
+SystemText* Factory::createSystemText(Segment* parent, TextStyleType textStyleType, ElementType type, bool isAccessibleEnabled)
 {
-    SystemText* systemText = new SystemText(parent, textStyleType);
+    SystemText* systemText = new SystemText(parent, textStyleType, type);
     systemText->setAccessibleEnabled(isAccessibleEnabled);
 
     return systemText;
@@ -729,6 +725,14 @@ MAKE_ITEM_IMPL(Glissando, EngravingItem)
 CREATE_ITEM_IMPL(Jump, ElementType::JUMP, Measure, isAccessibleEnabled)
 
 CREATE_ITEM_IMPL(Trill, ElementType::TRILL, EngravingItem, isAccessibleEnabled)
+
+TripletFeel* Factory::createTripletFeel(Segment * parent, TripletFeelType type, bool isAccessibleEnabled)
+{
+    TripletFeel* t = new TripletFeel(parent, type);
+    t->setAccessibleEnabled(isAccessibleEnabled);
+
+    return t;
+}
 
 CREATE_ITEM_IMPL(Vibrato, ElementType::VIBRATO, EngravingItem, isAccessibleEnabled)
 

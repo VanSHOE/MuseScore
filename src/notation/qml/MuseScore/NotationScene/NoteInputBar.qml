@@ -144,7 +144,7 @@ Item {
             width: gridView.cellWidth
             height: gridView.cellWidth
 
-            enabled: Boolean(item) && item.enabled
+            enabled: noteInputModel.isInputAllowed
 
             accentButton: (Boolean(item) && item.checked) || menuLoader.isMenuOpened
             transparent: !accentButton
@@ -290,6 +290,9 @@ Item {
         toolTipTitle: qsTrc("notation", "Customise toolbar")
         toolTipDescription: qsTrc("notation", "Show/hide toolbar buttons")
         transparent: true
+
+        enabled: noteInputModel.isInputAllowed
+
         navigation.panel: keynavSub
         navigation.order: 100
         navigation.accessible.name: qsTrc("notation", "Customise toolbar")
