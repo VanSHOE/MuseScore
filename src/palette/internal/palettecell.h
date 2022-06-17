@@ -23,9 +23,10 @@
 #define MU_PALETTE_PALETTECELL_H
 
 #include "libmscore/engravingitem.h"
-
+#include "shortcuts/shortcutstypes.h"
 #include <QAccessibleInterface>
-
+#include "shortcuts/ishortcutsregister.h"
+#include "shortcuts/ishortcutsconfiguration.h"
 #include "modularity/ioc.h"
 #include "ui/iuiactionsregister.h"
 
@@ -66,6 +67,7 @@ private:
 class PaletteCell : public QObject
 {
     Q_OBJECT
+    INJECT(palette, mu::shortcuts::IShortcutsRegister, shortcutsRegister)
     INJECT_STATIC(palette, mu::ui::IUiActionsRegister, actionsRegister)
 
 public:
@@ -93,6 +95,7 @@ public:
     mu::engraving::ElementPtr untranslatedElement;
     QString id;
     QString name; // used for tool tip
+    mu::shortcuts::Shortcut shortcut;
     qreal mag { 1.0 };
     QString tag;
     QString action;

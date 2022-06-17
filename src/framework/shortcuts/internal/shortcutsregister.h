@@ -49,7 +49,8 @@ public:
     void reload(bool onlyDef = false) override;
 
     const ShortcutList& shortcuts() const override;
-    Ret setShortcuts(const ShortcutList& shortcuts) override;
+    Ret setShortcuts(const ShortcutList& shortcuts,  bool writeFile = true) override;
+    Ret setShortcut(const Shortcut toAddShortcut);
     void resetShortcuts() override;
     async::Notification shortcutsChanged() const override;
 

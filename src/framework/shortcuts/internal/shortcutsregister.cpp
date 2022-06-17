@@ -296,7 +296,7 @@ const ShortcutList& ShortcutsRegister::shortcuts() const
     return m_shortcuts;
 }
 
-mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts)
+mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writeFile)
 {
     TRACEFUNC;
 
@@ -306,8 +306,10 @@ mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts)
 
     ShortcutList needToWrite = filterAndUpdateAdditionalShortcuts(shortcuts);
 
-    bool ok = writeToFile(needToWrite, configuration()->shortcutsUserAppDataPath());
-
+    bool ok = true;
+    if (writeFile) {
+        ok = writeToFile(needToWrite, configuration()->shortcutsUserAppDataPath());
+    }
     if (ok) {
         m_shortcuts = needToWrite;
         mergeShortcuts(m_shortcuts, m_defaultShortcuts);
@@ -316,6 +318,13 @@ mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts)
     }
 
     return ok;
+}
+
+mu::Ret ShortcutsRegister::setShortcut(const Shortcut toAddShortcut)
+{
+    ShortcutList SingletonList;
+    SingletonList.push_back(toAddShortcut);
+    return setShortcuts(SingletonList, false);
 }
 
 void ShortcutsRegister::resetShortcuts()

@@ -548,6 +548,7 @@ void UserPaletteController::editCellProperties(const QModelIndex& index)
         cell->xoffset = config.xOffset;
         cell->yoffset = config.yOffset;
         _userPalette->itemDataChanged(srcIndex);
+        _userPalette->itemDataChanged(srcIndex.parent());
     });
 
     QVariantMap properties;

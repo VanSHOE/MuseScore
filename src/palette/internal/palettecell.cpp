@@ -180,7 +180,7 @@ bool PaletteCell::read(XmlReader& e)
     // pre-3.3 version compatibility
     custom = e.hasAttribute("custom") ? e.intAttribute("custom") : false; // TODO: actually check master palette?
     visible = e.hasAttribute("visible") ? e.intAttribute("visible") : true;
-
+    shortcut.sequences.clear();
     const bool translateElement = e.hasAttribute("trElement") ? e.intAttribute("trElement") : false;
 
     while (e.readNextStartElement()) {
@@ -195,7 +195,14 @@ bool PaletteCell::read(XmlReader& e)
             mag = e.readDouble();
         } else if (s == "tag") {
             tag = e.readText();
+        } else if (s == "skey") {
+            shortcut.action = e.readText().toStdString();
+        } else if (s == "sctx") {
+            shortcut.context = e.readText().toStdString();
+        } else if (s == "sseq") {
+            shortcut.sequences.push_back(e.readText().toStdString());
         }
+
         // added on palettes rework
         // TODO: remove or leave to switch from using attributes later?
         else if (s == "custom") {
@@ -222,7 +229,7 @@ bool PaletteCell::read(XmlReader& e)
             }
         }
     }
-
+    LOGE() << shortcut.action << "; "<<shortcut.context;
     setElementTranslated(translateElement);
     action = "plui_" + translatedName().toLower().replace(' ', '_').replace('\'', '_').replace('"', '_');
     return add && element;
@@ -234,7 +241,7 @@ void PaletteCell::write(XmlWriter& xml) const
         xml.tag("Cell");
         return;
     }
-
+//    LOGE() << "IN PALETTECELL MOVING";
     // using attributes for `custom` and `visible` properties instead of nested tags
     // for pre-3.3 version compatibility
     XmlWriter::Attributes cellAttrs;
@@ -268,6 +275,21 @@ void PaletteCell::write(XmlWriter& xml) const
     }
     if (mag != 1.0) {
         xml.tag("mag", mag);
+    }
+
+    if (shortcut.isValid())
+    //if(true)
+    {
+        xml.tag("skey", QString::fromStdString(shortcut.action));
+        //xml.tag("skey", QString::fromStdString("TestShortcut" + name.toStdString()));
+
+        for (std::string seq : shortcut.sequences)
+        {
+            xml.tag("sseq", QString::fromStdString(seq));
+        }
+        //xml.tag("sseq", QString("sequence test"));
+        //xml.tag("sctx", QString::fromStdString(shortcut.context));
+        xml.tag("sctx", QString::fromStdString("TestContext" + name.toStdString()));
     }
 
     if (untranslatedElement) {
