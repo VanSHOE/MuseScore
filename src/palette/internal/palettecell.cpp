@@ -195,9 +195,9 @@ bool PaletteCell::read(XmlReader& e)
             mag = e.readDouble();
         } else if (s == "tag") {
             tag = e.readText();
-        } else if (s == "skey") {
+        }/* else if (s == "skey") {
             shortcut.action = e.readText().toStdString();
-        } else if (s == "sctx") {
+        }*/ else if (s == "sctx") {
             shortcut.context = e.readText().toStdString();
         } else if (s == "sseq") {
             shortcut.sequences.push_back(e.readText().toStdString());
@@ -231,7 +231,18 @@ bool PaletteCell::read(XmlReader& e)
     }
     LOGE() << shortcut.action << "; "<<shortcut.context;
     setElementTranslated(translateElement);
-    action = "plui_" + translatedName().toLower().replace(' ', '_').replace('\'', '_').replace('"', '_');
+
+    //action = "plui_" + translatedName().toLower().replace(' ', '_').replace('\'', '_').replace('"', '_');
+    
+    std::stringstream pointerAddr;
+    pointerAddr << element.get();
+    action = QString::fromStdString(pointerAddr.str());
+    shortcut.action = pointerAddr.str();
+    PaletteCell::allActions.push_back(shortcut);
+    //shortcutsRegister()->setShortcut(shortcut);  // Makes the application extremely slow, need to run this when cells are done being set up
+
+    LOGE() << PaletteCell::allActions.size() << " is the size and the addr is " << pointerAddr.str();
+
     return add && element;
 }
 
@@ -280,7 +291,7 @@ void PaletteCell::write(XmlWriter& xml) const
     if (shortcut.isValid())
     //if(true)
     {
-        xml.tag("skey", QString::fromStdString(shortcut.action));
+        //xml.tag("skey", QString::fromStdString(shortcut.action));
         //xml.tag("skey", QString::fromStdString("TestShortcut" + name.toStdString()));
 
         for (std::string seq : shortcut.sequences)
@@ -288,8 +299,9 @@ void PaletteCell::write(XmlWriter& xml) const
             xml.tag("sseq", QString::fromStdString(seq));
         }
         //xml.tag("sseq", QString("sequence test"));
-        //xml.tag("sctx", QString::fromStdString(shortcut.context));
-        xml.tag("sctx", QString::fromStdString("TestContext" + name.toStdString()));
+
+        xml.tag("sctx", QString::fromStdString(shortcut.context));
+        //xml.tag("sctx", QString::fromStdString("TestContext" + name.toStdString()));
     }
 
     if (untranslatedElement) {

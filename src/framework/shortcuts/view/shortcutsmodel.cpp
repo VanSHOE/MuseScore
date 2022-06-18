@@ -37,6 +37,9 @@ static QString shortcutsFileFilter()
 ShortcutsModel::ShortcutsModel(QObject* parent)
     : QAbstractListModel(parent)
 {
+    shortcutsRegister()->shortcutsChanged().onNotify(this, [this]() {
+        load();
+        });
 }
 
 QVariant ShortcutsModel::data(const QModelIndex& index, int role) const

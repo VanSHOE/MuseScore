@@ -28,7 +28,7 @@
 
 #include "ipaletteprovider.h"
 #include "async/asyncable.h"
-
+#include "shortcuts/ishortcutsregister.h"
 #include "actions/iactionsdispatcher.h"
 #include "actions/actionable.h"
 
@@ -207,7 +207,7 @@ public:
 class PaletteProvider : public QObject, public mu::palette::IPaletteProvider, public mu::async::Asyncable, public mu::actions::Actionable
 {
     Q_OBJECT
-
+    INJECT(palette, mu::shortcuts::IShortcutsRegister, shortcutsRegister)
     INJECT(palette, mu::palette::IPaletteConfiguration, configuration)
     INJECT(palette, mu::framework::IInteractive, interactive)
     INJECT(palette, actions::IActionsDispatcher, dispatcher)

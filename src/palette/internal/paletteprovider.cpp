@@ -618,6 +618,8 @@ void PaletteProvider::init()
     configuration()->isSingleClickToOpenPalette().ch.onReceive(this, [this](bool) {
         emit isSingleClickToOpenPaletteChanged();
     });
+
+   
 }
 
 void PaletteProvider::setSearching(bool searching)
@@ -676,7 +678,7 @@ QAbstractItemModel* PaletteProvider::mainPaletteModel()
             });
         }
     }
-    LOGE() << s;
+    //LOGE() << s;
     LOGE() << ctr;
     LOGE() << "END ROW COUNT";
     return m_mainPalette;
@@ -998,6 +1000,17 @@ void PaletteProvider::setUserPaletteTree(PaletteTreePtr tree)
         m_userPaletteModel = new PaletteTreeModel(tree, /* parent */ this);
         connect(m_userPaletteModel, &PaletteTreeModel::treeChanged, this, &PaletteProvider::notifyAboutUserPaletteChanged);
     }
+    mu::shortcuts::ShortcutList toBeAdded;
+    for (auto x : PaletteCell::allActions)
+    {
+        if (x.isValid())
+        {
+            toBeAdded.push_back(x);
+        }
+    }
+   
+    shortcutsRegister()->setShortcuts(toBeAdded, false);
+    LOGE() << "In the end total palette cells: " << PaletteCell::allActions.size() << " and with valid shortcuts: " << toBeAdded.size();
 }
 
 void PaletteProvider::setDefaultPaletteTree(PaletteTreePtr tree)
