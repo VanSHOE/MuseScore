@@ -21,12 +21,13 @@
  */
 #ifndef MU_PALETTE_PALETTEMODULE_H
 #define MU_PALETTE_PALETTEMODULE_H
-
+#include "shortcuts/ishortcutsregister.h"
 #include "modularity/imodulesetup.h"
 
 namespace mu::palette {
 class PaletteModule : public modularity::IModuleSetup
 {
+
 public:
     std::string moduleName() const override;
 

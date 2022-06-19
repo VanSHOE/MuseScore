@@ -29,7 +29,7 @@ using namespace mu::ui;
 
 static const mu::actions::ActionCode MASTERPALETTE_CODE("masterpalette");
 
-const UiActionList PaletteUiActions::m_actions = {
+UiActionList PaletteUiActions::m_actions = {
     UiAction(MASTERPALETTE_CODE,
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Master palette"),
@@ -45,6 +45,11 @@ const UiActionList PaletteUiActions::m_actions = {
              QT_TRANSLATE_NOOP("action", "Time signature properties")
              ),
     UiAction("edit-drumset",
+             mu::context::UiCtxNotationOpened,
+             QT_TRANSLATE_NOOP("action", "Edit Drumset…"),
+             QT_TRANSLATE_NOOP("action", "Edit drumset")
+             ),
+    UiAction("palette-cell-call",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Edit Drumset…"),
              QT_TRANSLATE_NOOP("action", "Edit drumset")
@@ -94,4 +99,9 @@ mu::async::Channel<mu::actions::ActionCodeList> PaletteUiActions::actionEnabledC
 mu::async::Channel<mu::actions::ActionCodeList> PaletteUiActions::actionCheckedChanged() const
 {
     return m_actionCheckedChanged;
+}
+
+void PaletteUiActions::addAction(const ui::UiAction& act)
+{
+    m_actions.push_back(act);
 }

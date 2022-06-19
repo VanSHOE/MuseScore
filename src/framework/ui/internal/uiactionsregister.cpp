@@ -44,14 +44,17 @@ void UiActionsRegister::init()
     });
 }
 
-void UiActionsRegister::reg(const IUiActionsModulePtr& module)
+void UiActionsRegister::reg(const IUiActionsModulePtr& module, bool reload)
 {
     const UiActionList& alist = module->actionsList();
     ActionCodeList newActionCodeList;
+    static int counter = 0;
     for (const UiAction& action : alist) {
         Info info;
         info.module = module;
         info.action = action;
+        counter++;
+        LOGE() << counter << ": We are in reg: " << action.code;
         m_actions[action.code] = std::move(info);
 
         newActionCodeList.push_back(action.code);
@@ -60,6 +63,10 @@ void UiActionsRegister::reg(const IUiActionsModulePtr& module)
     updateEnabled(newActionCodeList);
     updateChecked(newActionCodeList);
     updateShortcuts(newActionCodeList);
+
+    if (reload) {
+        shortcutsRegister()->reload();
+    }
 
     module->actionEnabledChanged().onReceive(this, [this](const ActionCodeList& codes) {
         updateEnabled(codes);

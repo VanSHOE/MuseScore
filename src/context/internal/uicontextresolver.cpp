@@ -183,7 +183,7 @@ bool UiContextResolver::isShortcutContextAllowed(const std::string& scContext) c
         }
         return notation->interaction()->isTextEditingStarted();
     }
-
+    return true;
     IF_ASSERT_FAILED(CTX_ANY == scContext) {
         return true;
     }

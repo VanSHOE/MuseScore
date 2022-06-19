@@ -41,7 +41,7 @@ public:
 
     void init();
 
-    void reg(const IUiActionsModulePtr& actions) override;
+    void reg(const IUiActionsModulePtr& actions, bool reload = false) override;
     const UiAction& action(const actions::ActionCode& code) const override;
     UiActionState actionState(const actions::ActionCode& code) const override;
     async::Channel<actions::ActionCodeList> actionStateChanged() const override;

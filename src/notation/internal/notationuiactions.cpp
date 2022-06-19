@@ -460,7 +460,7 @@ const UiActionList NotationUiActions::m_actions = {
              QT_TRANSLATE_NOOP("action", "Toggle page break"),
              QT_TRANSLATE_NOOP("action", "Toggle 'page break'")
              ),
-
+/*
     UiAction("plui_system_break",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Test action 1")
@@ -3820,7 +3820,7 @@ const UiActionList NotationUiActions::m_actions = {
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Test action 672")
              ),
-
+*/
     UiAction("section-break",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Toggle section break"),
