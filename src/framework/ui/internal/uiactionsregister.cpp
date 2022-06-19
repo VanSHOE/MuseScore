@@ -62,11 +62,12 @@ void UiActionsRegister::reg(const IUiActionsModulePtr& module, bool reload)
 
     updateEnabled(newActionCodeList);
     updateChecked(newActionCodeList);
-    updateShortcuts(newActionCodeList);
 
     if (reload) {
         shortcutsRegister()->reload();
     }
+
+    updateShortcuts(newActionCodeList);
 
     module->actionEnabledChanged().onReceive(this, [this](const ActionCodeList& codes) {
         updateEnabled(codes);
