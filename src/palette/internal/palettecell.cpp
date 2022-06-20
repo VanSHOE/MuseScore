@@ -64,6 +64,7 @@ PaletteCell::PaletteCell(QObject* parent)
     : QObject(parent)
 {
     id = makeId();
+    cells.insert(this);
 }
 
 PaletteCell::PaletteCell(ElementPtr e, const QString& _name, qreal _mag, const QString& _tag, QObject* parent)

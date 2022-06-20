@@ -29,6 +29,8 @@
 #include "io/ifilesystem.h"
 #include "multiinstances/imultiinstancesprovider.h"
 #include "ui/iuiactionsregister.h"
+#include "palette/ipaletteconfiguration.h"
+
 namespace mu::framework {
 class XmlReader;
 class XmlWriter;
@@ -37,6 +39,7 @@ class XmlWriter;
 namespace mu::shortcuts {
 class ShortcutsRegister : public IShortcutsRegister, public async::Asyncable
 {
+    INJECT(palette, mu::palette::IPaletteConfiguration, paletteConfiguration)
     INJECT(shortcuts, IShortcutsConfiguration, configuration)
     INJECT(shortcuts, io::IFileSystem, fileSystem)
     INJECT(shortcuts, mi::IMultiInstancesProvider, multiInstancesProvider)
@@ -49,7 +52,7 @@ public:
     void reload(bool onlyDef = false) override;
 
     const ShortcutList& shortcuts() const override;
-    Ret setShortcuts(const ShortcutList& shortcuts,  bool writeFile = true) override;
+    Ret setShortcuts(const ShortcutList& shortcuts,  bool writeFile = true, bool writePalette = false) override;
     Ret setShortcut(const Shortcut toAddShortcut);
     void resetShortcuts() override;
     async::Notification shortcutsChanged() const override;

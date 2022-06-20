@@ -30,7 +30,6 @@
 #include "shortcuts/ishortcutsconfiguration.h"
 #include "modularity/ioc.h"
 #include "ui/iuiactionsregister.h"
-
 namespace mu::engraving {
 class XmlReader;
 class XmlWriter;
@@ -73,8 +72,10 @@ class PaletteCell : public QObject
 
 public:
     explicit PaletteCell(QObject* parent = nullptr);
+
     PaletteCell(mu::engraving::ElementPtr e, const QString& _name, qreal _mag = 1.0, const QString& tag = "", QObject* parent = nullptr);
     inline static mu::shortcuts::ShortcutList allActions;
+    inline static std::unordered_set<PaletteCell*> cells;
     static QAccessibleInterface* accessibleInterface(QObject* object);
 
     static constexpr const char* mimeDataFormat = "application/musescore/palette/cell";

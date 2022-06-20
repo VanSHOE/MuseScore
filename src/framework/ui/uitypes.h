@@ -27,7 +27,7 @@
 #include <cstring>
 #include <QString>
 #include <QMetaType>
-
+#include <map>
 #include "ret.h"
 #include "val.h"
 #include "actions/actiontypes.h"
@@ -187,7 +187,14 @@ enum class Checkable {
 
 struct UiAction
 {
+    struct tempINFO {
+        actions::ActionCode code;
+        UiContext context = UiCtxAny;
+        QString title;
+        QString description;
+    };
     inline static std::set<actions::ActionCode> instances;
+    inline static std::list<tempINFO> instances2;
     actions::ActionCode code;
     UiContext context = UiCtxAny;
     QString title;
@@ -200,23 +207,48 @@ struct UiAction
     UiAction(const actions::ActionCode& code, UiContext ctx, Checkable ch = Checkable::No)
         : code(code), context(ctx), checkable(ch) {
         UiAction::instances.insert(code);
+        tempINFO test;
+        test.code = code;
+        test.title = title;
+        test.description = description;
+        UiAction::instances2.push_back(test);
     }
     UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, Checkable ch = Checkable::No)
         : code(code), context(ctx), title(title), description(title), checkable(ch) {
-        UiAction::instances.insert(code);
+        UiAction::instances.insert(code);         
+        tempINFO test;
+        test.code = code;
+        test.title = title;
+        test.description = description;
+        UiAction::instances2.push_back(test);
     }
     UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, Checkable ch = Checkable::No)
         : code(code), context(ctx), title(title), description(desc), checkable(ch) {
-        UiAction::instances.insert(code);
+        UiAction::instances.insert(code);         
+        tempINFO test;
+        test.code = code;
+        test.title = title;
+        test.description = description;
+        UiAction::instances2.push_back(test);
     }
     UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, IconCode::Code icon,
              Checkable ch = Checkable::No)
         : code(code), context(ctx), title(title), description(desc), iconCode(icon), checkable(ch) {
-        UiAction::instances.insert(code);
+        UiAction::instances.insert(code);         
+        tempINFO test;
+        test.code = code;
+        test.title = title;
+        test.description = description;
+        UiAction::instances2.push_back(test);
     }
     UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, IconCode::Code icon, Checkable ch = Checkable::No)
         : code(code), context(ctx), title(title), description(title), iconCode(icon), checkable(ch) {
-        UiAction::instances.insert(code);
+        UiAction::instances.insert(code);         
+        tempINFO test;
+        test.code = code;
+        test.title = title;
+        test.description = description;
+        UiAction::instances2.push_back(test);
     }
 
     bool isValid() const

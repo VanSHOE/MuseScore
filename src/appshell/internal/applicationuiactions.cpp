@@ -225,6 +225,10 @@ void ApplicationUiActions::listenOpenedDocksChanged(IDockWindow* window)
 
 const mu::ui::UiActionList& ApplicationUiActions::actionsList() const
 {
+    LOGE() << "START ACTION LIST";
+    for (auto x: m_actions) {
+        LOGE() << "|" << x.title << "|";
+    }
     return m_actions;
 }
 

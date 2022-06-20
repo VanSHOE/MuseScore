@@ -547,6 +547,10 @@ void UserPaletteController::editCellProperties(const QModelIndex& index)
         cell->drawStaff = config.drawStaff;
         cell->xoffset = config.xOffset;
         cell->yoffset = config.yOffset;
+
+        if (config.shortcut.isValid()) {
+            cell->shortcut = config.shortcut;
+        }
         _userPalette->itemDataChanged(srcIndex);
         _userPalette->itemDataChanged(srcIndex.parent());
     });

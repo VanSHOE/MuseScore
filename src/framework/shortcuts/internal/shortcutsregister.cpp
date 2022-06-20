@@ -23,11 +23,13 @@
 
 #include <QKeySequence>
 #include <unordered_set>
+#include <palette/internal/palettecell.h>
 #include "global/xmlreader.h"
 #include "global/xmlwriter.h"
 #include "multiinstances/resourcelockguard.h"
-
+#include "ui/uitypes.h"
 #include "log.h"
+#include "palette/ipaletteconfiguration.h"
 
 using namespace mu::shortcuts;
 using namespace mu::framework;
@@ -103,6 +105,7 @@ void ShortcutsRegister::reload(bool onlyDef)
     }
     if (ok) {
         expandStandardKeys(m_shortcuts);
+
         LOGE() << "Starting addition of all actions: " << UiAction::instances.size();
         for (auto x : UiAction::instances) {
             auto action = uiactionsRegister()->action(x);
@@ -111,7 +114,7 @@ void ShortcutsRegister::reload(bool onlyDef)
             }
             Shortcut shortcut;
             shortcut.action = x;
-            shortcut.context = action.context.toString();
+            shortcut.context = "any"; // TODO: need to pull out the correct context
             m_shortcuts.push_back(shortcut);
         }
         makeUnique(m_shortcuts);
@@ -310,7 +313,7 @@ const ShortcutList& ShortcutsRegister::shortcuts() const
     return m_shortcuts;
 }
 
-mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writeFile)
+mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writeFile, bool writePalette)
 {
     TRACEFUNC;
 
@@ -324,6 +327,48 @@ mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writ
     if (writeFile) {
         ok = writeToFile(needToWrite, configuration()->shortcutsUserAppDataPath());
     }
+
+    //LOGE() << "LIST ACTIONS: " << mu::ui::UiAction::instances2.size() << " " << mu::ui::UiAction::instances.size();
+    //for (auto x : mu::ui::UiAction::instances2) {
+    //    LOGE() << "|" << x.code << "|" << x.title << "|" << x.description << "|" << x.context.toString() << "|";
+    //}
+
+    LOGE() << "Size in set shortcuts outside IF: " << mu::palette::PaletteCell::allActions.size();
+    LOGE() << "Size of pointers in set shortcuts outside IF: " << mu::palette::PaletteCell::cells.size();
+
+    for (auto cell : mu::palette::PaletteCell::cells) {
+        LOGE() << "Name of Palette cell outside IF: " << cell->name << " whose action is: " << cell->action;
+    }
+
+    if (writePalette) {
+        LOGE() << "Size in set shortcuts: " << mu::palette::PaletteCell::allActions.size();
+        LOGE() << "Size of pointers in set shortcuts: " << mu::palette::PaletteCell::cells.size();
+
+        for (auto cell : mu::palette::PaletteCell::cells) {
+
+            for (auto shrtct : shortcuts) {
+                if()
+                LOGE() << "Name of Palette cell: " << cell->name << " whose action is: " << cell->action;
+
+               
+                mu::palette::IPaletteConfiguration::PaletteCellConfig config;
+                config.name = cell->name;
+                config.drawStaff = cell->drawStaff;
+                config.xOffset = cell->xoffset;
+                config.yOffset = cell->yoffset;
+                config.scale = cell->mag;
+                // TODO: Add cell shortcut saving logic here
+
+
+                paletteConfiguration()->setPaletteCellConfig(cell->id, config);
+            }
+        }
+        
+       
+        
+        
+    }
+
     if (ok) {
         m_shortcuts = needToWrite;
         mergeShortcuts(m_shortcuts, m_defaultShortcuts);
