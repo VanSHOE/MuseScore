@@ -69,6 +69,7 @@ public:
 
     Q_INVOKABLE void applySequenceToCurrentShortcut(const QString& newSequence);
     Q_INVOKABLE void applySequenceToShortcut(QString action, const QString& newSequence);
+    Q_INVOKABLE void applySequenceToPalette(QString cellID, const QString& newSequence);
     
     Q_INVOKABLE void clearSequenceOfShortcut(QString action);
     Q_INVOKABLE void clearSelectedShortcuts();

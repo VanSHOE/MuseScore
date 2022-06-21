@@ -235,6 +235,25 @@ void ShortcutsModel::applySequenceToCurrentShortcut(const QString& newSequence)
     notifyAboutShortcutChanged(index);
 }
 
+void ShortcutsModel::applySequenceToPalette(QString action, const QString& newSequence)
+{
+    int i = 0;
+    LOGE() << "prev size:" << m_shortcuts.size();
+
+    LOGE() << "Applying shortcut to: " + action;
+
+    for (Shortcut& shortcut : m_shortcuts) {
+        if (action == QString::fromStdString(shortcut.action)) {
+            shortcut.sequences = Shortcut::sequencesFromString(newSequence.toStdString());
+            notifyAboutShortcutChanged(index(i));
+        }
+        i += 1;
+    }
+
+    LOGE() << "after size:" << m_shortcuts.size();
+    apply();
+}
+
 void ShortcutsModel::applySequenceToShortcut(QString action, const QString& newSequence)
 {
     int i = 0;

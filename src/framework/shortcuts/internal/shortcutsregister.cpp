@@ -313,7 +313,7 @@ const ShortcutList& ShortcutsRegister::shortcuts() const
     return m_shortcuts;
 }
 
-mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writeFile, bool writePalette)
+mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writeFile, int cellID)
 {
     TRACEFUNC;
 
@@ -321,13 +321,29 @@ mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writ
         return true;
     }
 
-    ShortcutList needToWrite = filterAndUpdateAdditionalShortcuts(shortcuts);
+    ShortcutList filtered = filterAndUpdateAdditionalShortcuts(shortcuts);
+    ShortcutList needToWrite;
+    ShortcutList PaletteShortcuts;
+    
+    for (auto shortcut : filtered) {
+        bool isPaletteCellShortcut = palletePrefix.size() <= shortcut.action.size() && std::mismatch(palletePrefix.begin(), palletePrefix.end(), shortcut.action.begin(), shortcut.action.end()).first == palletePrefix.end();
+        if (isPaletteCellShortcut) {
+            PaletteShortcuts.push_back(shortcut);
+            //LOGE() << "Setting for action outside inner if: " << shortcut.action;
+            shortcut.context = "notation-focused";
+            if (shortcut.isValid()) {
+                LOGE() << "Setting for action: " << shortcut.action;
+            }
+        }
+        else {
+            needToWrite.push_back(shortcut);
+        }
 
-    bool ok = true;
-    if (writeFile) {
-        ok = writeToFile(needToWrite, configuration()->shortcutsUserAppDataPath());
     }
 
+    bool ok = writeToFile(needToWrite, configuration()->shortcutsUserAppDataPath());
+    
+    
     //LOGE() << "LIST ACTIONS: " << mu::ui::UiAction::instances2.size() << " " << mu::ui::UiAction::instances.size();
     //for (auto x : mu::ui::UiAction::instances2) {
     //    LOGE() << "|" << x.code << "|" << x.title << "|" << x.description << "|" << x.context.toString() << "|";
@@ -335,42 +351,41 @@ mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writ
 
     LOGE() << "Size in set shortcuts outside IF: " << mu::palette::PaletteCell::allActions.size();
     LOGE() << "Size of pointers in set shortcuts outside IF: " << mu::palette::PaletteCell::cells.size();
+    LOGE() << "Size of all shortcuts in set shortcuts outside IF: " << filtered.size();
 
     for (auto cell : mu::palette::PaletteCell::cells) {
-        LOGE() << "Name of Palette cell outside IF: " << cell->name << " whose action is: " << cell->action;
+        //LOGE() << "Name of Palette cell outside IF: " << cell->name << " whose action is: " << cell->action;
     }
 
-    if (writePalette) {
+    if (cellID >= 0) {
         LOGE() << "Size in set shortcuts: " << mu::palette::PaletteCell::allActions.size();
         LOGE() << "Size of pointers in set shortcuts: " << mu::palette::PaletteCell::cells.size();
 
         for (auto cell : mu::palette::PaletteCell::cells) {
+            LOGE() << "Name of Palette cell: " << cell->name << " whose action is: " << cell->action;
+            
+            if (cell->id != cellID) {
+                continue;
+            }
+
+            mu::palette::IPaletteConfiguration::PaletteCellConfig config;
+            config.name = cell->name;
+            config.drawStaff = cell->drawStaff;
+            config.xOffset = cell->xoffset;
+            config.yOffset = cell->yoffset;
+            config.scale = cell->mag;
 
             for (auto shrtct : shortcuts) {
-                if()
-                LOGE() << "Name of Palette cell: " << cell->name << " whose action is: " << cell->action;
-
-               
-                mu::palette::IPaletteConfiguration::PaletteCellConfig config;
-                config.name = cell->name;
-                config.drawStaff = cell->drawStaff;
-                config.xOffset = cell->xoffset;
-                config.yOffset = cell->yoffset;
-                config.scale = cell->mag;
                 // TODO: Add cell shortcut saving logic here
-
-
+                config.shortcut = shrtct;
                 paletteConfiguration()->setPaletteCellConfig(cell->id, config);
             }
         }
-        
-       
-        
-        
     }
 
     if (ok) {
-        m_shortcuts = needToWrite;
+        m_shortcuts = filtered;
+
         mergeShortcuts(m_shortcuts, m_defaultShortcuts);
         mergeAdditionalShortcuts(m_shortcuts);
         m_shortcutsChanged.notify();

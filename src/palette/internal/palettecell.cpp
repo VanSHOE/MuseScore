@@ -237,8 +237,8 @@ bool PaletteCell::read(XmlReader& e)
     
     std::stringstream pointerAddr;
     pointerAddr << element.get();
-    action = QString::fromStdString(pointerAddr.str());
-    shortcut.action = pointerAddr.str();
+    shortcut.action = "plui_" + id.toStdString() + "_" + pointerAddr.str();
+    action = QString::fromStdString(shortcut.action);
     PaletteCell::allActions.push_back(shortcut);
     //shortcutsRegister()->setShortcut(shortcut);  // Makes the application extremely slow, need to run this when cells are done being set up
 

@@ -52,7 +52,7 @@ public:
     void reload(bool onlyDef = false) override;
 
     const ShortcutList& shortcuts() const override;
-    Ret setShortcuts(const ShortcutList& shortcuts,  bool writeFile = true, bool writePalette = false) override;
+    Ret setShortcuts(const ShortcutList& shortcuts,  bool writeFile = true, int cellID = -1) override;
     Ret setShortcut(const Shortcut toAddShortcut);
     void resetShortcuts() override;
     async::Notification shortcutsChanged() const override;
@@ -73,7 +73,7 @@ public:
     async::Notification activeChanged() const override;
 
 private:
-
+    const std::string palletePrefix = "plui_";
     bool readFromFile(ShortcutList& shortcuts, const io::path_t& path) const;
     Shortcut readShortcut(framework::XmlReader& reader) const;
 

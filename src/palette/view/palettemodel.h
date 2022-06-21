@@ -115,6 +115,7 @@ public:
         PaletteTypeRole,
         PaletteContentTypeRole,
         CellActiveRole,
+        CellIdRole,
         CellActionRole
     };
     Q_ENUM(PaletteTreeModelRoles)

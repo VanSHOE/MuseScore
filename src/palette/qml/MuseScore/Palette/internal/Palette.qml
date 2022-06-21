@@ -51,6 +51,7 @@ StyledGridView {
     property bool enableAnimations: true
 
     property bool isInVisibleArea: true
+    property int currentCellID
 
     property NavigationPanel navigationPanel: null
     property int navigationRow: 0
@@ -223,8 +224,8 @@ StyledGridView {
         id: editShortcutDialog
 
         onApplySequenceRequested: function(newSequence, shortcutAction) {
-            shortcutsModel.applySequenceToShortcut(shortcutAction, newSequence)
-            shortcutsModel.apply()
+            shortcutsModel.applySequenceToPalette(shortcutAction, newSequence)
+
         }
 
         property bool canEditCurrentShortcut: Boolean(shortcutsModel.currentShortcut)
@@ -550,7 +551,7 @@ StyledGridView {
                 visible: !parent.paletteDrag || parent.dragCopy
             }
 
-            hint: model.cellAction
+            hint: model.cellID + ":" + model.cellAction
 
             navigation.accessible.name: model.accessibleText
 
@@ -659,7 +660,9 @@ StyledGridView {
                         //                            updateSelection()
                         //                            console.log("ok")
                         //                        }
-                        console.log("Adding shortcut for: " + model.cellAction)
+
+                        paletteView.currentCellID = model.cellID
+                        console.log("Adding shortcut for: " + model.cellAction + " with ID:" << model.cellID)
                         editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut(model.cellAction))
                         break
                     case "delshortcut":

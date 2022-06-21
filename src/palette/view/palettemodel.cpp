@@ -33,7 +33,7 @@
 #include "engraving/libmscore/select.h"
 
 #include "commonscene/commonscenetypes.h"
-
+#include "log.h"
 #include "translation.h"
 
 using namespace mu;
@@ -364,6 +364,8 @@ QVariant PaletteTreeModel::data(const QModelIndex& index, int role) const
             return cell->active;
         case CellActionRole:
             return cell->action;
+        case CellIdRole:
+            return cell->id;
         default:
             break;
         }
@@ -512,6 +514,10 @@ bool PaletteTreeModel::setData(const QModelIndex& index, const QVariant& value, 
             }
             return false;
 
+        case CellIdRole:
+            LOGE() << "ID Editing not allowed";
+            return false;
+
         case MimeDataRole: {
             const QVariantMap map = value.toMap();
 
@@ -567,6 +573,7 @@ QHash<int, QByteArray> PaletteTreeModel::roleNames() const
     roles[PaletteExpandedRole] = "expanded";
     roles[CellActiveRole] = "cellActive";
     roles[CellActionRole] = "cellAction";
+    roles[CellIdRole] = "cellID";
     roles[Qt::AccessibleTextRole] = "accessibleText";
     return roles;
 }
