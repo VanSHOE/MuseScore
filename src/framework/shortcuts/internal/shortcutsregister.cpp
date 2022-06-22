@@ -118,10 +118,10 @@ void ShortcutsRegister::reload(bool onlyDef)
                 if (cell->action != QString::fromStdString(x)) {
                     continue;
                 }
-                if (cell->shortcut.isValid()) {
-                    shortcut = cell->shortcut;
-                    LOGE() << shortcut.action << " in shortcut register at reading shortcut.";
-                }
+
+                shortcut = cell->shortcut;
+                LOGE() << shortcut.action << " in shortcut register at reading shortcut.";
+
             }
 
             m_shortcuts.push_back(shortcut);
