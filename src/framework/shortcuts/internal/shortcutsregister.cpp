@@ -21,6 +21,7 @@
  */
 #include "shortcutsregister.h"
 
+#include "palette/internal/palettecell.h"
 #include <QKeySequence>
 #include <unordered_set>
 #include <palette/internal/palettecell.h>
@@ -113,8 +114,16 @@ void ShortcutsRegister::reload(bool onlyDef)
                 continue;
             }
             Shortcut shortcut;
-            shortcut.action = x;
-            shortcut.context = "any"; // TODO: need to pull out the correct context
+            for (auto cell : mu::palette::PaletteCell::cells) {
+                if (cell->action != QString::fromStdString(x)) {
+                    continue;
+                }
+                if (cell->shortcut.isValid()) {
+                    shortcut = cell->shortcut;
+                    LOGE() << shortcut.action << " in shortcut register at reading shortcut.";
+                }
+            }
+
             m_shortcuts.push_back(shortcut);
         }
         makeUnique(m_shortcuts);
@@ -313,7 +322,7 @@ const ShortcutList& ShortcutsRegister::shortcuts() const
     return m_shortcuts;
 }
 
-mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writeFile, int cellID)
+mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, QModelIndex cellIdx)
 {
     TRACEFUNC;
 
@@ -324,26 +333,20 @@ mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writ
     ShortcutList filtered = filterAndUpdateAdditionalShortcuts(shortcuts);
     ShortcutList needToWrite;
     ShortcutList PaletteShortcuts;
-    
+
     for (auto shortcut : filtered) {
-        bool isPaletteCellShortcut = palletePrefix.size() <= shortcut.action.size() && std::mismatch(palletePrefix.begin(), palletePrefix.end(), shortcut.action.begin(), shortcut.action.end()).first == palletePrefix.end();
+        bool isPaletteCellShortcut = palletePrefix.size() <= shortcut.action.size() && std::mismatch(
+            palletePrefix.begin(), palletePrefix.end(), shortcut.action.begin(), shortcut.action.end()).first == palletePrefix.end();
         if (isPaletteCellShortcut) {
-            PaletteShortcuts.push_back(shortcut);
-            //LOGE() << "Setting for action outside inner if: " << shortcut.action;
             shortcut.context = "notation-focused";
-            if (shortcut.isValid()) {
-                LOGE() << "Setting for action: " << shortcut.action;
-            }
-        }
-        else {
+            PaletteShortcuts.push_back(shortcut);
+        } else {
             needToWrite.push_back(shortcut);
         }
-
     }
 
     bool ok = writeToFile(needToWrite, configuration()->shortcutsUserAppDataPath());
-    
-    
+
     //LOGE() << "LIST ACTIONS: " << mu::ui::UiAction::instances2.size() << " " << mu::ui::UiAction::instances.size();
     //for (auto x : mu::ui::UiAction::instances2) {
     //    LOGE() << "|" << x.code << "|" << x.title << "|" << x.description << "|" << x.context.toString() << "|";
@@ -353,33 +356,46 @@ mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, bool writ
     LOGE() << "Size of pointers in set shortcuts outside IF: " << mu::palette::PaletteCell::cells.size();
     LOGE() << "Size of all shortcuts in set shortcuts outside IF: " << filtered.size();
 
+    //for (auto cell : mu::palette::PaletteCell::cells) {
+    //    //LOGE() << "Name of Palette cell outside IF: " << cell->name << " whose action is: " << cell->action;
+    //}
+
     for (auto cell : mu::palette::PaletteCell::cells) {
-        //LOGE() << "Name of Palette cell outside IF: " << cell->name << " whose action is: " << cell->action;
-    }
+        //LOGE() << "Name of Palette cell: " << cell->name << " whose action is: " << cell->action;
 
-    if (cellID >= 0) {
-        LOGE() << "Size in set shortcuts: " << mu::palette::PaletteCell::allActions.size();
-        LOGE() << "Size of pointers in set shortcuts: " << mu::palette::PaletteCell::cells.size();
+        mu::palette::IPaletteConfiguration::PaletteCellConfig config;
+        config.name = cell->name;
+        config.drawStaff = cell->drawStaff;
+        config.xOffset = cell->xoffset;
+        config.yOffset = cell->yoffset;
+        config.scale = cell->mag;
+        config.idx = cellIdx;
 
-        for (auto cell : mu::palette::PaletteCell::cells) {
-            LOGE() << "Name of Palette cell: " << cell->name << " whose action is: " << cell->action;
-            
-            if (cell->id != cellID) {
+        for (auto shrtct : PaletteShortcuts) {
+            if (!shrtct.isValid()) {
                 continue;
             }
 
-            mu::palette::IPaletteConfiguration::PaletteCellConfig config;
-            config.name = cell->name;
-            config.drawStaff = cell->drawStaff;
-            config.xOffset = cell->xoffset;
-            config.yOffset = cell->yoffset;
-            config.scale = cell->mag;
-
-            for (auto shrtct : shortcuts) {
-                // TODO: Add cell shortcut saving logic here
-                config.shortcut = shrtct;
-                paletteConfiguration()->setPaletteCellConfig(cell->id, config);
+            std::string cellId = "";
+            // plui_
+            for (int i = palletePrefix.length(); i < shrtct.action.length(); i++) {
+                if (shrtct.action[i] == '_') {
+                    break;
+                }
+                cellId += shrtct.action[i];
             }
+            if (cell->id.toStdString() != cellId) {
+                continue;
+            }
+
+            LOGE() << "ID of cell being modified: " << cellId << " with shortcut: ";
+            for (auto seq : shrtct.sequences) {
+                LOGE() << seq;
+            }
+
+            config.shortcut = shrtct;
+            cell->shortcut = config.shortcut;
+            paletteConfiguration()->setPaletteCellConfig(cell->id, config);
         }
     }
 
@@ -398,7 +414,7 @@ mu::Ret ShortcutsRegister::setShortcut(const Shortcut toAddShortcut)
 {
     ShortcutList SingletonList;
     SingletonList.push_back(toAddShortcut);
-    return setShortcuts(SingletonList, false);
+    return setShortcuts(SingletonList);
 }
 
 void ShortcutsRegister::resetShortcuts()

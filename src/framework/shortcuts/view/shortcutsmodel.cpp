@@ -235,7 +235,7 @@ void ShortcutsModel::applySequenceToCurrentShortcut(const QString& newSequence)
     notifyAboutShortcutChanged(index);
 }
 
-void ShortcutsModel::applySequenceToPalette(QString action, const QString& newSequence)
+void ShortcutsModel::applySequenceToPalette(QString action, const QString& newSequence, QModelIndex cellIdx)
 {
     int i = 0;
     LOGE() << "prev size:" << m_shortcuts.size();
@@ -251,7 +251,22 @@ void ShortcutsModel::applySequenceToPalette(QString action, const QString& newSe
     }
 
     LOGE() << "after size:" << m_shortcuts.size();
-    apply();
+
+    ShortcutList shortcuts;
+
+    for (const Shortcut& shortcut : qAsConst(m_shortcuts)) {
+        shortcuts.push_back(shortcut);
+    }
+
+    Ret ret = shortcutsRegister()->setShortcuts(shortcuts, cellIdx);
+
+    if (!ret) {
+        LOGE() << ret.toString();
+    }
+
+    //return ret;
+
+    //apply();
 }
 
 void ShortcutsModel::applySequenceToShortcut(QString action, const QString& newSequence)

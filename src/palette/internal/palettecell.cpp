@@ -198,12 +198,12 @@ bool PaletteCell::read(XmlReader& e)
             tag = e.readText();
         }/* else if (s == "skey") {
             shortcut.action = e.readText().toStdString();
-        }*/ else if (s == "sctx") {
+        }*/
+        else if (s == "sctx") {
             shortcut.context = e.readText().toStdString();
         } else if (s == "sseq") {
             shortcut.sequences.push_back(e.readText().toStdString());
         }
-
         // added on palettes rework
         // TODO: remove or leave to switch from using attributes later?
         else if (s == "custom") {
@@ -230,14 +230,20 @@ bool PaletteCell::read(XmlReader& e)
             }
         }
     }
-    LOGE() << shortcut.action << "; "<<shortcut.context;
+
+    LOGE() << shortcut.action << "; " << shortcut.context;
     setElementTranslated(translateElement);
 
     //action = "plui_" + translatedName().toLower().replace(' ', '_').replace('\'', '_').replace('"', '_');
-    
+
     std::stringstream pointerAddr;
     pointerAddr << element.get();
     shortcut.action = "plui_" + id.toStdString() + "_" + pointerAddr.str();
+
+    if (shortcut.isValid()) {
+        LOGE() << "Valid";
+    }
+
     action = QString::fromStdString(shortcut.action);
     PaletteCell::allActions.push_back(shortcut);
     //shortcutsRegister()->setShortcut(shortcut);  // Makes the application extremely slow, need to run this when cells are done being set up
@@ -289,14 +295,12 @@ void PaletteCell::write(XmlWriter& xml) const
         xml.tag("mag", mag);
     }
 
-    if (shortcut.isValid())
-    //if(true)
-    {
+    if (shortcut.isValid()) {
+        //if(true)
         //xml.tag("skey", QString::fromStdString(shortcut.action));
         //xml.tag("skey", QString::fromStdString("TestShortcut" + name.toStdString()));
 
-        for (std::string seq : shortcut.sequences)
-        {
+        for (std::string seq : shortcut.sequences) {
             xml.tag("sseq", QString::fromStdString(seq));
         }
         //xml.tag("sseq", QString("sequence test"));

@@ -527,6 +527,12 @@ void UserPaletteController::editPaletteProperties(const QModelIndex& index)
     interactive()->open(uri.toStdString());
 }
 
+void UserPaletteController::applyPaletteCellProperties(const QModelIndex& index)
+{
+    _userPalette->itemDataChanged(index);
+    _userPalette->itemDataChanged(index.parent());
+}
+
 void UserPaletteController::editCellProperties(const QModelIndex& index)
 {
     if (!canEdit(index)) {
@@ -548,7 +554,9 @@ void UserPaletteController::editCellProperties(const QModelIndex& index)
         cell->xoffset = config.xOffset;
         cell->yoffset = config.yOffset;
 
+        LOGE() << "VALID SHORTCUT?";
         if (config.shortcut.isValid()) {
+            LOGE() << "VALID SHORTCUT";
             cell->shortcut = config.shortcut;
         }
         _userPalette->itemDataChanged(srcIndex);
@@ -622,8 +630,6 @@ void PaletteProvider::init()
     configuration()->isSingleClickToOpenPalette().ch.onReceive(this, [this](bool) {
         emit isSingleClickToOpenPaletteChanged();
     });
-
-   
 }
 
 void PaletteProvider::setSearching(bool searching)
@@ -648,7 +654,9 @@ bool PaletteProvider::isSingleClickToOpenPalette() const
 {
     return configuration()->isSingleClickToOpenPalette().val;
 }
+void applyPaletteCellProperties(const QModelIndex& index) {
 
+}
 QAbstractItemModel* PaletteProvider::mainPaletteModel()
 {
     if (m_isSearching) {
@@ -1005,15 +1013,13 @@ void PaletteProvider::setUserPaletteTree(PaletteTreePtr tree)
         connect(m_userPaletteModel, &PaletteTreeModel::treeChanged, this, &PaletteProvider::notifyAboutUserPaletteChanged);
     }
     mu::shortcuts::ShortcutList toBeAdded;
-    for (auto x : PaletteCell::allActions)
-    {
-        if (x.isValid())
-        {
+    for (auto x : PaletteCell::allActions) {
+        if (x.isValid()) {
             toBeAdded.push_back(x);
         }
     }
-   
-    shortcutsRegister()->setShortcuts(toBeAdded, false);
+
+    shortcutsRegister()->setShortcuts(toBeAdded);
     LOGE() << "In the end total palette cells: " << PaletteCell::allActions.size() << " and with valid shortcuts: " << toBeAdded.size();
 }
 

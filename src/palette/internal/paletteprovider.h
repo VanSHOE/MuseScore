@@ -121,6 +121,7 @@ public:
     Q_INVOKABLE virtual bool canEdit(const QModelIndex&) const { return false; }
 
     Q_INVOKABLE virtual void editPaletteProperties(const QModelIndex& index) { Q_UNUSED(index); }
+
     Q_INVOKABLE virtual void editCellProperties(const QModelIndex& index) { Q_UNUSED(index); }
 
     Q_INVOKABLE virtual bool applyPaletteElement(const QModelIndex& index, Qt::KeyboardModifiers modifiers)
@@ -190,6 +191,7 @@ public:
     void removeSelection(const QModelIndexList&, const QModelIndex& parent = QModelIndex()) override;
 
     void editPaletteProperties(const QModelIndex& index) override;
+    Q_INVOKABLE void applyPaletteCellProperties(const QModelIndex& index);
     void editCellProperties(const QModelIndex& index) override;
 
     bool userEditable() const { return _userEditable; }

@@ -174,7 +174,7 @@ void PaletteModule::onAllInited(const framework::IApplication::RunMode& mode)
     for (auto action: PaletteCell::allActions) {
         auto a = UiAction(action.action,
                           mu::context::UiCtxNotationOpened,
-                          QT_TRANSLATE_NOOP("action", ("Test Action " + std::to_string(i)).c_str()),
+                          QT_TRANSLATE_NOOP("action", ("Test Action " + std::to_string(i) + ";" + action.action).c_str()),
                           QT_TRANSLATE_NOOP("action", ("Test Action " + std::to_string(i++)).c_str())
                           );
         LOGE() << "Action adding: " << action.action;

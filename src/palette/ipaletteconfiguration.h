@@ -76,6 +76,7 @@ public:
         double scale = 0;
         bool drawStaff = false;
         mu::shortcuts::Shortcut shortcut = mu::shortcuts::Shortcut();
+        QModelIndex idx = QModelIndex();
     };
 
     virtual ValCh<PaletteConfig> paletteConfig(const QString& paletteId) const = 0;
