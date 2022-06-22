@@ -529,8 +529,9 @@ void UserPaletteController::editPaletteProperties(const QModelIndex& index)
 
 void UserPaletteController::applyPaletteCellProperties(const QModelIndex& index)
 {
-    _userPalette->itemDataChanged(index);
-    _userPalette->itemDataChanged(index.parent());
+    auto srcindex = convertProxyIndex(index, _userPalette);
+    _userPalette->itemDataChanged(srcindex);
+    _userPalette->itemDataChanged(srcindex.parent());
 }
 
 void UserPaletteController::editCellProperties(const QModelIndex& index)
