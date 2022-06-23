@@ -23,7 +23,7 @@
 
 #include <QGuiApplication>
 #include <QStyleHints>
-
+#include "log.h"
 using namespace mu::ui;
 
 QmlToolTip::QmlToolTip(QObject* parent)
@@ -67,7 +67,7 @@ void QmlToolTip::hide(QQuickItem* item, bool force)
     if (m_item != item) {
         return;
     }
-
+    m_mouseTimer.stop();
     m_shouldBeClosed = true;
 
     if (force) {
@@ -77,6 +77,23 @@ void QmlToolTip::hide(QQuickItem* item, bool force)
 
     m_closeTimer.start(500);
 }
+
+void QmlToolTip::outButton(QQuickItem* item)
+{
+    if (m_item != item) {
+        return;
+    }
+
+    //m_mouseTimer.setSingleShot(true);
+    connect(&m_mouseTimer, &QTimer::timeout, this, [this, item]() {LOGE() << "Emitting checkForMouse!"; emit checkForMouse(item); });
+    m_mouseTimer.start(250);
+}
+
+void QmlToolTip::hello()
+{
+    LOGE() << m_item << " says hello!";
+}
+
 
 void QmlToolTip::doShow()
 {
@@ -98,6 +115,7 @@ void QmlToolTip::doHide()
     disconnect(m_item, &QObject::destroyed, this, &QmlToolTip::doHide);
 
     m_openTimer.stop();
+
     m_item = nullptr;
     m_title = QString();
     m_description = QString();

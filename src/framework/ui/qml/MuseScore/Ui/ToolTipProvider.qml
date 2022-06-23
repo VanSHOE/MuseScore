@@ -87,12 +87,22 @@ Item {
         target: root.provider
 
         function onShowToolTip(parent, title, description, shortcut) {
+            console.log("Opening tooltip")
             toolTipLoader.open(parent, title, description, shortcut)
         }
 
         function onHideToolTip() {
             if (toolTipLoader.active) {
                 toolTipLoader.close()
+            }
+        }
+
+        function onCheckForMouse(parent) {
+            if (toolTipLoader.active) {
+                console.log("Is mouse in tooltip?: " + toolTipLoader.item.mouseIn)
+                if(!toolTipLoader.item.mouseIn) {
+                    root.provider.hide(parent);
+                }
             }
         }
     }

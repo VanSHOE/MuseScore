@@ -37,6 +37,9 @@ public:
     Q_INVOKABLE void show(QQuickItem* item, const QString& title, const QString& description = "", const QString& shortcut = "");
     Q_INVOKABLE void hide(QQuickItem* item, bool force = false);
 
+    Q_INVOKABLE void outButton(QQuickItem* item);
+    Q_INVOKABLE void hello();
+
 private slots:
     void doShow();
     void doHide();
@@ -44,6 +47,7 @@ private slots:
 signals:
     void showToolTip(QQuickItem* item, const QString& title, const QString& description, const QString& shortcut);
     void hideToolTip();
+    void checkForMouse(QQuickItem* item);
 
 private:
     QQuickItem* m_item = nullptr;
@@ -53,6 +57,7 @@ private:
 
     QTimer m_openTimer;
     QTimer m_closeTimer;
+    QTimer m_mouseTimer;
     bool m_shouldBeClosed = false;
 };
 }

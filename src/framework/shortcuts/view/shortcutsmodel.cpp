@@ -39,7 +39,7 @@ ShortcutsModel::ShortcutsModel(QObject* parent)
 {
     shortcutsRegister()->shortcutsChanged().onNotify(this, [this]() {
         load();
-        });
+    });
 }
 
 QVariant ShortcutsModel::data(const QModelIndex& index, int role) const
@@ -263,10 +263,6 @@ void ShortcutsModel::applySequenceToPalette(QString action, const QString& newSe
     if (!ret) {
         LOGE() << ret.toString();
     }
-
-    //return ret;
-
-    //apply();
 }
 
 void ShortcutsModel::applySequenceToShortcut(QString action, const QString& newSequence)
@@ -283,6 +279,22 @@ void ShortcutsModel::applySequenceToShortcut(QString action, const QString& newS
     }
     LOGE() << "after size:" << m_shortcuts.size();
 }
+
+//void ShortcutsModel::clearSequenceOfPalette(QString cellID, QModelIndex cellIdx)
+//{
+//    int i = 0;
+//    LOGE() << "prev size:" << m_shortcuts.size();
+//    for (Shortcut& shortcut : m_shortcuts) {
+//        if (action == QString::fromStdString(shortcut.action)) {
+//            shortcut.sequences.clear();
+//            shortcut.standardKey = QKeySequence::StandardKey::UnknownKey;
+//            notifyAboutShortcutChanged(index(i));
+//        }
+//        i += 1;
+//    }
+//    LOGE() << "after size:" << m_shortcuts.size();
+//}
+
 void ShortcutsModel::clearSequenceOfShortcut(QString action)
 {
     int i = 0;

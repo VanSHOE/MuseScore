@@ -30,7 +30,7 @@ StyledPopupView {
     property alias title: titleLabel.text
     property alias description: descriptionLabel.text
     property string shortcut: ""
-
+    property alias mouseIn: mouseArea.containsMouse
     padding: 8
     margins: 8
 
@@ -43,47 +43,66 @@ StyledPopupView {
         contentWidth = Math.min(content.width, 300 - margins * 2)
         contentHeight = content.height
     }
+    MouseArea {
+        id: mouseArea
+        width: content.width
+        height: content.height
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        hoverEnabled: true
 
-    Column {
-        id: content
+        Column {
+            id: content
 
-        width: Math.max(row.width, descriptionLabel.width)
-        height: row.height + (descriptionLabel.visible ? descriptionLabel.height + spacing : 0)
+            width: Math.max(row.width, descriptionLabel.width)
+            height: row.height + (descriptionLabel.visible ? descriptionLabel.height + spacing : 0)
 
-        spacing: 4
+            spacing: 4
 
-        Row {
-            id: row
+            Row {
+                id: row
 
-            spacing: 6
+                spacing: 6
 
-            width: titleLabel.width + (shortcutLabel.visible ? shortcutLabel.width + spacing : 0)
-            height: titleLabel.height
+                width: titleLabel.width + (shortcutLabel.visible ? shortcutLabel.width + spacing : 0)
+                height: titleLabel.height
 
-            StyledTextLabel {
-                id: titleLabel
+                StyledTextLabel {
+                    id: titleLabel
 
-                font: ui.theme.bodyBoldFont
-                horizontalAlignment: Text.AlignLeft
+                    font: ui.theme.bodyBoldFont
+                    horizontalAlignment: Text.AlignLeft
+                }
+
+                StyledTextLabel {
+                    id: shortcutLabel
+
+                    text: "(" + root.shortcut + ")"
+                    horizontalAlignment: Text.AlignLeft
+                    opacity: 0.8
+
+                    visible: Boolean(root.shortcut)
+                }
+
+
             }
 
             StyledTextLabel {
-                id: shortcutLabel
+                id: descriptionLabel
 
-                text: "(" + root.shortcut + ")"
                 horizontalAlignment: Text.AlignLeft
-                opacity: 0.8
 
-                visible: Boolean(root.shortcut)
+                visible: Boolean(root.description)
             }
+
         }
 
-        StyledTextLabel {
-            id: descriptionLabel
-
-            horizontalAlignment: Text.AlignLeft
-
-            visible: Boolean(root.description)
+        onContainsMouseChanged: {
+            if (mouseArea.containsMouse) {
+                console.log("In area")
+            } else {
+               console.log("Out of area")
+            }
         }
     }
+
 }

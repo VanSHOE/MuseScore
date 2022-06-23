@@ -301,11 +301,11 @@ FocusScope {
             if (!Boolean(root.toolTipTitle)) {
                 return
             }
-
+//            ui.tooltip.outButton()
             if (mouseArea.containsMouse) {
                 ui.tooltip.show(root, root.toolTipTitle, root.toolTipDescription, root.toolTipShortcut)
             } else {
-                ui.tooltip.hide(root)
+                ui.tooltip.outButton(root)
             }
         }
     }
