@@ -38,6 +38,8 @@ Item {
     width: childrenRect.width
     height: 30
 
+    signal shortcutChanged()
+
     ShortcutsModel {
         id: shortcutsModel
     }
@@ -49,6 +51,7 @@ Item {
         onApplySequenceRequested: function(newSequence, shortcutAction) {
             shortcutsModel.applySequenceToShortcut(shortcutAction, newSequence)
             shortcutsModel.apply()
+            root.shortcutChanged()
         }
 
         property bool canEditCurrentShortcut: Boolean(shortcutsModel.currentShortcut)
@@ -141,6 +144,7 @@ Item {
                     case "remove":
                         shortcutsModel.clearSequenceOfShortcut(btn.item.action)
                         shortcutsModel.apply()
+                        root.shortcutChanged()
                         break
                     }
                 }
