@@ -206,10 +206,6 @@ Item {
 
                 toggleMenuOpened()
             }
-//            onDoubleClicked: {
-//                console.log("Adding shortcut for: " + btn.item.action)
-//                editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut(btn.item.action))
-//            }
 
             Canvas {
                 visible: Boolean(itemModel) && itemModel.isMenuSecondary

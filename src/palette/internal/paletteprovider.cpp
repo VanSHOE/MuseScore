@@ -655,9 +655,11 @@ bool PaletteProvider::isSingleClickToOpenPalette() const
 {
     return configuration()->isSingleClickToOpenPalette().val;
 }
-void applyPaletteCellProperties(const QModelIndex& index) {
 
+void applyPaletteCellProperties(const QModelIndex& index)
+{
 }
+
 QAbstractItemModel* PaletteProvider::mainPaletteModel()
 {
     if (m_isSearching) {
@@ -1014,6 +1016,7 @@ void PaletteProvider::setUserPaletteTree(PaletteTreePtr tree)
         connect(m_userPaletteModel, &PaletteTreeModel::treeChanged, this, &PaletteProvider::notifyAboutUserPaletteChanged);
     }
     mu::shortcuts::ShortcutList toBeAdded;
+    shortcutsRegister()->mergeShortcuts(toBeAdded, shortcutsRegister()->shortcuts());
     for (auto x : PaletteCell::allActions) {
         if (x.isValid()) {
             toBeAdded.push_back(x);

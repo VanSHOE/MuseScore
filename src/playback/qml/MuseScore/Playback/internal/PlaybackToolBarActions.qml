@@ -26,6 +26,8 @@ import MuseScore.UiComponents 1.0
 import MuseScore.Ui 1.0
 import MuseScore.CommonScene 1.0
 
+import MuseScore.Shortcuts 1.0
+
 Item {
     id: root
 
@@ -35,6 +37,30 @@ Item {
 
     width: childrenRect.width
     height: 30
+
+    ShortcutsModel {
+        id: shortcutsModel
+    }
+
+
+    EditShortcutDialog {
+        id: editShortcutDialog
+
+        onApplySequenceRequested: function(newSequence, shortcutAction) {
+            shortcutsModel.applySequenceToShortcut(shortcutAction, newSequence)
+            shortcutsModel.apply()
+        }
+
+        property bool canEditCurrentShortcut: Boolean(shortcutsModel.currentShortcut)
+
+        function startEditShortcut(shortcut2change) {
+            editShortcutDialog.startEdit(shortcut2change, shortcutsModel.shortcuts(), true)
+        }
+    }
+
+    Component.onCompleted: {
+        shortcutsModel.load()
+    }
 
     ListView {
         id: buttonsListView
@@ -75,13 +101,49 @@ Item {
             navigation.name: toolTipTitle
             navigation.order: model.index
 
-            onClicked: {
+            onClicked: function (mouse){
                 if (menuLoader.isMenuOpened || item.subitems.length) {
                     menuLoader.toggleOpened(item.subitems)
                     return
                 }
 
+                if (mouse.button === Qt.RightButton)
+                {
+                    showCellMenu()
+                    return;
+                }
+
                 Qt.callLater(root.playbackModel.handleMenuItem, item.id)
+            }
+
+            function showCellMenu() {
+                contextMenu.toggleOpened(contextMenu.items, mouseArea.mouseX, mouseArea.mouseY)
+            }
+
+
+            StyledMenuLoader {
+                id: contextMenu
+
+                property var modelIndex: null
+                property bool canEdit: true
+
+                property var items: [
+                    { id: "add", title: qsTrc("notation", "Assign Shortcut"), icon: IconCode.CONFIGURE, enabled: true },
+                    { id: "remove", title: qsTrc("notation","Clear current shortcut"), icon: IconCode.DELETE_TANK, enabled: true }
+                ]
+
+                onHandleMenuItem: {
+                    switch(itemId) {
+                    case "add":
+                        console.log("Adding shortcut for: " + btn.item.action)
+                        editShortcutDialog.startEditShortcut(shortcutsModel.getShortcut(btn.item.action))
+                        break
+                    case "remove":
+                        shortcutsModel.clearSequenceOfShortcut(btn.item.action)
+                        shortcutsModel.apply()
+                        break
+                    }
+                }
             }
 
             StyledMenuLoader {

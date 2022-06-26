@@ -108,20 +108,29 @@ void ShortcutsRegister::reload(bool onlyDef)
         expandStandardKeys(m_shortcuts);
 
         LOGE() << "Starting addition of all actions: " << UiAction::instances.size();
+
         for (auto x : UiAction::instances) {
             auto action = uiactionsRegister()->action(x);
+
             if (alreadyAdded.find(QString::fromStdString(x)) != alreadyAdded.end()) {
                 continue;
             }
+
             Shortcut shortcut;
+            bool isPalette = false;
             for (auto cell : mu::palette::PaletteCell::cells) {
                 if (cell->action != QString::fromStdString(x)) {
                     continue;
                 }
-
+                isPalette = true;
                 shortcut = cell->shortcut;
                 LOGE() << shortcut.action << " in shortcut register at reading shortcut.";
+                break;
+            }
 
+            if (!isPalette) {
+                shortcut.action = x;
+                shortcut.context = "any"; // TODO: Need to change this
             }
 
             m_shortcuts.push_back(shortcut);
@@ -335,16 +344,20 @@ mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, QModelInd
     ShortcutList PaletteShortcuts;
 
     for (auto shortcut : filtered) {
-        bool isPaletteCellShortcut = palletePrefix.size() <= shortcut.action.size() && std::mismatch(
-            palletePrefix.begin(), palletePrefix.end(), shortcut.action.begin(), shortcut.action.end()).first == palletePrefix.end();
+        bool isPaletteCellShortcut = palettePrefix.size() <= shortcut.action.size() && std::mismatch(
+            palettePrefix.begin(), palettePrefix.end(), shortcut.action.begin(), shortcut.action.end()).first == palettePrefix.end();
         if (isPaletteCellShortcut) {
             shortcut.context = "notation-focused";
             PaletteShortcuts.push_back(shortcut);
         } else {
+            if (shortcut.sequences.size()) {
+                LOGE() << shortcut.action << ":" << shortcut.sequences[0];
+            }
             needToWrite.push_back(shortcut);
         }
     }
-
+    LOGE() << "Size of writefile: " << needToWrite.size();
+    LOGE() << "User path while writing: " << configuration()->shortcutsUserAppDataPath();
     bool ok = writeToFile(needToWrite, configuration()->shortcutsUserAppDataPath());
 
     //LOGE() << "LIST ACTIONS: " << mu::ui::UiAction::instances2.size() << " " << mu::ui::UiAction::instances.size();
@@ -378,7 +391,7 @@ mu::Ret ShortcutsRegister::setShortcuts(const ShortcutList& shortcuts, QModelInd
 
             std::string cellId = "";
             // plui_
-            for (int i = palletePrefix.length(); i < shrtct.action.length(); i++) {
+            for (int i = palettePrefix.length(); i < shrtct.action.length(); i++) {
                 if (shrtct.action[i] == '_') {
                     break;
                 }

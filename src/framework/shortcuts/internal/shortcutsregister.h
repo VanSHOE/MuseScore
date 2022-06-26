@@ -71,16 +71,15 @@ public:
     bool active() override;
     void setActive(bool active) override;
     async::Notification activeChanged() const override;
-
+    void mergeShortcuts(ShortcutList& shortcuts, const ShortcutList& defaultShortcuts) const override;
 private:
-    const std::string palletePrefix = "plui_";
+    const std::string palettePrefix = "palette-item-";
     bool readFromFile(ShortcutList& shortcuts, const io::path_t& path) const;
     Shortcut readShortcut(framework::XmlReader& reader) const;
 
     bool writeToFile(const ShortcutList& shortcuts, const io::path_t& path) const;
     void writeShortcut(framework::XmlWriter& writer, const Shortcut& shortcut) const;
 
-    void mergeShortcuts(ShortcutList& shortcuts, const ShortcutList& defaultShortcuts) const;
     void mergeAdditionalShortcuts(ShortcutList& shortcuts);
 
     void makeUnique(ShortcutList& shortcuts);

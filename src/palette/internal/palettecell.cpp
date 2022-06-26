@@ -234,11 +234,9 @@ bool PaletteCell::read(XmlReader& e)
     LOGE() << shortcut.action << "; " << shortcut.context;
     setElementTranslated(translateElement);
 
-    //action = "plui_" + translatedName().toLower().replace(' ', '_').replace('\'', '_').replace('"', '_');
-
     std::stringstream pointerAddr;
     pointerAddr << element.get();
-    shortcut.action = "plui_" + id.toStdString() + "_" + pointerAddr.str();
+    shortcut.action = "palette-item-" + id.toStdString() + "_" + pointerAddr.str();
 
     if (shortcut.isValid()) {
         LOGE() << "Valid";
@@ -296,17 +294,11 @@ void PaletteCell::write(XmlWriter& xml) const
     }
 
     if (shortcut.isValid()) {
-        //if(true)
-        //xml.tag("skey", QString::fromStdString(shortcut.action));
-        //xml.tag("skey", QString::fromStdString("TestShortcut" + name.toStdString()));
-
         for (std::string seq : shortcut.sequences) {
             xml.tag("sseq", QString::fromStdString(seq));
         }
-        //xml.tag("sseq", QString("sequence test"));
 
         xml.tag("sctx", QString::fromStdString(shortcut.context));
-        //xml.tag("sctx", QString::fromStdString("TestContext" + name.toStdString()));
     }
 
     if (untranslatedElement) {

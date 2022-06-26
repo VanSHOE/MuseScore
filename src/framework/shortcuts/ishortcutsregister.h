@@ -57,7 +57,7 @@ public:
     virtual bool active() = 0;
     virtual void setActive(bool active) = 0;
     virtual async::Notification activeChanged() const = 0;
-
+    virtual void mergeShortcuts(ShortcutList& shortcuts, const ShortcutList& defaultShortcuts) const = 0;
     // for autobot tests
     virtual void reload(bool onlyDef = false) = 0;
 };

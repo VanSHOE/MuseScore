@@ -305,7 +305,7 @@ FocusScope {
             if (mouseArea.containsMouse) {
                 ui.tooltip.show(root, root.toolTipTitle, root.toolTipDescription, root.toolTipShortcut)
             } else {
-                ui.tooltip.outButton(root)
+                ui.tooltip.hide(root)
             }
         }
     }
