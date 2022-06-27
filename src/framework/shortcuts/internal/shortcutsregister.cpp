@@ -472,6 +472,10 @@ void ShortcutsRegister::writeShortcut(framework::XmlWriter& writer, const Shortc
         writer.writeTextElement(SEQUENCE_TAG, seq);
     }
 
+    if (!shortcut.sequences.size()) {
+        writer.writeTextElement(SEQUENCE_TAG, "");
+    }
+
     writer.writeEndElement();
 }
 
