@@ -22,7 +22,9 @@
 #include "shortcutsregister.h"
 
 #include <QKeySequence>
+#include <unordered_set>
 
+#include "framework/ui/uitypes.h"
 #include "global/xmlreader.h"
 #include "global/xmlwriter.h"
 #include "multiinstances/resourcelockguard.h"
@@ -32,6 +34,7 @@
 using namespace mu::shortcuts;
 using namespace mu::framework;
 using namespace mu::async;
+using namespace mu::ui;
 
 constexpr std::string_view SHORTCUTS_TAG("Shortcuts");
 constexpr std::string_view SHORTCUT_TAG("SC");
@@ -98,8 +101,27 @@ void ShortcutsRegister::reload(bool onlyDef)
         ok = true;
     }
 
+    std::unordered_set<QString> alreadyAdded;
+    for (auto x : m_shortcuts)
+    {
+        alreadyAdded.insert(QString::fromStdString(x.action));
+    }
+
     if (ok) {
         expandStandardKeys(m_shortcuts);
+
+        LOGE() << "Starting addition of all actions: " << UiAction::instances.size();
+        for (auto x : UiAction::instances) {
+            auto action = uiactionsRegister()->action(x);
+            if (action.getCategory() == "Internal" || alreadyAdded.find(QString::fromStdString(x)) != alreadyAdded.end()) {
+                continue;
+            }
+            Shortcut shortcut;
+            shortcut.action = x;
+            shortcut.context = action.context.toString();
+            m_shortcuts.push_back(shortcut);
+        }
+
         makeUnique(m_shortcuts);
         m_shortcutsChanged.notify();
     }

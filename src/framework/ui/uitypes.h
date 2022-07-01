@@ -27,6 +27,7 @@
 #include <cstring>
 #include <QString>
 #include <QMetaType>
+#include <set>
 
 #include "ret.h"
 #include "val.h"
@@ -185,8 +186,31 @@ enum class Checkable {
     Yes
 };
 
+enum class ActionCategory {
+    Undefined = -1,
+    Internal,
+    Tablature,
+    Viewingnavigation,
+    Playback,
+    Layoutformatting,
+    Selectingediting,
+    Application,
+    Accessibility,
+    File,
+    Selectionnavigation,
+    Textlyrics,
+    Chordsymbolsfiguredbass,
+    Measures,
+    Musicalsymbols,
+    Selectingeditiing,
+    Dialogspanels,
+    Noteinput
+};
+
 struct UiAction
 {
+    inline static std::set<actions::ActionCode> instances;
+    ActionCategory category;
     actions::ActionCode code;
     UiContext context = UiCtxAny;
     QString title;
@@ -196,21 +220,72 @@ struct UiAction
     std::vector<std::string> shortcuts;
 
     UiAction() = default;
-    UiAction(const actions::ActionCode& code, UiContext ctx, Checkable ch = Checkable::No)
-        : code(code), context(ctx), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, IconCode::Code icon,
-             Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), iconCode(icon), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, IconCode::Code icon, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), iconCode(icon), checkable(ch) {}
+    UiAction(const actions::ActionCode& code, UiContext ctx, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), checkable(ch)
+    {
+        UiAction::instances.insert(code);
+    }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(title), checkable(ch)
+    {
+        UiAction::instances.insert(code);
+    }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(desc), checkable(ch)
+    {
+        UiAction::instances.insert(code);
+    }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(desc), iconCode(icon), checkable(ch)
+    {
+        UiAction::instances.insert(code);
+    }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(title), iconCode(icon), checkable(ch)
+    {
+        UiAction::instances.insert(code);
+    }
 
     bool isValid() const
     {
         return !code.empty();
+    }
+
+    QString getCategory() const {
+        switch (category)
+        {
+        case ActionCategory::Layoutformatting:
+            return "Layout & formatting";
+        case ActionCategory::Chordsymbolsfiguredbass:
+            return "Chord symbols & figured bass";
+        case ActionCategory::Selectingeditiing:
+            return "Selecting & editiing";
+        case ActionCategory::Accessibility:
+            return "Accessibility";
+        case ActionCategory::File:
+            return "File";
+        case ActionCategory::Playback:
+            return "Playback";
+        case ActionCategory::Musicalsymbols:
+            return "Musical symbols";
+        case ActionCategory::Application:
+            return "Application";
+        case ActionCategory::Textlyrics:
+            return "Text & lyrics";
+        case ActionCategory::Viewingnavigation:
+            return "Viewing & navigation";
+        case ActionCategory::Selectingediting:
+            return "Selecting & editing";
+        case ActionCategory::Measures:
+            return "Measures";
+        case ActionCategory::Noteinput:
+            return "Note input";
+        case ActionCategory::Selectionnavigation:
+            return "Selection & navigation";
+        case ActionCategory::Dialogspanels:
+            return "Dialogs & panels";
+        case ActionCategory::Tablature:
+            return "Tablature";
+        default:
+            return "Default";
+        };
+
+        return "Not possible";
     }
 
     QVariantMap toMap() const
@@ -233,12 +308,12 @@ struct UiAction
     bool operator==(const UiAction& other) const
     {
         return code == other.code
-               && context == other.context
-               && title == other.title
-               && description == other.description
-               && iconCode == other.iconCode
-               && checkable == other.checkable
-               && shortcuts == shortcuts;
+            && context == other.context
+            && title == other.title
+            && description == other.description
+            && iconCode == other.iconCode
+            && checkable == other.checkable
+            && shortcuts == shortcuts;
     }
 };
 

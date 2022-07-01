@@ -34,6 +34,7 @@ Item {
     property alias model: sortFilterProxyModel.sourceModel
 
     property bool readOnly: false
+    property bool categorized: false
 
     property string keyRoleName: "key"
     property string keyTitle: qsTrc("uicomponents", "Key")
@@ -44,6 +45,8 @@ Item {
     property string iconRoleName: "icon"
 
     property alias hasSelection: selectionModel.hasSelection
+    property alias keySorterRole: keySorter.roleName
+    property alias valueSorterRole: valueSorter.roleName
     readonly property var selection: sortFilterProxyModel.mapSelectionToSource(selectionModel.selection)
 
     property NavigationSection navigationSection: null
@@ -171,6 +174,32 @@ Item {
     StyledListView {
         id: view
 
+        property var collapsed: ({})
+        function toggleSection (section) {
+            if (isSectionExpanded(section)) {
+                console.log("Hiding: " + section)
+                hideSection(section)
+            } else {
+                console.log("Opening: " + section + "with " + root.model["initial"])
+                showSection(section)
+            }
+        }
+
+        function isSectionExpanded(section){
+            console.log("Checking " + section)
+            return !(section in collapsed)
+        }
+
+        function showSection(section){
+            delete collapsed[section]
+            collapsedChanged()
+        }
+
+        function hideSection(section){
+            collapsed[section] = true
+            collapsedChanged()
+        }
+
         anchors.top: header.bottom
         anchors.left: parent.left
         anchors.leftMargin: background.border.width
@@ -203,7 +232,15 @@ Item {
 
             item: model
 
+            clip: true
+
             property var modelIndex: sortFilterProxyModel.index(model.index, 0)
+
+            height: root.categorized && !view.isSectionExpanded(model["ownerSection"]) ? 0 : 34
+
+            Behavior on height {
+                NumberAnimation {duration : 200 }
+            }
 
             keyRoleName: root.keyRoleName
             valueRoleName: root.valueRoleName
@@ -253,6 +290,22 @@ Item {
             onFocusChanged: {
                 if (activeFocus) {
                     view.positionViewAtIndex(index, ListView.Contain)
+                }
+            }
+        }
+
+        section {
+            property: "ownerSection"
+            criteria: ViewSection.FullString
+
+            delegate: ValueListSection {
+                text: section
+                spacing: prv.spacing
+                sideMargin: prv.sideMargin
+                valueItemWidth: prv.valueItemWidth
+                expanded: view.isSectionExpanded(section)
+                onClickedUp: {
+                    view.toggleSection ( section )
                 }
             }
         }
