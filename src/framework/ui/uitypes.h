@@ -220,23 +220,23 @@ struct UiAction
     std::vector<std::string> shortcuts;
 
     UiAction() = default;
-    UiAction(const actions::ActionCode& code, UiContext ctx, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), checkable(ch)
+    UiAction(const actions::ActionCode& code, UiContext ctx, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), category(cat),checkable(ch)
     {
         UiAction::instances.insert(code);
     }
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(title), checkable(ch)
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(title), category(cat), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(desc), checkable(ch)
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(desc), category(cat), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(desc), iconCode(icon), checkable(ch)
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(desc), iconCode(icon), category(cat), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(title), iconCode(icon), checkable(ch)
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(title), iconCode(icon), category(cat), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
