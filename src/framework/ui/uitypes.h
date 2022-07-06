@@ -34,6 +34,7 @@
 #include "actions/actiontypes.h"
 #include "view/iconcodes.h"
 #include "shortcuts/shortcutstypes.h"
+#include "log.h"
 
 namespace mu::ui {
 using ThemeCode = std::string;
@@ -202,13 +203,19 @@ enum class ActionCategory {
     Chordsymbolsfiguredbass,
     Measures,
     Musicalsymbols,
-    Selectingeditiing,
     Dialogspanels,
-    Noteinput
+    Noteinput,
+    Plugins
 };
 
 struct UiAction
 {
+    inline static QStringList categories
+        = { "Undefined", "Internal", "Tablature", "Viewing & Navigation", "Playback", "Layout & Formatting", "Selecting & Editing",
+            "Application", "Accessibility", "File", "Selection & Navigation",
+            "Text & Lyrics", "Chord symbols & figured bass", "Measures", "Musical Symbols", "Dialogs & Panels",
+            "Note Input", "Plugins" };
+
     inline static std::set<actions::ActionCode> instances;
     ActionCategory category;
     actions::ActionCode code;
@@ -220,23 +227,36 @@ struct UiAction
     std::vector<std::string> shortcuts;
 
     UiAction() = default;
-    UiAction(const actions::ActionCode& code, UiContext ctx, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), category(cat),checkable(ch)
+    UiAction(const actions::ActionCode& code, UiContext ctx, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
+        : code(code), context(ctx), category(cat), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(title), category(cat), checkable(ch)
+
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, ActionCategory cat = ActionCategory::Internal,
+             Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(title), category(cat), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(desc), category(cat), checkable(ch)
+
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc,
+             ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(desc), category(cat), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(desc), iconCode(icon), category(cat), checkable(ch)
+
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, IconCode::Code icon,
+             ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(desc), iconCode(icon), category(cat), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
-    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No) : code(code), context(ctx), title(title), description(title), iconCode(icon), category(cat), checkable(ch)
+
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, IconCode::Code icon,
+             ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(title), iconCode(icon), category(cat), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
@@ -246,46 +266,15 @@ struct UiAction
         return !code.empty();
     }
 
-    QString getCategory() const {
-        switch (category)
-        {
-        case ActionCategory::Layoutformatting:
-            return "Layout & formatting";
-        case ActionCategory::Chordsymbolsfiguredbass:
-            return "Chord symbols & figured bass";
-        case ActionCategory::Selectingeditiing:
-            return "Selecting & editiing";
-        case ActionCategory::Accessibility:
-            return "Accessibility";
-        case ActionCategory::File:
-            return "File";
-        case ActionCategory::Playback:
-            return "Playback";
-        case ActionCategory::Musicalsymbols:
-            return "Musical symbols";
-        case ActionCategory::Application:
-            return "Application";
-        case ActionCategory::Textlyrics:
-            return "Text & lyrics";
-        case ActionCategory::Viewingnavigation:
-            return "Viewing & navigation";
-        case ActionCategory::Selectingediting:
-            return "Selecting & editing";
-        case ActionCategory::Measures:
-            return "Measures";
-        case ActionCategory::Noteinput:
-            return "Note input";
-        case ActionCategory::Selectionnavigation:
-            return "Selection & navigation";
-        case ActionCategory::Dialogspanels:
-            return "Dialogs & panels";
-        case ActionCategory::Tablature:
-            return "Tablature";
-        default:
-            return "Default";
-        };
+    QString getCategory() const
+    {
+        //LOGD() << "Categories: " << categories.length() << "| Requested Category: " << (int)category << " by: " << code;
 
-        return "Not possible";
+        if ((int)category + 1 >= 0 && (int)category + 1 < categories.length()) {
+            return categories[(int)category + 1];
+        }
+
+        return "NULL";
     }
 
     QVariantMap toMap() const
@@ -308,12 +297,12 @@ struct UiAction
     bool operator==(const UiAction& other) const
     {
         return code == other.code
-            && context == other.context
-            && title == other.title
-            && description == other.description
-            && iconCode == other.iconCode
-            && checkable == other.checkable
-            && shortcuts == shortcuts;
+               && context == other.context
+               && title == other.title
+               && description == other.description
+               && iconCode == other.iconCode
+               && checkable == other.checkable
+               && shortcuts == shortcuts;
     }
 };
 
