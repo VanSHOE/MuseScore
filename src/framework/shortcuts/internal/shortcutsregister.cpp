@@ -102,8 +102,7 @@ void ShortcutsRegister::reload(bool onlyDef)
     }
 
     std::unordered_set<QString> alreadyAdded;
-    for (auto x : m_shortcuts)
-    {
+    for (auto x : m_shortcuts) {
         alreadyAdded.insert(QString::fromStdString(x.action));
     }
 
@@ -118,7 +117,7 @@ void ShortcutsRegister::reload(bool onlyDef)
             }
             Shortcut shortcut;
             shortcut.action = x;
-            shortcut.context = action.context.toString();
+            shortcut.context = action.sContext;
             m_shortcuts.push_back(shortcut);
         }
 
@@ -299,16 +298,12 @@ Shortcut ShortcutsRegister::readShortcut(framework::XmlReader& reader) const
             shortcut.standardKey = QKeySequence::StandardKey(reader.readInt());
         } else if (tag == SEQUENCE_TAG) {
             shortcut.sequences.push_back(reader.readString());
-        } else if (tag == CONTEXT_TAG) {
-            shortcut.context = reader.readString();
         } else {
             reader.skipCurrentElement();
         }
     }
 
-    if (shortcut.context.empty()) {
-        shortcut.context = "any";
-    }
+    shortcut.context = uiactionsRegister()->action(shortcut.action).sContext;
 
     return shortcut;
 }

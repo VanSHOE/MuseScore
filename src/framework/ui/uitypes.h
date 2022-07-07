@@ -35,6 +35,7 @@
 #include "view/iconcodes.h"
 #include "shortcuts/shortcutstypes.h"
 #include "log.h"
+#include "context/shortcutcontext.h"
 
 namespace mu::ui {
 using ThemeCode = std::string;
@@ -217,9 +218,11 @@ struct UiAction
             "Note Input", "Plugins" };
 
     inline static std::set<actions::ActionCode> instances;
-    ActionCategory category;
+    ActionCategory category = ActionCategory::Undefined;
     actions::ActionCode code;
     UiContext context = UiCtxAny;
+    std::string sContext = mu::context::CTX_ANY;
+
     QString title;
     QString description;
     IconCode::Code iconCode = IconCode::Code::NONE;
@@ -227,36 +230,36 @@ struct UiAction
     std::vector<std::string> shortcuts;
 
     UiAction() = default;
-    UiAction(const actions::ActionCode& code, UiContext ctx, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
-        : code(code), context(ctx), category(cat), checkable(ch)
+    UiAction(const actions::ActionCode& code, UiContext ctx, ActionCategory cat = ActionCategory::Internal, std::string sContext = mu::context::CTX_ANY, Checkable ch = Checkable::No)
+        : code(code), context(ctx), category(cat), sContext(sContext), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
 
     UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, ActionCategory cat = ActionCategory::Internal,
-             Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), category(cat), checkable(ch)
+        std::string sContext = mu::context::CTX_ANY, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(title), category(cat), sContext(sContext), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
 
     UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc,
-             ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), category(cat), checkable(ch)
+        ActionCategory cat = ActionCategory::Internal, std::string sContext = mu::context::CTX_ANY, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(desc), category(cat), sContext(sContext), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
 
     UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, IconCode::Code icon,
-             ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), iconCode(icon), category(cat), checkable(ch)
+        ActionCategory cat = ActionCategory::Internal, std::string sContext = mu::context::CTX_ANY, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(desc), iconCode(icon), category(cat), sContext(sContext), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
 
     UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, IconCode::Code icon,
-             ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), iconCode(icon), category(cat), checkable(ch)
+        ActionCategory cat = ActionCategory::Internal, std::string sContext = mu::context::CTX_ANY, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(title), iconCode(icon), category(cat), sContext(sContext), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
@@ -297,12 +300,12 @@ struct UiAction
     bool operator==(const UiAction& other) const
     {
         return code == other.code
-               && context == other.context
-               && title == other.title
-               && description == other.description
-               && iconCode == other.iconCode
-               && checkable == other.checkable
-               && shortcuts == shortcuts;
+            && context == other.context
+            && title == other.title
+            && description == other.description
+            && iconCode == other.iconCode
+            && checkable == other.checkable
+            && shortcuts == shortcuts;
     }
 };
 
