@@ -280,7 +280,7 @@ void MeasureBaseList::change(MeasureBase* ob, MeasureBase* nb)
         || nb->type() == ElementType::TBOX || nb->type() == ElementType::FBOX) {
         nb->setParent(ob->system());
     }
-    foreach (EngravingItem* e, nb->el()) {
+    for (EngravingItem* e : nb->el()) {
         e->setParent(nb);
     }
     fixupSystems();
@@ -320,10 +320,10 @@ Score::Score()
     Score::validScores.insert(this);
     _masterScore = 0;
     Layer l;
-    l.name          = "default";
+    l.name          = u"default";
     l.tags          = 1;
     _layer.push_back(l);
-    _layerTags[0]   = "default";
+    _layerTags[0]   = u"default";
 
     _scoreFont = ScoreFont::fontByName(u"Leland");
 
@@ -535,7 +535,7 @@ void Score::setUpTempoMap()
         return;
     }
 
-    for (Staff* staff : qAsConst(_staves)) {
+    for (Staff* staff : _staves) {
         staff->clearTimeSig();
     }
 
@@ -1443,7 +1443,7 @@ void Score::spatiumChanged(double oldValue, double newValue)
     data[0] = oldValue;
     data[1] = newValue;
     scanElements(data, spatiumHasChanged, true);
-    for (Staff* staff : qAsConst(_staves)) {
+    for (Staff* staff : _staves) {
         staff->spatiumChanged(oldValue, newValue);
     }
     _noteHeadWidth = _scoreFont->width(SymId::noteheadBlack, newValue / SPATIUM20);
@@ -1588,7 +1588,7 @@ void Score::addElement(EngravingItem* element)
     {
         Ottava* o = toOttava(element);
         addSpanner(o);
-        foreach (SpannerSegment* ss, o->spannerSegments()) {
+        for (SpannerSegment* ss : o->spannerSegments()) {
             if (ss->system()) {
                 ss->system()->add(ss);
             }
@@ -2988,7 +2988,7 @@ void Score::cmdConcertPitchChanged(bool flag)
 
     undoChangeStyleVal(Sid::concertPitch, flag);         // change style flag
 
-    for (Staff* staff : qAsConst(_staves)) {
+    for (Staff* staff : _staves) {
         if (staff->staffType(Fraction(0, 1))->group() == StaffGroup::PERCUSSION) {         // TODO
             continue;
         }
@@ -3822,6 +3822,52 @@ void Score::setScoreOrder(ScoreOrder order)
 }
 
 //---------------------------------------------------------
+//   updateBracesAndBarlines
+//---------------------------------------------------------
+
+void Score::updateBracesAndBarlines(Part* part, size_t newIndex)
+{
+    bool noBracesFound = true;
+    for (size_t indexInPart = 0; indexInPart < part->nstaves(); ++indexInPart) {
+        size_t indexInScore = part->staves()[indexInPart]->idx();
+        for (BracketItem* bi : staff(indexInScore)->brackets()) {
+            noBracesFound = false;
+            if (bi->bracketType() == BracketType::BRACE) {
+                if ((indexInPart <= newIndex) && (newIndex <= (bi->bracketSpan()))) {
+                    bi->undoChangeProperty(Pid::BRACKET_SPAN, bi->bracketSpan() + 1);
+                }
+            }
+        }
+    }
+
+    auto updateBracketSpan = [this, part](size_t modIndex, size_t refIndex) {
+        Staff* modStaff = staff(part->staves()[modIndex]->idx());
+        Staff* refStaff = staff(part->staves()[refIndex]->idx());
+        if (modStaff->getProperty(Pid::STAFF_BARLINE_SPAN) != refStaff->getProperty(Pid::STAFF_BARLINE_SPAN)) {
+            modStaff->undoChangeProperty(Pid::STAFF_BARLINE_SPAN, refStaff->getProperty(Pid::STAFF_BARLINE_SPAN));
+        }
+    };
+
+    if (newIndex >= 2) {
+        updateBracketSpan(newIndex - 1, newIndex - 2);
+    }
+
+    if (part->nstaves() == 2) {
+        InstrumentTemplate* tp = searchTemplate(part->instrumentId());
+        if (tp) {
+            if (tp->barlineSpan[0] > 0) {
+                staff(part->staves()[0]->idx())->undoChangeProperty(Pid::STAFF_BARLINE_SPAN, tp->barlineSpan[0]);
+            }
+            if (noBracesFound && (tp->bracket[0] != BracketType::NO_BRACKET)) {
+                undoAddBracket(part->staves()[0], 0, tp->bracket[0], part->nstaves());
+            }
+        }
+    } else {
+        updateBracketSpan(newIndex, newIndex - 1);
+    }
+}
+
+//---------------------------------------------------------
 //   setBracketsAndBarlines
 //---------------------------------------------------------
 
@@ -3838,7 +3884,7 @@ void Score::lassoSelect(const RectF& bbox)
 {
     select(0, SelectType::SINGLE, 0);
     RectF fr(bbox.normalized());
-    foreach (Page* page, pages()) {
+    for (Page* page : pages()) {
         RectF pr(page->bbox());
         RectF frr(fr.translated(-page->pos()));
         if (pr.right() < frr.left()) {
@@ -5220,6 +5266,24 @@ void Score::addRefresh(const mu::RectF& r)
 {
     _updateState.refresh.unite(r);
     cmdState().setUpdateMode(UpdateMode::Update);
+}
+
+//---------------------------------------------------------
+//   staffIdx
+//
+//  Return index for the staff in the score.
+//---------------------------------------------------------
+
+staff_idx_t Score::staffIdx(const Staff* staff) const
+{
+    staff_idx_t idx = 0;
+    for (Staff* s : _staves) {
+        if (s == staff) {
+            break;
+        }
+        ++idx;
+    }
+    return idx;
 }
 
 //---------------------------------------------------------

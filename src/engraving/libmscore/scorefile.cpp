@@ -108,11 +108,15 @@ void Score::write(XmlWriter& xml, bool selectionOnly, compat::WriteScoreHook& ho
 
     if (excerpt()) {
         Excerpt* e = excerpt();
-        TracksMap trackList = e->tracksMapping();
+        const TracksMap& trackList = e->tracksMapping();
         if (!(trackList.size() == e->nstaves() * VOICES) && !trackList.empty()) {
             for (auto it = trackList.begin(); it != trackList.end(); ++it) {
                 xml.tag("Tracklist", { { "sTrack", it->first }, { "dstTrack", it->second } });
             }
+        }
+
+        if (e->initialPartId().isValid()) {
+            xml.tag("initialPartId", e->initialPartId().toUint64());
         }
     }
 
@@ -152,13 +156,13 @@ void Score::write(XmlWriter& xml, bool selectionOnly, compat::WriteScoreHook& ho
 
     hook.onWriteStyle302(this, xml);
 
-    xml.tag("showInvisible",   _showInvisible);
+    xml.tag("showInvisible", _showInvisible);
     xml.tag("showUnprintable", _showUnprintable);
-    xml.tag("showFrames",      _showFrames);
-    xml.tag("showMargins",     _showPageborders);
+    xml.tag("showFrames", _showFrames);
+    xml.tag("showMargins", _showPageborders);
     xml.tag("markIrregularMeasures", _markIrregularMeasures, true);
 
-    if (!_isOpen) {
+    if (_isOpen) {
         xml.tag("open", _isOpen);
     }
 
@@ -329,7 +333,7 @@ bool Score::loadStyle(const String& fn, bool ign, const bool overlap)
             return false;
         }
     }
-    MScore::lastError = strerror(errno);
+    MScore::lastError = String::fromUtf8(strerror(errno));
     return false;
 }
 
@@ -390,7 +394,7 @@ bool Score::writeScore(io::IODevice* f, bool msczFormat, bool onlySelection, com
 
     if (!onlySelection) {
         //update version values for i.e. plugin access
-        _mscoreVersion = VERSION;
+        _mscoreVersion = String::fromAscii(VERSION);
         _mscoreRevision = AsciiStringView(MUSESCORE_REVISION).toInt(nullptr, 16);
         _mscVersion = MSCVERSION;
     }

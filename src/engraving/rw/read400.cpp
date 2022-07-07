@@ -21,6 +21,7 @@
  */
 #include "read400.h"
 
+#include "translation.h"
 #include "rw/xml.h"
 
 #include "libmscore/score.h"
@@ -191,6 +192,10 @@ bool Read400::readScore400(Score* score, XmlReader& e, ReadContext& ctx)
         } else if (tag == "Excerpt") {
             // Since version 400, the Excerpts are stored in a separate file
             e.skipCurrentElement();
+        } else if (e.name() == "initialPartId") {
+            if (score->excerpt()) {
+                score->excerpt()->setInitialPartId(ID(e.readInt()));
+            }
         } else if (e.name() == "Tracklist") {
             int strack = e.intAttribute("sTrack",   -1);
             int dtrack = e.intAttribute("dstTrack", -1);
@@ -226,8 +231,8 @@ bool Read400::readScore400(Score* score, XmlReader& e, ReadContext& ctx)
         if (e.error() == XmlStreamReader::CustomError) {
             MScore::lastError = e.errorString();
         } else {
-            MScore::lastError = QObject::tr("XML read error at line %1, column %2: %3").arg(e.lineNumber()).arg(e.columnNumber()).arg(
-                e.name().toQLatin1String());
+            MScore::lastError = mtrc("engraving", "XML read error at line %1, column %2: %3").arg(e.lineNumber(), e.columnNumber()).arg(
+                String::fromAscii(e.name().ascii()));
         }
         return false;
     }
@@ -246,7 +251,7 @@ bool Read400::readScore400(Score* score, XmlReader& e, ReadContext& ctx)
 
     score->setUpTempoMap();
 
-    for (Part* p : qAsConst(score->_parts)) {
+    for (Part* p : score->_parts) {
         p->updateHarmonyChannels(false);
     }
 

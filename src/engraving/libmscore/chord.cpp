@@ -487,8 +487,7 @@ double Chord::noteHeadWidth() const
 //! Returns Chord coordinates
 double Chord::stemPosX() const
 {
-    const Staff* staff = this->staff();
-    const StaffType* staffType = staff ? staff->staffTypeForElement(this) : nullptr;
+    const StaffType* staffType = this->staffType();
     if (staffType && staffType->isTabStaff()) {
         return staffType->chordStemPosX(this) * spatium();
     }
@@ -1029,10 +1028,10 @@ void Chord::computeUp()
             PointF startAnchor = PointF();
             PointF endAnchor = PointF();
             if (firstCr->isChord()) {
-                startAnchor = _beam->chordBeamAnchor(toChord(firstCr));
+                startAnchor = _beam->chordBeamAnchor(toChord(firstCr), Beam::ChordBeamAnchorType::Start);
             }
             if (lastCr->isChord()) {
-                endAnchor = _beam->chordBeamAnchor(toChord(lastCr));
+                endAnchor = _beam->chordBeamAnchor(toChord(lastCr), Beam::ChordBeamAnchorType::End);
             }
 
             if (this == _beam->elements().front()) {
@@ -1425,7 +1424,7 @@ int Chord::calcMinStemLength()
             outsideStaffOffset = line - staff()->lines(tick()) * 4 + 4;
         }
 
-        minStemLength += (outSidePadding + qMax(noteSidePadding, outsideStaffOffset));
+        minStemLength += (outSidePadding + std::max(noteSidePadding, outsideStaffOffset));
 
         if (_hook) {
             double smuflAnchor = _hook->smuflAnchor().y() * (_up ? 1 : -1);
@@ -1453,9 +1452,9 @@ int Chord::calcMinStemLength()
     }
     if (_beam) {
         static const int minInnerStemLengths[4] = { 10, 9, 8, 7 };
-        int innerStemLength = minInnerStemLengths[qMin(beams(), 3)] * _relativeMag;
+        int innerStemLength = minInnerStemLengths[std::min(beams(), 3)] * _relativeMag;
         int beamsHeight = beams() * (score()->styleB(Sid::useWideBeams) ? 4 : 3) - 1;
-        minStemLength = qMax(minStemLength, innerStemLength);
+        minStemLength = std::max(minStemLength, innerStemLength);
         minStemLength += beamsHeight * _relativeMag;
     }
     return minStemLength;
@@ -1627,7 +1626,7 @@ double Chord::calcDefaultStemLength()
         int idealStemLength = defaultStemLength;
 
         if (stemEndPositionMag <= -shortStemStart) {
-            int reduction = maxReduction(qAbs((int)floor(stemEndPositionMag) + shortStemStart));
+            int reduction = maxReduction(std::abs((int)floor(stemEndPositionMag) + shortStemStart));
             if (tab) {
                 reduction *= 2;
             }
@@ -1649,7 +1648,7 @@ double Chord::calcDefaultStemLength()
 
         int downShortStemStart = (staffLineCount - 1) * 4 + shortStemStart;
         if (stemEndPositionMag >= downShortStemStart) {
-            int reduction = maxReduction(qAbs((int)ceil(stemEndPositionMag) - downShortStemStart));
+            int reduction = maxReduction(std::abs((int)ceil(stemEndPositionMag) - downShortStemStart));
             if (tab) {
                 reduction *= 2;
             }
@@ -3731,28 +3730,23 @@ void Chord::layoutArticulations()
         a->layout();                 // must be done after assigning direction, or else symId is not reliable
 
         bool headSide = bottom == up();
-        double x = centerX();
-        double y = 0.0;
-        const double halfBeamSp = score()->styleS(Sid::beamWidth).val() * score()->spatium() * 0.5;
+        qreal x = centerX();
+        qreal y = 0.0;
         if (bottom) {
             if (!headSide && stem()) {
                 auto userLen = stem()->userLength();
                 if (_up) {
                     y = downPos() - stem()->length() - userLen;
-                    if (beam()) {
-                        y -= halfBeamSp * beam()->mag();
-                    }
                 } else {
                     y = upPos() + stem()->length() - userLen;
-                    if (beam()) {
-                        y += halfBeamSp * beam()->mag();
-                    }
                 }
-                int line   = lrint((y + 0.5 * _spStaff) / _spStaff);
+                int line   = lrint((y + 0.49 * _spStaff) / _spStaff);
+                // hack: using 0.49 instead of 0.5 otherwise the result can be unpredictably
+                // rounded to upper or lower integer depending on rounding errors
                 if (line < staffType->lines()) {        // align between staff lines
                     y = line * _spStaff + _spatium * .5;
                 } else {
-                    y += _spatium;
+                    y += score()->styleMM(Sid::propertyDistanceStem) + 0.5 * a->height();
                 }
                 if (a->isStaccato() && articulations().size() == 1) {
                     if (_up) {
@@ -3780,20 +3774,16 @@ void Chord::layoutArticulations()
                 auto userLen = stem()->userLength();
                 if (_up) {
                     y = downPos() - stem()->length() + userLen;
-                    if (beam()) {
-                        y -= halfBeamSp * beam()->mag();
-                    }
                 } else {
                     y = upPos() + stem()->length() + userLen;
-                    if (beam()) {
-                        y += halfBeamSp * beam()->mag();
-                    }
                 }
-                int line   = lrint((y - 0.5 * _spStaff) / _spStaff);
+                int line   = lrint((y - 0.49 * _spStaff) / _spStaff);
+                // hack: using 0.49 instead of 0.5 otherwise the result can be unpredictably
+                // rounded to upper or lower integer depending on rounding errors
                 if (line >= 0) {        // align between staff lines
                     y = line * _spStaff - _spatium * .5;
                 } else {
-                    y -= _spatium;
+                    y -= score()->styleMM(Sid::propertyDistanceStem) + 0.5 * a->height();
                 }
                 if (a->isStaccato() && articulations().size() == 1) {
                     if (_up) {
@@ -3838,26 +3828,24 @@ void Chord::layoutArticulations2()
     if (_articulations.empty()) {
         return;
     }
-    double _spatium  = spatium();
-    double x         = centerX();
-    double distance0 = score()->styleMM(Sid::propertyDistance);
-    double distance2 = score()->styleMM(Sid::propertyDistanceStem);
+    qreal x         = centerX();
+    qreal minDist = score()->styleMM(Sid::articulationMinDistance);
+    qreal staffDist = score()->styleMM(Sid::propertyDistance);
+    qreal stemDist = score()->styleMM(Sid::propertyDistanceStem);
+    qreal noteDist = score()->styleMM(Sid::propertyDistanceHead);
 
-    double chordTopY = upPos();      // note position of highest note
-    double chordBotY = downPos();    // note position of lowest note
+    qreal chordTopY = upPos() - 0.5 * upNote()->headHeight();      // note position of highest note
+    qreal chordBotY = downPos() + 0.5 * upNote()->headHeight();    // note position of lowest note
 
-    double staffTopY = -distance2;
-    double staffBotY = staff()->height() + distance2;
+    qreal staffTopY = -staffDist;
+    qreal staffBotY = staff()->height() + staffDist;
 
     // avoid collisions of staff articulations with chord notes:
     // gap between note and staff articulation is distance0 + 0.5 spatium
 
     if (stem()) {
-        double y = stem()->pos().y() + pos().y() + stem()->length();
-        if (beam()) {
-            double bw = score()->styleS(Sid::beamWidth).val() * _spatium;
-            y += up() ? -bw : bw;
-        }
+        qreal y = stem()->pos().y() + pos().y();
+        y += up() ? -stem()->length() : stem()->length();
         if (up()) {
             chordTopY = y;
         } else {
@@ -3868,12 +3856,21 @@ void Chord::layoutArticulations2()
     //
     //    place all articulations with anchor at chord/rest
     //
-    double distance1 = score()->styleMM(Sid::propertyDistanceHead);
-    chordTopY -= up() ? 0.5 * _spatium : distance1;
-    chordBotY += up() ? distance1 : 0.5 * _spatium;
+    chordTopY -= up() ? stemDist : noteDist;
+    chordBotY += up() ? noteDist : stemDist;
+    // add space for staccato and tenuto marks which may have been previously laid out
     for (Articulation* a : _articulations) {
+        if (a->layoutCloseToNote() && a->visible()) {
+            if (a->up()) {
+                chordTopY = a->y() - a->height() - minDist;
+            } else {
+                chordBotY = a->y() + a->height() + minDist;
+            }
+        }
+    }
+    for (Articulation* a : qAsConst(_articulations)) {
         ArticulationAnchor aa = a->anchor();
-        if (aa != ArticulationAnchor::CHORD && aa != ArticulationAnchor::TOP_CHORD && aa != ArticulationAnchor::BOTTOM_CHORD) {
+        if (aa != ArticulationAnchor::TOP_CHORD && aa != ArticulationAnchor::BOTTOM_CHORD) {
             continue;
         }
 
@@ -3884,38 +3881,40 @@ void Chord::layoutArticulations2()
                 a->doAutoplace();
             }
             if (a->visible()) {
-                chordTopY = a->y() - a->height() - 0.5 * _spatium;
+                chordTopY = a->y() - a->height() - minDist;
             }
         } else {
             if (!a->layoutCloseToNote()) {
                 a->layout();
-                a->setPos(x, chordBotY);
+                a->setPos(x, chordBotY + abs(a->bbox().top()));
                 a->doAutoplace();
             }
             if (a->visible()) {
-                chordBotY = a->y() + a->height() + 0.5 * _spatium;
+                chordBotY = a->y() + a->height() + minDist;
             }
         }
     }
+
     //
     //    now place all articulations with staff top or bottom anchor
     //
-
-    staffTopY = std::min(staffTopY, chordTopY - distance0 - 0.5 * _spatium);
-    staffBotY = std::max(staffBotY, chordBotY + distance0 + 0.5 * _spatium);
-    for (Articulation* a : _articulations) {
+    staffTopY = qMin(staffTopY, chordTopY);
+    staffBotY = qMax(staffBotY, chordBotY);
+    for (Articulation* a : qAsConst(_articulations)) {
         ArticulationAnchor aa = a->anchor();
-        if (aa == ArticulationAnchor::TOP_STAFF || aa == ArticulationAnchor::BOTTOM_STAFF) {
+        if (aa == ArticulationAnchor::TOP_STAFF
+            || aa == ArticulationAnchor::BOTTOM_STAFF
+            || (aa == ArticulationAnchor::CHORD && !a->layoutCloseToNote())) {
             a->layout();
             if (a->up()) {
                 a->setPos(x, staffTopY);
                 if (a->visible()) {
-                    staffTopY -= distance0;
+                    staffTopY = a->y() - a->height() - minDist;
                 }
             } else {
                 a->setPos(x, staffBotY);
                 if (a->visible()) {
-                    staffBotY += distance0;
+                    staffBotY = a->y() + a->height() + minDist;
                 }
             }
             a->doAutoplace();

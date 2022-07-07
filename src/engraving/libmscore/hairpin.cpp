@@ -73,6 +73,8 @@ static const ElementStyle hairpinStyle {
     { Sid::hairpinPlacement,                   Pid::PLACEMENT },
     { Sid::hairpinPosBelow,                    Pid::OFFSET },
     { Sid::hairpinLineStyle,                   Pid::LINE_STYLE },
+    { Sid::hairpinLineDashLineLen,             Pid::DASH_LINE_LEN },
+    { Sid::hairpinLineDashGapLen,              Pid::DASH_GAP_LEN },
 };
 
 //---------------------------------------------------------
@@ -284,6 +286,7 @@ void HairpinSegment::layout()
         double w  = point(score()->styleS(Sid::hairpinLineWidth));
         setbbox(r.adjusted(-w * .5, -w * .5, w, w));
     }
+
     if (!explicitParent()) {
         setPos(PointF());
         roffset() = PointF();
@@ -409,6 +412,11 @@ Shape HairpinSegment::shape() const
 //   gripsPositions
 //---------------------------------------------------------
 
+int HairpinSegment::gripsCount() const
+{
+    return hairpin()->isLineType() ? 3 : 4;
+}
+
 std::vector<PointF> HairpinSegment::gripsPositions(const EditData&) const
 {
     double _spatium = spatium();
@@ -419,35 +427,37 @@ std::vector<PointF> HairpinSegment::gripsPositions(const EditData&) const
     double y = pos2().y();
     PointF p(x, y);
 
-    // Calc PointF for Grip Aperture
-    Transform doRotation;
-    PointF gripLineAperturePoint;
-    double h1 = hairpin()->hairpinHeight().val() * spatium() * .5;
-    double len = sqrt(x * x + y * y);
-    doRotation.rotateRadians(asin(y / len));
-    double lineApertureX;
-    double offsetX = 10;                                 // Horizontal offset for x Grip
-    if (len < offsetX * 3) {                            // For small hairpin, offset = 30% of len
-        offsetX = len / 3;                              // else offset is fixed to 10
-    }
-    if (hairpin()->hairpinType() == HairpinType::CRESC_HAIRPIN) {
-        lineApertureX = len - offsetX;                  // End of CRESCENDO - Offset
-    } else {
-        lineApertureX = offsetX;                        // Begin of DECRESCENDO + Offset
-    }
-    double lineApertureH = (len - offsetX) * h1 / len;   // Vertical position for y grip
-    gripLineAperturePoint.setX(lineApertureX);
-    gripLineAperturePoint.setY(lineApertureH);
-    gripLineAperturePoint = doRotation.map(gripLineAperturePoint);
-
     std::vector<PointF> grips(gripsCount());
-
-    // End calc position grip aperture
     PointF pp(pagePos());
     grips[int(Grip::START)] = pp;
     grips[int(Grip::END)] = p + pp;
     grips[int(Grip::MIDDLE)] = p * .5 + pp;
-    grips[int(Grip::APERTURE)] = gripLineAperturePoint + pp;
+
+    if (!hairpin()->isLineType()) {
+        // Calc PointF for Grip Aperture
+        Transform doRotation;
+        PointF gripLineAperturePoint;
+        double h1 = hairpin()->hairpinHeight().val() * spatium() * .5;
+        double len = sqrt(x * x + y * y);
+        doRotation.rotateRadians(asin(y / len));
+        double lineApertureX;
+        double offsetX = 10;                                 // Horizontal offset for x Grip
+        if (len < offsetX * 3) {                            // For small hairpin, offset = 30% of len
+            offsetX = len / 3;                              // else offset is fixed to 10
+        }
+        if (hairpin()->hairpinType() == HairpinType::CRESC_HAIRPIN) {
+            lineApertureX = len - offsetX;                  // End of CRESCENDO - Offset
+        } else {
+            lineApertureX = offsetX;                        // Begin of DECRESCENDO + Offset
+        }
+        double lineApertureH = (len - offsetX) * h1 / len;   // Vertical position for y grip
+        gripLineAperturePoint.setX(lineApertureX);
+        gripLineAperturePoint.setY(lineApertureH);
+        gripLineAperturePoint = doRotation.map(gripLineAperturePoint);
+
+        // End calc position grip aperture
+        grips[int(Grip::APERTURE)] = gripLineAperturePoint + pp;
+    }
 
     return grips;
 }
@@ -504,15 +514,15 @@ void HairpinSegment::draw(mu::draw::Painter* painter) const
     using namespace mu::draw;
     TextLineBaseSegment::draw(painter);
 
-    Color color = curColor(hairpin()->visible(), hairpin()->lineColor());
-    double w = hairpin()->lineWidth();
-    if (staff()) {
-        w *= staff()->staffMag(hairpin()->tick());
-    }
-    Pen pen(color, w, hairpin()->lineStyle());
-    painter->setPen(pen);
-
     if (drawCircledTip) {
+        Color color = curColor(hairpin()->visible(), hairpin()->lineColor());
+        double w = hairpin()->lineWidth();
+        if (staff()) {
+            w *= staff()->staffMag(hairpin()->tick());
+        }
+
+        Pen pen(color, w);
+        painter->setPen(pen);
         painter->setBrush(BrushStyle::NoBrush);
         painter->drawEllipse(circledTip, circledTipRadius, circledTipRadius);
     }
@@ -573,6 +583,10 @@ Sid HairpinSegment::getPropertyStyle(Pid pid) const
         break;
     case Pid::LINE_STYLE:
         return hairpin()->isLineType() ? Sid::hairpinLineLineStyle : Sid::hairpinLineStyle;
+    case Pid::DASH_LINE_LEN:
+        return hairpin()->isLineType() ? Sid::hairpinLineDashLineLen : Sid::NOSTYLE;
+    case Pid::DASH_GAP_LEN:
+        return hairpin()->isLineType() ? Sid::hairpinLineDashGapLen : Sid::NOSTYLE;
     default:
         break;
     }
@@ -609,6 +623,10 @@ Sid Hairpin::getPropertyStyle(Pid pid) const
         break;
     case Pid::LINE_STYLE:
         return isLineType() ? Sid::hairpinLineLineStyle : Sid::hairpinLineStyle;
+    case Pid::DASH_LINE_LEN:
+        return isLineType() ? Sid::hairpinLineDashLineLen : Sid::NOSTYLE;
+    case Pid::DASH_GAP_LEN:
+        return isLineType() ? Sid::hairpinLineDashGapLen : Sid::NOSTYLE;
     default:
         break;
     }
@@ -842,12 +860,6 @@ PropertyValue Hairpin::propertyDefault(Pid id) const
 
     case Pid::DYNAMIC_RANGE:
         return DynamicRange::PART;
-
-    case Pid::LINE_STYLE:
-        if (isLineType()) {
-            return int(mu::draw::PenStyle::CustomDashLine);
-        }
-        return int(mu::draw::PenStyle::SolidLine);
 
     case Pid::BEGIN_TEXT:
         if (_hairpinType == HairpinType::CRESC_LINE) {

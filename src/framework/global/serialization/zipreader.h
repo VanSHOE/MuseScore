@@ -32,14 +32,6 @@ class ZipReader
 {
 public:
 
-    enum Status {
-        NoError,
-        FileReadError,
-        FileOpenError,
-        FilePermissionsError,
-        FileError
-    };
-
     struct FileInfo
     {
         io::path_t filePath;
@@ -57,7 +49,7 @@ public:
 
     bool exists() const;
     void close();
-    Status status() const;
+    bool hasError() const;
 
     std::vector<FileInfo> fileInfoList() const;
     ByteArray fileData(const std::string& fileName) const;

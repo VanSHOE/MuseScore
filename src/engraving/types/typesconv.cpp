@@ -660,6 +660,41 @@ HookType TConv::fromXml(const AsciiStringView& tag, HookType def)
     return ok ? HookType(v) : def;
 }
 
+static const std::vector<Item<LineType> > LINE_TYPES = {
+    { LineType::SOLID, "solid" },
+    { LineType::DASHED, "dashed" },
+    { LineType::DOTTED, "dotted" }
+};
+
+AsciiStringView TConv::toXml(LineType v)
+{
+    return findXmlTagByType(LINE_TYPES, v);
+}
+
+LineType TConv::fromXml(const AsciiStringView& tag, LineType def)
+{
+    // Pre-4.0 files
+    bool ok = false;
+    if (int v = tag.toInt(&ok); ok) {
+        draw::PenStyle penStyle = static_cast<draw::PenStyle>(v);
+        switch (penStyle) {
+        case draw::PenStyle::NoPen:
+            return def;
+        case draw::PenStyle::SolidLine:
+            return LineType::SOLID;
+        case draw::PenStyle::DashLine:
+        case draw::PenStyle::DashDotLine:
+        case draw::PenStyle::CustomDashLine:
+            return LineType::DASHED;
+        case draw::PenStyle::DotLine:
+        case draw::PenStyle::DashDotDotLine:
+            return LineType::DOTTED;
+        }
+    }
+
+    return findTypeByXmlTag(LINE_TYPES, tag, def);
+}
+
 static const std::vector<Item<KeyMode> > KEY_MODES = {
     { KeyMode::UNKNOWN,     "unknown" },
     { KeyMode::NONE,        "none" },
@@ -940,7 +975,7 @@ ChangeMethod TConv::fromXml(const AsciiStringView& tag, ChangeMethod def)
 
 String TConv::toXml(const PitchValue& v)
 {
-    return String("point time=\"%1\" pitch=\"%2\" vibrato=\"%3\"").arg(v.time).arg(v.pitch).arg(v.vibrato);
+    return String(u"point time=\"%1\" pitch=\"%2\" vibrato=\"%3\"").arg(v.time).arg(v.pitch).arg(v.vibrato);
 }
 
 String TConv::toXml(AccidentalRole v)

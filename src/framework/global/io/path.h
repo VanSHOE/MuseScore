@@ -67,7 +67,6 @@ struct path_t {
 
     String toString() const;
     std::string toStdString() const;
-    std::wstring toStdWString() const;
     const char* c_str() const;
 
 #ifndef GLOBAL_NO_QT_SUPPORT
@@ -76,6 +75,7 @@ struct path_t {
     inline path_t operator+(const QString& other) const { path_t p = *this; p += String::fromQString(other); return p; }
     inline path_t& operator+=(const QString& other) { m_path += other.toStdString(); return *this; }
     QString toQString() const;
+    std::wstring toStdWString() const;
 #endif
 
 private:
@@ -100,7 +100,7 @@ path_t filename(const path_t& path, bool includingExtension = true);
 path_t basename(const path_t& path);
 path_t completeBasename(const path_t& path);
 path_t absolutePath(const path_t& path);
-path_t dirname(const path_t& path);
+//path_t dirname(const path_t& path);
 path_t dirpath(const path_t& path);
 path_t absoluteDirpath(const path_t& path);
 

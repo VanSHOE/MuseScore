@@ -30,8 +30,6 @@ set(MODULE_SRC
     ${ASYNC_SRC}
     ${HAW_LOGGER_SRC}
     ${HAW_PROFILER_SRC}
-    ${CMAKE_CURRENT_LIST_DIR}/globalmodule.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/globalmodule.h
     ${CMAKE_CURRENT_LIST_DIR}/globaltypes.h
     ${CMAKE_CURRENT_LIST_DIR}/iapplication.h
     ${CMAKE_CURRENT_LIST_DIR}/iinteractive.h
@@ -62,15 +60,9 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_LIST_DIR}/retval.h
     ${CMAKE_CURRENT_LIST_DIR}/uri.cpp
     ${CMAKE_CURRENT_LIST_DIR}/uri.h
-    ${CMAKE_CURRENT_LIST_DIR}/invoker.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/invoker.h
     ${CMAKE_CURRENT_LIST_DIR}/progress.h
     ${CMAKE_CURRENT_LIST_DIR}/smuflranges.cpp
     ${CMAKE_CURRENT_LIST_DIR}/smuflranges.h
-    ${CMAKE_CURRENT_LIST_DIR}/xmlreader.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/xmlreader.h
-    ${CMAKE_CURRENT_LIST_DIR}/xmlwriter.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/xmlwriter.h
     ${CMAKE_CURRENT_LIST_DIR}/utils.cpp
     ${CMAKE_CURRENT_LIST_DIR}/utils.h
     ${CMAKE_CURRENT_LIST_DIR}/defer.h
@@ -113,19 +105,25 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_LIST_DIR}/serialization/zipreader.h
     ${CMAKE_CURRENT_LIST_DIR}/serialization/zipwriter.cpp
     ${CMAKE_CURRENT_LIST_DIR}/serialization/zipwriter.h
-    ${CMAKE_CURRENT_LIST_DIR}/serialization/internal/qzip.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/serialization/internal/qzipreader_p.h
-    ${CMAKE_CURRENT_LIST_DIR}/serialization/internal/qzipwriter_p.h
+
+    ${CMAKE_CURRENT_LIST_DIR}/serialization/internal/zipcontainer.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/serialization/internal/zipcontainer.h
     ${CMAKE_CURRENT_LIST_DIR}/serialization/textstream.cpp
     ${CMAKE_CURRENT_LIST_DIR}/serialization/textstream.h
     ${CMAKE_CURRENT_LIST_DIR}/serialization/json.cpp
     ${CMAKE_CURRENT_LIST_DIR}/serialization/json.h
 )
 
-if (NOT NO_GLOBAL_INTERNAL)
+if (NOT GLOBAL_NO_INTERNAL)
     set(MODULE_SRC ${MODULE_SRC}
+        ${CMAKE_CURRENT_LIST_DIR}/globalmodule.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/globalmodule.h
         ${CMAKE_CURRENT_LIST_DIR}/settings.cpp
         ${CMAKE_CURRENT_LIST_DIR}/settings.h
+        ${CMAKE_CURRENT_LIST_DIR}/xmlreader.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/xmlreader.h
+        ${CMAKE_CURRENT_LIST_DIR}/xmlwriter.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/xmlwriter.h
         ${CMAKE_CURRENT_LIST_DIR}/internal/application.cpp
         ${CMAKE_CURRENT_LIST_DIR}/internal/application.h
         ${CMAKE_CURRENT_LIST_DIR}/internal/globalconfiguration.cpp
@@ -134,9 +132,15 @@ if (NOT NO_GLOBAL_INTERNAL)
         ${CMAKE_CURRENT_LIST_DIR}/internal/interactive.h
         ${CMAKE_CURRENT_LIST_DIR}/internal/cryptographichash.cpp
         ${CMAKE_CURRENT_LIST_DIR}/internal/cryptographichash.h
+        ${CMAKE_CURRENT_LIST_DIR}/internal/invoker.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/internal/invoker.h
 
         ${CMAKE_CURRENT_LIST_DIR}/io/internal/filesystem.cpp
         ${CMAKE_CURRENT_LIST_DIR}/io/internal/filesystem.h
+
+        ${CMAKE_CURRENT_LIST_DIR}/serialization/internal/qzip.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/serialization/internal/qzipreader_p.h
+        ${CMAKE_CURRENT_LIST_DIR}/serialization/internal/qzipwriter_p.h
         )
 endif()
 

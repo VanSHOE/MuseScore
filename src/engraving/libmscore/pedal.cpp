@@ -47,10 +47,9 @@ static const ElementStyle pedalStyle {
     { Sid::pedalTextAlign,                     Pid::END_TEXT_ALIGN },
     { Sid::pedalHookHeight,                    Pid::BEGIN_HOOK_HEIGHT },
     { Sid::pedalHookHeight,                    Pid::END_HOOK_HEIGHT },
-    { Sid::pedalBeginTextOffset,               Pid::BEGIN_TEXT_OFFSET },
-    { Sid::pedalBeginTextOffset,               Pid::CONTINUE_TEXT_OFFSET },
-    { Sid::pedalBeginTextOffset,               Pid::END_TEXT_OFFSET },
     { Sid::pedalLineWidth,                     Pid::LINE_WIDTH },
+    { Sid::pedalDashLineLen,                   Pid::DASH_LINE_LEN },
+    { Sid::pedalDashGapLen,                    Pid::DASH_GAP_LEN },
     { Sid::pedalPlacement,                     Pid::PLACEMENT },
     { Sid::pedalPosBelow,                      Pid::OFFSET },
 };

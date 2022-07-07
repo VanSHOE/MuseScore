@@ -79,6 +79,9 @@ public:
         BagpipeEmbellishment,
         Layout,
         Beam,
+        Guitar,
+        Keyboard,
+        Pitch,
         Custom
     };
     Q_ENUM(Type)
@@ -100,8 +103,9 @@ public:
     Type contentType() const;
 
     PaletteCellPtr insertElement(size_t idx, mu::engraving::ElementPtr element, const QString& name, qreal mag = 1.0,
-                                 const QString& tag = "");
-    PaletteCellPtr appendElement(mu::engraving::ElementPtr element, const QString& name, qreal mag = 1.0, const QString& tag = "");
+                                 const QPointF& offset = QPointF(), const QString& tag = "");
+    PaletteCellPtr appendElement(mu::engraving::ElementPtr element, const QString& name, qreal mag = 1.0,
+                                 const QPointF& offset = QPointF(), const QString& tag = "");
     PaletteCellPtr appendActionIcon(mu::engraving::ActionIconType type, actions::ActionCode code);
 
     bool insertCell(size_t idx, PaletteCellPtr cell);

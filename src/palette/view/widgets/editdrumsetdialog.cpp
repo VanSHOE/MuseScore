@@ -42,6 +42,7 @@
 
 #include <QMessageBox>
 
+using namespace mu::palette;
 using namespace mu::io;
 using namespace mu::framework;
 using namespace mu::notation;
@@ -235,7 +236,7 @@ EditDrumsetDialog::EditDrumsetDialog(QWidget* parent)
     }
 
     for (QString range : validNoteheadRanges) {
-        for (auto symName : (*mu::smuflRanges())[range]) {
+        for (auto symName : mu::smuflRanges().at(range)) {
             SymId id = SymNames::symIdByName(symName);
             if (!excludeSym.contains(symName) && !primaryNoteheads.contains(symName)) {
                 resNoteheads.append(SymbolIcon::generateIcon(id, w, h, defaultScale));
