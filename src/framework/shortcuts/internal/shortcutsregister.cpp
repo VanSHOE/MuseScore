@@ -120,8 +120,8 @@ void ShortcutsRegister::reload(bool onlyDef)
 
             Shortcut shortcut;
             shortcut.action = x;
-            shortcut.context = action.sContext;
-            contexts+="'" + action.sContext + "',";
+            shortcut.context = action.scCtx;
+            contexts+="'" + action.scCtx + "',";
             m_shortcuts.push_back(shortcut);
         }
         LOGE() << contexts;
@@ -307,7 +307,7 @@ Shortcut ShortcutsRegister::readShortcut(framework::XmlReader& reader) const
         }
     }
 
-    shortcut.context = uiactionsRegister()->action(shortcut.action).sContext;
+    shortcut.context = uiactionsRegister()->action(shortcut.action).scCtx;
 
     return shortcut;
 }

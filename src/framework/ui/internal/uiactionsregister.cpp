@@ -142,7 +142,7 @@ void UiActionsRegister::doUpdateEnabled(Info& inf,
     bool oldEnabled = inf.state.enabled;
     inf.state.enabled = false;
 
-    if (ctxResolver->match(currentCtx, inf.action.context)) {
+    if (ctxResolver->match(currentCtx, inf.action.uiCtx)) {
         inf.state.enabled = inf.module->actionEnabled(inf.action);
     }
 

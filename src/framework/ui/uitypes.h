@@ -192,8 +192,8 @@ struct UiAction
 {
     inline static std::set<actions::ActionCode> instances;
     actions::ActionCode code;
-    UiContext context = UiCtxAny;
-    std::string sContext = "NULL";
+    UiContext uiCtx = UiCtxAny;
+    std::string scCtx = "NULL";
     QString title;
     QString description;
     IconCode::Code iconCode = IconCode::Code::NONE;
@@ -202,26 +202,26 @@ struct UiAction
 
     UiAction() = default;
     UiAction(const actions::ActionCode& code, UiContext ctx, std::string sContext, Checkable ch = Checkable::No)
-        : code(code), context(ctx), sContext(sContext), checkable(ch) { UiAction::instances.insert(code); }
+        : code(code), uiCtx(ctx), scCtx(sContext), checkable(ch) { UiAction::instances.insert(code); }
     UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, std::string sContext, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), sContext(sContext), checkable(ch)
+        : code(code), uiCtx(ctx), title(title), description(title), scCtx(sContext), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
 
     UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, const QString& desc, std::string sContext,
              Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), sContext(sContext), checkable(ch) { UiAction::instances.insert(code); }
+        : code(code), uiCtx(ctx), title(title), description(desc), scCtx(sContext), checkable(ch) { UiAction::instances.insert(code); }
     UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, const QString& desc, IconCode::Code icon,
              std::string sContext, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), iconCode(icon), sContext(sContext), checkable(ch)
+        : code(code), uiCtx(ctx), title(title), description(desc), iconCode(icon), scCtx(sContext), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
 
     UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, IconCode::Code icon, std::string sContext,
              Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), iconCode(icon), sContext(sContext), checkable(ch)
+        : code(code), uiCtx(ctx), title(title), description(title), iconCode(icon), scCtx(sContext), checkable(ch)
     {
         UiAction::instances.insert(code);
     }
@@ -251,7 +251,8 @@ struct UiAction
     bool operator==(const UiAction& other) const
     {
         return code == other.code
-               && context == other.context
+               && uiCtx == other.uiCtx
+               && scCtx == other.scCtx
                && title == other.title
                && description == other.description
                && iconCode == other.iconCode
