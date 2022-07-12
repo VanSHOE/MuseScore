@@ -32,10 +32,12 @@ const UiActionList InstrumentsUiActions::m_actions = {
     UiAction("instruments",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Add or remove instruments…"),
+             QT_TRANSLATE_NOOP("action", "Add or remove instruments…"),
              mu::context::CTX_ANY
              ),
     UiAction("change-instrument",
              mu::context::UiCtxNotationOpened,
+             QT_TRANSLATE_NOOP("action", "Select instrument…"),
              QT_TRANSLATE_NOOP("action", "Select instrument…"),
              mu::context::CTX_NOTATION_OPENED
              )

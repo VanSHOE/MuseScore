@@ -31,7 +31,7 @@ const UiActionList PlaybackUiActions::m_mainActions = {
     UiAction("play",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Play"),
-             QT_TRANSLATE_NOOP("action", "Start or stop playback"),
+             QT_TRANSLATE_NOOP("action", "Play"),
              IconCode::Code::PLAY,
              mu::context::CTX_NOTATION_FOCUSED
              ),
@@ -45,7 +45,7 @@ const UiActionList PlaybackUiActions::m_mainActions = {
     UiAction("rewind",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Rewind"),
-             QT_TRANSLATE_NOOP("action", "Rewind to start position"),
+             QT_TRANSLATE_NOOP("action", "Rewind"),
              IconCode::Code::REWIND,
              mu::context::CTX_NOTATION_FOCUSED
              ),
@@ -60,7 +60,7 @@ const UiActionList PlaybackUiActions::m_mainActions = {
     UiAction("metronome",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Metronome"),
-             QT_TRANSLATE_NOOP("action", "Play metronome during playback"),
+             QT_TRANSLATE_NOOP("action", "Toggle metronome playback"),
              IconCode::Code::METRONOME,
              mu::context::CTX_NOTATION_FOCUSED,
              Checkable::Yes
@@ -71,7 +71,7 @@ const UiActionList PlaybackUiActions::m_settingsActions = {
     UiAction("midi-on",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "MIDI input"),
-             QT_TRANSLATE_NOOP("action", "Enable 'MIDI input'"),
+             QT_TRANSLATE_NOOP("action", "Toggle 'Enable MIDI input'"),
              IconCode::Code::MIDI_INPUT,
              mu::context::CTX_ANY,
              Checkable::Yes
@@ -95,7 +95,7 @@ const UiActionList PlaybackUiActions::m_settingsActions = {
     UiAction("countin",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Count-in"),
-             QT_TRANSLATE_NOOP("action", "Enable count-in when playing"),
+             QT_TRANSLATE_NOOP("action", "Enable count-in"),
              IconCode::Code::COUNT_IN,
              mu::context::CTX_ANY,
              Checkable::Yes

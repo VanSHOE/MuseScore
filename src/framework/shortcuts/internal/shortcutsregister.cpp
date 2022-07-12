@@ -106,8 +106,6 @@ void ShortcutsRegister::reload(bool onlyDef)
         alreadyAdded.insert(QString::fromStdString(x.action));
     }
 
-    std::string contexts = "";
-
     if (ok) {
         expandStandardKeys(m_shortcuts);
 
@@ -121,10 +119,9 @@ void ShortcutsRegister::reload(bool onlyDef)
             Shortcut shortcut;
             shortcut.action = x;
             shortcut.context = action.scCtx;
-            contexts+="'" + action.scCtx + "',";
             m_shortcuts.push_back(shortcut);
         }
-        LOGE() << contexts;
+
         makeUnique(m_shortcuts);
         m_shortcutsChanged.notify();
     }
