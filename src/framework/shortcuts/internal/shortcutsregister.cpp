@@ -22,7 +22,9 @@
 #include "shortcutsregister.h"
 
 #include <QKeySequence>
+#include <unordered_set>
 
+#include "framework/ui/uitypes.h"
 #include "global/xmlreader.h"
 #include "global/xmlwriter.h"
 #include "multiinstances/resourcelockguard.h"
@@ -32,6 +34,7 @@
 using namespace mu::shortcuts;
 using namespace mu::framework;
 using namespace mu::async;
+using namespace mu::ui;
 
 constexpr std::string_view SHORTCUTS_TAG("Shortcuts");
 constexpr std::string_view SHORTCUT_TAG("SC");
@@ -98,8 +101,30 @@ void ShortcutsRegister::reload(bool onlyDef)
         ok = true;
     }
 
+    std::unordered_set<QString> alreadyAdded;
+    for (auto x : m_shortcuts) {
+        alreadyAdded.insert(QString::fromStdString(x.action));
+    }
+
+    std::string contexts = "";
+
     if (ok) {
         expandStandardKeys(m_shortcuts);
+
+        LOGE() << "Starting addition of all actions: " << UiAction::instances.size();
+        for (auto x : UiAction::instances) {
+            auto action = uiactionsRegister()->action(x);
+            if (alreadyAdded.find(QString::fromStdString(x)) != alreadyAdded.end()) {
+                continue;
+            }
+
+            Shortcut shortcut;
+            shortcut.action = x;
+            shortcut.context = action.sContext;
+            contexts+="'" + action.sContext + "',";
+            m_shortcuts.push_back(shortcut);
+        }
+        LOGE() << contexts;
         makeUnique(m_shortcuts);
         m_shortcutsChanged.notify();
     }
@@ -277,16 +302,12 @@ Shortcut ShortcutsRegister::readShortcut(framework::XmlReader& reader) const
             shortcut.standardKey = QKeySequence::StandardKey(reader.readInt());
         } else if (tag == SEQUENCE_TAG) {
             shortcut.sequences.push_back(reader.readString());
-        } else if (tag == CONTEXT_TAG) {
-            shortcut.context = reader.readString();
         } else {
             reader.skipCurrentElement();
         }
     }
 
-    if (shortcut.context.empty()) {
-        shortcut.context = "any";
-    }
+    shortcut.context = uiactionsRegister()->action(shortcut.action).sContext;
 
     return shortcut;
 }

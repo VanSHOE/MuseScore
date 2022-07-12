@@ -30,27 +30,33 @@ using namespace mu::diagnostics;
 const UiActionList DiagnosticsActions::m_actions = {
     UiAction("diagnostic-show-paths",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Show paths…")
+             QT_TRANSLATE_NOOP("action", "Show paths…"),
+             mu::context::CTX_ANY
              ),
     UiAction("diagnostic-show-profiler",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Show profiler…")
+             QT_TRANSLATE_NOOP("action", "Show profiler…"),
+             mu::context::CTX_ANY
              ),
     UiAction("diagnostic-show-navigation-tree",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Show navigation tree…")
+             QT_TRANSLATE_NOOP("action", "Show navigation tree…"),
+             mu::context::CTX_ANY
              ),
     UiAction("diagnostic-show-accessible-tree",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Show accessible tree…")
+             QT_TRANSLATE_NOOP("action", "Show accessible tree…"),
+             mu::context::CTX_ANY
              ),
     UiAction("diagnostic-accessible-tree-dump",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Accessible dump")
+             QT_TRANSLATE_NOOP("action", "Accessible dump"),
+             mu::context::CTX_ANY
              ),
     UiAction("diagnostic-show-engraving-elements",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Engraving elements")
+             QT_TRANSLATE_NOOP("action", "Engraving elements"),
+             mu::context::CTX_ANY
              )
 };
 

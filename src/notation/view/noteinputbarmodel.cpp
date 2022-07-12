@@ -36,6 +36,7 @@ static const QString TOOLBAR_NAME("noteInput");
 static const std::string ADD_ACTION_CODE("add");
 static const char* ADD_ACTION_TITLE("Add");
 static const IconCode::Code ADD_ACTION_ICON_CODE = IconCode::Code::PLUS;
+static const std::string ADD_ACTION_SCONTEXT = mu::context::CTX_NOTATION_FOCUSED;
 
 static const ActionCode CROSS_STAFF_BEAMING_CODE("cross-staff-beaming");
 static const ActionCode TUPLET_ACTION_CODE("tuplet");
@@ -548,7 +549,7 @@ MenuItem* NoteInputBarModel::makeActionItem(const UiAction& action, const QStrin
 
 MenuItem* NoteInputBarModel::makeAddItem(const QString& section)
 {
-    UiAction addAction(ADD_ACTION_CODE, UiCtxAny, ADD_ACTION_TITLE, ADD_ACTION_ICON_CODE);
+    UiAction addAction(ADD_ACTION_CODE, UiCtxAny, ADD_ACTION_TITLE, ADD_ACTION_ICON_CODE, ADD_ACTION_SCONTEXT);
     return makeActionItem(addAction, section, makeAddItems());
 }
 

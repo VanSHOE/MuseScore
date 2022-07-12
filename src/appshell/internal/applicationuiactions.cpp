@@ -38,59 +38,71 @@ const ActionCode TOGGLE_NAVIGATOR_ACTION_CODE("toggle-navigator");
 const UiActionList ApplicationUiActions::m_actions = {
     UiAction("quit",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Quit")
+             QT_TRANSLATE_NOOP("action", "Quit"),
+             mu::context::CTX_ANY
              ),
     UiAction("restart",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Restart")
+             QT_TRANSLATE_NOOP("action", "Restart"),
+             mu::context::CTX_ANY
              ),
     UiAction("fullscreen",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Enter full screen"),
              QT_TRANSLATE_NOOP("action", "Enter full screen"),
+             mu::context::CTX_ANY,
              Checkable::Yes
              ),
     UiAction("about",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "&About…")
+             QT_TRANSLATE_NOOP("action", "&About…"),
+             mu::context::CTX_ANY
              ),
     UiAction("about-qt",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "About &Qt…")
+             QT_TRANSLATE_NOOP("action", "About &Qt…"),
+             mu::context::CTX_ANY
              ),
     UiAction("about-musicxml",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "About &MusicXML…")
+             QT_TRANSLATE_NOOP("action", "About &MusicXML…"),
+             mu::context::CTX_ANY
              ),
     UiAction("online-handbook",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "&Online handbook")
+             QT_TRANSLATE_NOOP("action", "&Online handbook"),
+             mu::context::CTX_ANY
              ),
     UiAction("ask-help",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Ask for help")
+             QT_TRANSLATE_NOOP("action", "Ask for help"),
+             mu::context::CTX_ANY
              ),
     UiAction("report-bug",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Report a bug"),
-             QT_TRANSLATE_NOOP("action", "Report a bug")
+             QT_TRANSLATE_NOOP("action", "Report a bug"),
+             mu::context::CTX_ANY
              ),
     UiAction("leave-feedback",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Feedback"),
-             QT_TRANSLATE_NOOP("action", "Leave feedback")
+             QT_TRANSLATE_NOOP("action", "Leave feedback"),
+             mu::context::CTX_ANY
              ),
     UiAction("revert-factory",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Revert to factory settings"),
-             QT_TRANSLATE_NOOP("action", "Revert to factory settings")
+             QT_TRANSLATE_NOOP("action", "Revert to factory settings"),
+             mu::context::CTX_ANY
              ),
 
     // Docking
     UiAction("dock-restore-default-layout",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Restore the default layout"),
-             QT_TRANSLATE_NOOP("action", "Restore the default layout")
+             QT_TRANSLATE_NOOP("action", "Restore the default layout"),
+             mu::context::CTX_ANY
              ),
 
     // Toolbars
@@ -98,12 +110,14 @@ const UiActionList ApplicationUiActions::m_actions = {
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Playback controls"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Playback controls' toolbar"),
+             mu::context::CTX_NOTATION_OPENED,
              Checkable::Yes
              ),
     UiAction("toggle-noteinput",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Note input"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Note input' toolbar"),
+             mu::context::CTX_ANY,
              Checkable::Yes
              ),
 
@@ -112,24 +126,28 @@ const UiActionList ApplicationUiActions::m_actions = {
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Palettes"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Palettes'"),
+             mu::context::CTX_ANY,
              Checkable::Yes
              ),
     UiAction("toggle-instruments",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Instruments"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Instruments'"),
+             mu::context::CTX_ANY,
              Checkable::Yes
              ),
     UiAction("inspector",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Properties"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Properties'"),
+             mu::context::CTX_ANY,
              Checkable::Yes
              ),
     UiAction("toggle-selection-filter",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Selection filter"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Selection filter'"),
+             mu::context::CTX_NOTATION_OPENED,
              Checkable::Yes
              ),
 
@@ -138,6 +156,7 @@ const UiActionList ApplicationUiActions::m_actions = {
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Navigator"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Navigator'"),
+             mu::context::CTX_ANY,
              Checkable::Yes
              ),
 
@@ -146,6 +165,7 @@ const UiActionList ApplicationUiActions::m_actions = {
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Timeline"),
              QT_TRANSLATE_NOOP("action", "Toggle timeline"),
+             mu::context::CTX_ANY,
              Checkable::Yes
              ),
     UiAction("toggle-mixer",
@@ -153,18 +173,21 @@ const UiActionList ApplicationUiActions::m_actions = {
              QT_TRANSLATE_NOOP("action", "Mixer"),
              QT_TRANSLATE_NOOP("action", "Toggle mixer"),
              IconCode::Code::MIXER,
+             mu::context::CTX_ANY,
              Checkable::Yes
              ),
     UiAction("toggle-piano-keyboard",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Piano keyboard"),
              QT_TRANSLATE_NOOP("action", "Toggle piano keyboard"),
+             mu::context::CTX_ANY,
              Checkable::Yes
              ),
     UiAction("toggle-scorecmp-tool",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Score comparison tool"),
              QT_TRANSLATE_NOOP("action", "Toggle score comparison tool"),
+             mu::context::CTX_NOTATION_OPENED,
              Checkable::Yes
              ),
 
@@ -173,18 +196,21 @@ const UiActionList ApplicationUiActions::m_actions = {
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Status bar"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Status bar'"),
+             mu::context::CTX_NOTATION_OPENED,
              Checkable::Yes
              ),
 
     UiAction("preference-dialog",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "&Preferences"),
-             QT_TRANSLATE_NOOP("action", "Open preferences dialog")
+             QT_TRANSLATE_NOOP("action", "Open preferences dialog"),
+             mu::context::CTX_ANY
              ),
     UiAction("check-update",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Check for update"),
-             QT_TRANSLATE_NOOP("action", "Check for update")
+             QT_TRANSLATE_NOOP("action", "Check for update"),
+             mu::context::CTX_ANY
              )
 };
 

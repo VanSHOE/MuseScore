@@ -29,11 +29,13 @@ using namespace mu::ui;
 const UiActionList WorkspaceUiActions::m_actions = {
     UiAction("select-workspace",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Select workspace")
+             QT_TRANSLATE_NOOP("action", "Select workspace"),
+             mu::context::CTX_ANY
              ),
     UiAction("configure-workspaces",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Configure workspace")
+             QT_TRANSLATE_NOOP("action", "Configure workspace"),
+             mu::context::CTX_ANY
              )
 };
 

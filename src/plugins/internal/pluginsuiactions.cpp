@@ -40,7 +40,8 @@ PluginsUiActions::PluginsUiActions(std::shared_ptr<PluginsService> service)
 static UiAction MANAGE_ACTION = UiAction(
     "manage-plugins",
     mu::context::UiCtxAny,
-    QT_TRANSLATE_NOOP("action", "Manage plugins…")
+    QT_TRANSLATE_NOOP("action", "Manage plugins…"),
+    mu::context::CTX_ANY
     );
 
 const mu::ui::UiActionList& PluginsUiActions::actionsList() const
@@ -52,7 +53,7 @@ const mu::ui::UiActionList& PluginsUiActions::actionsList() const
         action.code = codeFromQString(plugin.codeKey);
         action.context = mu::context::UiCtxNotationOpened;
         action.title = qtrc("plugins", "Run plugin") + " " + plugin.codeKey;
-
+        action.sContext = mu::context::CTX_NOTATION_OPENED;
         result.push_back(action);
     }
 

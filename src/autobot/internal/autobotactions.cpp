@@ -30,11 +30,13 @@ using namespace mu::autobot;
 const UiActionList AutobotActions::m_actions = {
     UiAction("autobot-show-batchtests",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Show batch tests…")
+             QT_TRANSLATE_NOOP("action", "Show batch tests…"),
+             mu::context::CTX_ANY
              ),
     UiAction("autobot-show-scripts",
              mu::context::UiCtxAny,
-             QT_TRANSLATE_NOOP("action", "Show scripts…")
+             QT_TRANSLATE_NOOP("action", "Show scripts…"),
+             mu::context::CTX_ANY
              ),
 };
 

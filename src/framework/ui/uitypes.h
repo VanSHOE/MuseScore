@@ -27,12 +27,15 @@
 #include <cstring>
 #include <QString>
 #include <QMetaType>
+#include <set>
 
 #include "ret.h"
 #include "val.h"
 #include "actions/actiontypes.h"
 #include "view/iconcodes.h"
 #include "shortcuts/shortcutstypes.h"
+#include "log.h"
+#include "context/shortcutcontext.h"
 
 namespace mu::ui {
 using ThemeCode = std::string;
@@ -187,8 +190,10 @@ enum class Checkable {
 
 struct UiAction
 {
+    inline static std::set<actions::ActionCode> instances;
     actions::ActionCode code;
     UiContext context = UiCtxAny;
+    std::string sContext = "NULL";
     QString title;
     QString description;
     IconCode::Code iconCode = IconCode::Code::NONE;
@@ -196,17 +201,30 @@ struct UiAction
     std::vector<std::string> shortcuts;
 
     UiAction() = default;
-    UiAction(const actions::ActionCode& code, UiContext ctx, Checkable ch = Checkable::No)
-        : code(code), context(ctx), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, const QString& desc, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, const QString& desc, IconCode::Code icon,
+    UiAction(const actions::ActionCode& code, UiContext ctx, std::string sContext, Checkable ch = Checkable::No)
+        : code(code), context(ctx), sContext(sContext), checkable(ch) { UiAction::instances.insert(code); }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, std::string sContext, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(title), sContext(sContext), checkable(ch)
+    {
+        UiAction::instances.insert(code);
+    }
+
+    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, const QString& desc, std::string sContext,
              Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), iconCode(icon), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, IconCode::Code icon, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), iconCode(icon), checkable(ch) {}
+        : code(code), context(ctx), title(title), description(desc), sContext(sContext), checkable(ch) { UiAction::instances.insert(code); }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, const QString& desc, IconCode::Code icon,
+             std::string sContext, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(desc), iconCode(icon), sContext(sContext), checkable(ch)
+    {
+        UiAction::instances.insert(code);
+    }
+
+    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, IconCode::Code icon, std::string sContext,
+             Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(title), iconCode(icon), sContext(sContext), checkable(ch)
+    {
+        UiAction::instances.insert(code);
+    }
 
     bool isValid() const
     {

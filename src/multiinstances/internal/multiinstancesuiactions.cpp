@@ -30,7 +30,8 @@ using namespace mu::mi;
 const UiActionList MultiInstancesUiActions::m_actions = {
     UiAction("multiinstances-dev-show-info",
              mu::context::UiCtxAny,
-             "Multiinstances"
+             "Multiinstances",
+             mu::context::CTX_ANY
              )
 };
 
