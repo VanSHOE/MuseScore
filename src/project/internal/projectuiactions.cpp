@@ -101,7 +101,7 @@ const UiActionList ProjectUiActions::m_actions = {
     UiAction("project-properties",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Project properties…"),
-             QT_TRANSLATE_NOOP("action", "Project properties..."),
+             QT_TRANSLATE_NOOP("action", "Project properties…"),
              mu::context::CTX_NOTATION_OPENED
              ),
     UiAction("clear-recent",

@@ -63,7 +63,7 @@ const UiActionList ApplicationUiActions::m_actions = {
     UiAction("about-qt",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "About &Qt…"),
-             QT_TRANSLATE_NOOP("action", "About Qt..."),
+             QT_TRANSLATE_NOOP("action", "About Qt…"),
              mu::context::CTX_ANY
              ),
     UiAction("about-musicxml",

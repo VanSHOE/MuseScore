@@ -35,7 +35,7 @@ const UiActionList WorkspaceUiActions::m_actions = {
     UiAction("configure-workspaces",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Configure workspace"),
-             QT_TRANSLATE_NOOP("action", "Configure workspace..."),
+             QT_TRANSLATE_NOOP("action", "Configure workspace…"),
              mu::context::CTX_ANY
              )
 };

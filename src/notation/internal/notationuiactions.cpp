@@ -393,13 +393,13 @@ const UiActionList NotationUiActions::m_actions = {
     UiAction("load-style",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Load style…"),
-             QT_TRANSLATE_NOOP("action", "Load style..."),
+             QT_TRANSLATE_NOOP("action", "Load style…"),
              mu::context::CTX_NOTATION_OPENED
              ),
     UiAction("save-style",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Save style…"),
-             QT_TRANSLATE_NOOP("action", "Save style..."),
+             QT_TRANSLATE_NOOP("action", "Save style…"),
              mu::context::CTX_NOTATION_OPENED
              ),
     UiAction("transpose",
@@ -484,7 +484,7 @@ const UiActionList NotationUiActions::m_actions = {
     UiAction("parts",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Parts"),
-             QT_TRANSLATE_NOOP("action", "Parts..."),
+             QT_TRANSLATE_NOOP("action", "Parts…"),
              IconCode::Code::PAGE,
              mu::context::CTX_NOTATION_OPENED
              ),
@@ -518,13 +518,13 @@ const UiActionList NotationUiActions::m_actions = {
     UiAction("staff-properties",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Staff/part properties…"),
-             QT_TRANSLATE_NOOP("action", "Staff/part properties..."),
+             QT_TRANSLATE_NOOP("action", "Staff/part properties…"),
              mu::context::CTX_NOTATION_OPENED
              ),
     UiAction("staff-text-properties",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Staff text properties…"),
-             QT_TRANSLATE_NOOP("action", "Staff text properties..."),
+             QT_TRANSLATE_NOOP("action", "Staff text properties…"),
              mu::context::CTX_NOTATION_OPENED
              ),
     UiAction("system-text-properties",
@@ -1377,7 +1377,7 @@ const UiActionList NotationUiActions::m_actions = {
     UiAction("tuplet-dialog",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Other…"),
-             QT_TRANSLATE_NOOP("action", "Create custom tuplet..."),
+             QT_TRANSLATE_NOOP("action", "Create custom tuplet…"),
              mu::context::CTX_NOTATION_OPENED
              ),
     UiAction("stretch-",
