@@ -99,6 +99,17 @@ const UiAction& UiActionsRegister::action(const ActionCode& code) const
     return info(code).action;
 }
 
+const std::vector<UiAction> UiActionsRegister::getActions() const
+{
+    std::vector<UiAction> allActions;
+
+    for (auto it = m_actions.begin(); it != m_actions.end(); it++) {
+        allActions.push_back(it->second.action);
+    }
+
+    return allActions;
+}
+
 UiActionState UiActionsRegister::actionState(const ActionCode& code) const
 {
     const Info& inf = info(code);

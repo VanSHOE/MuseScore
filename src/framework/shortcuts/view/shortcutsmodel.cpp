@@ -94,9 +94,15 @@ void ShortcutsModel::load()
     beginResetModel();
     m_shortcuts.clear();
 
-    for (const Shortcut& shortcut : shortcutsRegister()->shortcuts()) {
-        if (actionTitle(shortcut.action).isEmpty()) {
+    for (const UiAction& action : uiactionsRegister()->getActions()) {
+        if (action.title.isEmpty()) {
             continue;
+        }
+
+        Shortcut shortcut = shortcutsRegister()->shortcut(action.code);
+        if (shortcut.action != action.code) {
+            shortcut.action = action.code;
+            shortcut.context = action.scCtx;
         }
 
         m_shortcuts << shortcut;
@@ -118,7 +124,9 @@ bool ShortcutsModel::apply()
     ShortcutList shortcuts;
 
     for (const Shortcut& shortcut : qAsConst(m_shortcuts)) {
-        shortcuts.push_back(shortcut);
+        if (!shortcut.sequences.empty()) {
+            shortcuts.push_back(shortcut);
+        }
     }
 
     Ret ret = shortcutsRegister()->setShortcuts(shortcuts);

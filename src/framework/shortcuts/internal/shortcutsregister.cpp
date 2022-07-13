@@ -101,27 +101,8 @@ void ShortcutsRegister::reload(bool onlyDef)
         ok = true;
     }
 
-    std::unordered_set<QString> alreadyAdded;
-    for (auto x : m_shortcuts) {
-        alreadyAdded.insert(QString::fromStdString(x.action));
-    }
-
     if (ok) {
         expandStandardKeys(m_shortcuts);
-
-        LOGE() << "Starting addition of all actions: " << UiAction::instances.size();
-        for (auto x : UiAction::instances) {
-            auto action = uiactionsRegister()->action(x);
-            if (alreadyAdded.find(QString::fromStdString(x)) != alreadyAdded.end()) {
-                continue;
-            }
-
-            Shortcut shortcut;
-            shortcut.action = x;
-            shortcut.context = action.scCtx;
-            m_shortcuts.push_back(shortcut);
-        }
-
         makeUnique(m_shortcuts);
         m_shortcutsChanged.notify();
     }
