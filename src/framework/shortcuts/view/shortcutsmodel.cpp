@@ -48,13 +48,12 @@ QVariant ShortcutsModel::data(const QModelIndex& index, int role) const
     const Shortcut& shortcut = m_shortcuts.at(index.row());
 
     switch (role) {
-    case RoleTitle: return this->action(shortcut.action).description == "" ? this->action(shortcut.action).title : this->action(
-            shortcut.action).description;
+    case RoleTitle: return actionText(shortcut.action);
     case RoleIcon: return static_cast<int>(this->action(shortcut.action).iconCode);
     case RoleSequence: return sequencesToNativeText(shortcut.sequences);
     case RoleSearchKey: {
         UiAction action = this->action(shortcut.action);
-        return QString::fromStdString(action.code) + action.title + sequencesToNativeText(shortcut.sequences);
+        return QString::fromStdString(action.code) + action.title + action.description + sequencesToNativeText(shortcut.sequences);
     }
     }
 
@@ -70,6 +69,17 @@ const QString& ShortcutsModel::actionTitle(const std::string& actionCode) const
 {
     const UiAction& action = this->action(actionCode);
     return action.title;
+}
+
+const QString& ShortcutsModel::actionDescription(const std::string& actionCode) const
+{
+    const UiAction& action = this->action(actionCode);
+    return action.description;
+}
+
+const QString& ShortcutsModel::actionText(const std::string& actionCode) const
+{
+    return actionDescription(actionCode) == "" ? actionTitle(actionCode) : actionDescription(actionCode);
 }
 
 int ShortcutsModel::rowCount(const QModelIndex&) const
@@ -113,7 +123,7 @@ void ShortcutsModel::load()
     });
 
     std::sort(m_shortcuts.begin(), m_shortcuts.end(), [this](const Shortcut& s1, const Shortcut& s2) {
-        return actionTitle(s1.action) < actionTitle(s2.action);
+        return actionText(s1.action) < actionText(s2.action);
     });
 
     endResetModel();
