@@ -47,7 +47,7 @@ const UiActionList ApplicationUiActions::m_actions = {
     UiAction("fullscreen",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Enter full screen"),
-             QT_TRANSLATE_NOOP("action", "Enter full screen"),
+             QT_TRANSLATE_NOOP("action", "Enter full screen"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("about",
@@ -97,13 +97,13 @@ const UiActionList ApplicationUiActions::m_actions = {
     UiAction("toggle-transport",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Playback controls"),
-             QT_TRANSLATE_NOOP("action", "Toggle 'Playback controls' toolbar"),
+             QT_TRANSLATE_NOOP("action", "Toggle 'Playback controls' toolbar"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("toggle-noteinput",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Note input"),
-             QT_TRANSLATE_NOOP("action", "Toggle 'Note input' toolbar"),
+             QT_TRANSLATE_NOOP("action", "Toggle 'Note input' toolbar"), ActionCategory::Undefined,
              Checkable::Yes
              ),
 
@@ -111,25 +111,25 @@ const UiActionList ApplicationUiActions::m_actions = {
     UiAction("toggle-palettes",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Palettes"),
-             QT_TRANSLATE_NOOP("action", "Toggle 'Palettes'"),
+             QT_TRANSLATE_NOOP("action", "Toggle 'Palettes'"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("toggle-instruments",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Instruments"),
-             QT_TRANSLATE_NOOP("action", "Toggle 'Instruments'"),
+             QT_TRANSLATE_NOOP("action", "Toggle 'Instruments'"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("inspector",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Properties"),
-             QT_TRANSLATE_NOOP("action", "Toggle 'Properties'"),
+             QT_TRANSLATE_NOOP("action", "Toggle 'Properties'"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("toggle-selection-filter",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Selection filter"),
-             QT_TRANSLATE_NOOP("action", "Toggle 'Selection filter'"),
+             QT_TRANSLATE_NOOP("action", "Toggle 'Selection filter'"), ActionCategory::Undefined,
              Checkable::Yes
              ),
 
@@ -137,7 +137,7 @@ const UiActionList ApplicationUiActions::m_actions = {
     UiAction("toggle-navigator",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Navigator"),
-             QT_TRANSLATE_NOOP("action", "Toggle 'Navigator'"),
+             QT_TRANSLATE_NOOP("action", "Toggle 'Navigator'"), ActionCategory::Undefined,
              Checkable::Yes
              ),
 
@@ -145,26 +145,26 @@ const UiActionList ApplicationUiActions::m_actions = {
     UiAction("toggle-timeline",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Timeline"),
-             QT_TRANSLATE_NOOP("action", "Toggle timeline"),
+             QT_TRANSLATE_NOOP("action", "Toggle timeline"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("toggle-mixer",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Mixer"),
              QT_TRANSLATE_NOOP("action", "Toggle mixer"),
-             IconCode::Code::MIXER,
+             IconCode::Code::MIXER, ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("toggle-piano-keyboard",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Piano keyboard"),
-             QT_TRANSLATE_NOOP("action", "Toggle piano keyboard"),
+             QT_TRANSLATE_NOOP("action", "Toggle piano keyboard"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("toggle-scorecmp-tool",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Score comparison tool"),
-             QT_TRANSLATE_NOOP("action", "Toggle score comparison tool"),
+             QT_TRANSLATE_NOOP("action", "Toggle score comparison tool"), ActionCategory::Undefined,
              Checkable::Yes
              ),
 
@@ -172,7 +172,7 @@ const UiActionList ApplicationUiActions::m_actions = {
     UiAction("toggle-statusbar",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Status bar"),
-             QT_TRANSLATE_NOOP("action", "Toggle 'Status bar'"),
+             QT_TRANSLATE_NOOP("action", "Toggle 'Status bar'"), ActionCategory::Undefined,
              Checkable::Yes
              ),
 

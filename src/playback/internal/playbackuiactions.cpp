@@ -50,14 +50,14 @@ const UiActionList PlaybackUiActions::m_mainActions = {
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Loop playback"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Loop playback'"),
-             IconCode::Code::LOOP,
+             IconCode::Code::LOOP,ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("metronome",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Metronome"),
              QT_TRANSLATE_NOOP("action", "Play metronome during playback"),
-             IconCode::Code::METRONOME,
+             IconCode::Code::METRONOME,ActionCategory::Undefined,
              Checkable::Yes
              )
 };
@@ -67,14 +67,14 @@ const UiActionList PlaybackUiActions::m_settingsActions = {
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "MIDI input"),
              QT_TRANSLATE_NOOP("action", "Enable 'MIDI input'"),
-             IconCode::Code::MIDI_INPUT,
+             IconCode::Code::MIDI_INPUT,ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("repeat",
              mu::context::UiCtxAny,
              QT_TRANSLATE_NOOP("action", "Play repeats"),
              QT_TRANSLATE_NOOP("action", "Play repeats"),
-             IconCode::Code::PLAY_REPEATS,
+             IconCode::Code::PLAY_REPEATS,ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("pan",
@@ -82,6 +82,7 @@ const UiActionList PlaybackUiActions::m_settingsActions = {
              QT_TRANSLATE_NOOP("action", "Pan score"),
              QT_TRANSLATE_NOOP("action", "Pan score automatically"),
              IconCode::Code::PAN_SCORE,
+        ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("countin",
@@ -89,6 +90,7 @@ const UiActionList PlaybackUiActions::m_settingsActions = {
              QT_TRANSLATE_NOOP("action", "Count-in"),
              QT_TRANSLATE_NOOP("action", "Enable count-in when playing"),
              IconCode::Code::COUNT_IN,
+            ActionCategory::Undefined,
              Checkable::Yes
              ),
 };

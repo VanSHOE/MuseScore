@@ -72,65 +72,78 @@ static const QString Insert_note_X(QT_TRANSLATE_NOOP("action", "Insert note %1")
 const UiActionList NotationUiActions::m_actions = {
     UiAction("notation-escape",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Esc")
+             QT_TRANSLATE_NOOP("action", "Esc"),
+             ActionCategory::System
              ),
     UiAction("put-note", // args: PointF pos, bool replace, bool insert
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Put note")
+             QT_TRANSLATE_NOOP("action", "Put note"),
+             ActionCategory::NoteInput
              ),
     UiAction("remove-note", // args: PointF pos
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Remove note")
+             QT_TRANSLATE_NOOP("action", "Remove note"),
+             ActionCategory::NoteInput
              ),
     UiAction("next-element",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Next element"),
-             QT_TRANSLATE_NOOP("action", "Accessibility: Next element")
+             QT_TRANSLATE_NOOP("action", "Accessibility: Next element"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("prev-element",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Previous element"),
-             QT_TRANSLATE_NOOP("action", "Accessibility: Previous element")
+             QT_TRANSLATE_NOOP("action", "Accessibility: Previous element"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("notation-move-right",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Next chord / Shift text right"),
-             QT_TRANSLATE_NOOP("action", "Go to next chord or shift text right")
+             QT_TRANSLATE_NOOP("action", "Go to next chord or shift text right"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("notation-move-left",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Previous chord / Shift text left"),
-             QT_TRANSLATE_NOOP("action", "Go to previous chord or shift text left")
+             QT_TRANSLATE_NOOP("action", "Go to previous chord or shift text left"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("notation-move-right-quickly",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Next measure / Shift text right quickly"),
-             QT_TRANSLATE_NOOP("action", "Go to next measure or shift text right quickly")
+             QT_TRANSLATE_NOOP("action", "Go to next measure or shift text right quickly"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("notation-move-left-quickly",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Previous measure / Shift text left quickly"),
-             QT_TRANSLATE_NOOP("action", "Go to previous measure or shift text left quickly")
+             QT_TRANSLATE_NOOP("action", "Go to previous measure or shift text left quickly"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("up-chord",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Up note in chord"),
-             QT_TRANSLATE_NOOP("action", "Go to higher pitched note in chord")
+             QT_TRANSLATE_NOOP("action", "Go to higher pitched note in chord"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("down-chord",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Down note in chord"),
-             QT_TRANSLATE_NOOP("action", "Go to lower pitched note in chord")
+             QT_TRANSLATE_NOOP("action", "Go to lower pitched note in chord"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("top-chord",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Top note in chord"),
-             QT_TRANSLATE_NOOP("action", "Go to top note in chord")
+             QT_TRANSLATE_NOOP("action", "Go to top note in chord"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("bottom-chord",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Bottom note in chord"),
-             QT_TRANSLATE_NOOP("action", "Go bottom note in chord")
+             QT_TRANSLATE_NOOP("action", "Go bottom note in chord"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("first-element",
              mu::context::UiCtxNotationOpened,
@@ -140,41 +153,50 @@ const UiActionList NotationUiActions::m_actions = {
     UiAction("last-element",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Last element"),
-             QT_TRANSLATE_NOOP("action", "Go to last element in score")
+             QT_TRANSLATE_NOOP("action", "Go to last element in score"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("move-up",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Move to staff above"),
-             QT_TRANSLATE_NOOP("action", "Move chord/rest to staff above")
+             QT_TRANSLATE_NOOP("action", "Move chord/rest to staff above"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("move-down",
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Move to staff below"),
-             QT_TRANSLATE_NOOP("action", "Move chord/rest to staff below")
+             QT_TRANSLATE_NOOP("action", "Move chord/rest to staff below"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("next-track",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Next staff or voice")
+             QT_TRANSLATE_NOOP("action", "Next staff or voice"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("prev-track",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Previous staff or voice")
+             QT_TRANSLATE_NOOP("action", "Previous staff or voice"),
+             ActionCategory::SelectionAndNavigation
              ),
     UiAction("next-frame",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Next frame")
+             QT_TRANSLATE_NOOP("action", "Next frame"),
+             ActionCategory::Playback
              ),
     UiAction("prev-frame",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Previous frame")
+             QT_TRANSLATE_NOOP("action", "Previous frame"),
+             ActionCategory::Playback
              ),
     UiAction("next-system",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Next system")
+             QT_TRANSLATE_NOOP("action", "Next system"),
+             ActionCategory::Undefined
              ),
     UiAction("prev-system",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Previous system")
+             QT_TRANSLATE_NOOP("action", "Previous system"),
+             ActionCategory::Undefined
              ),
     UiAction("show-irregular",
              mu::context::UiCtxNotationOpened,
@@ -1242,7 +1264,7 @@ const UiActionList NotationUiActions::m_actions = {
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Concert pitch"),
              QT_TRANSLATE_NOOP("action", "Toggle 'Concert pitch'"),
-             IconCode::Code::TUNING_FORK,
+             IconCode::Code::TUNING_FORK, ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("print",
@@ -1343,22 +1365,22 @@ const UiActionList NotationUiActions::m_actions = {
              ),
     UiAction("text-b",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Bold face"),
+             QT_TRANSLATE_NOOP("action", "Bold face"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("text-i",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Italic"),
+             QT_TRANSLATE_NOOP("action", "Italic"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("text-u",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Underline"),
+             QT_TRANSLATE_NOOP("action", "Underline"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("text-s",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Strike"),
+             QT_TRANSLATE_NOOP("action", "Strike"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("pitch-up-diatonic",
@@ -1562,7 +1584,7 @@ const UiActionList NotationUiActions::m_noteInputActions = {
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Note input"),
              QT_TRANSLATE_NOOP("action", "Enter notes with a mouse or keyboard"),
-             IconCode::Code::EDIT,
+             IconCode::Code::EDIT, ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("note-input-steptime",
@@ -1825,31 +1847,31 @@ const UiActionList NotationUiActions::m_scoreConfigActions = {
     UiAction(SHOW_INVISIBLE_CODE,
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Show invisible"),
-             QT_TRANSLATE_NOOP("action", "Show invisible"),
+             QT_TRANSLATE_NOOP("action", "Show invisible"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction(SHOW_UNPRINTABLE_CODE,
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Show formatting"),
-             QT_TRANSLATE_NOOP("action", "Show formatting"),
+             QT_TRANSLATE_NOOP("action", "Show formatting"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction(SHOW_FRAMES_CODE,
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Show frames"),
-             QT_TRANSLATE_NOOP("action", "Show frames"),
+             QT_TRANSLATE_NOOP("action", "Show frames"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction(SHOW_PAGEBORDERS_CODE,
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Show page margins"),
-             QT_TRANSLATE_NOOP("action", "Show page margins"),
+             QT_TRANSLATE_NOOP("action", "Show page margins"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction(SHOW_IRREGULAR_CODE,
              mu::context::UiCtxNotationOpened,
              QT_TRANSLATE_NOOP("action", "Mark irregular measures"),
-             QT_TRANSLATE_NOOP("action", "Mark irregular measures"),
+             QT_TRANSLATE_NOOP("action", "Mark irregular measures"), ActionCategory::Undefined,
              Checkable::Yes
              )
 };
@@ -1857,27 +1879,27 @@ const UiActionList NotationUiActions::m_scoreConfigActions = {
 const UiActionList NotationUiActions::m_engravingDebuggingActions = {
     UiAction("show-skylines",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Show skylines"),
+             QT_TRANSLATE_NOOP("action", "Show skylines"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("show-segment-shapes",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Show segment shapes"),
+             QT_TRANSLATE_NOOP("action", "Show segment shapes"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("show-bounding-rect",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Show bounding rectangles"),
+             QT_TRANSLATE_NOOP("action", "Show bounding rectangles"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("show-system-bounding-rect",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Show system bounding rectangles"),
+             QT_TRANSLATE_NOOP("action", "Show system bounding rectangles"), ActionCategory::Undefined,
              Checkable::Yes
              ),
     UiAction("show-corrupted-measures",
              mu::context::UiCtxNotationOpened,
-             QT_TRANSLATE_NOOP("action", "Show corrupted measures"),
+             QT_TRANSLATE_NOOP("action", "Show corrupted measures"), ActionCategory::Undefined,
              Checkable::Yes
              )
 };

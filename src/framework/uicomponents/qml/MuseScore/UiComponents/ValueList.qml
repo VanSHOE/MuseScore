@@ -305,7 +305,7 @@ Item {
             criteria: ViewSection.FullString
 
             delegate: ValueListSection {
-                text: "Second character: " + section
+                text: section
                 spacing: prv.spacing
                 sideMargin: prv.sideMargin
                 valueItemWidth: prv.valueItemWidth

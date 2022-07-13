@@ -27,6 +27,7 @@
 #include <cstring>
 #include <QString>
 #include <QMetaType>
+#include <set>
 
 #include "ret.h"
 #include "val.h"
@@ -185,8 +186,25 @@ enum class Checkable {
     Yes
 };
 
+enum class ActionCategory {
+    Undefined = -1,
+    Internal,
+    Articulations,
+    DialogsAndWindows,
+    LayoutAndFormatting,
+    Lines,
+    NoteInput,
+    Playback,
+    SelectionAndNavigation,
+    System,
+    Tablature,
+    Text
+};
+
 struct UiAction
 {
+    inline static std::set<actions::ActionCode> instances;
+    ActionCategory category;
     actions::ActionCode code;
     UiContext context = UiCtxAny;
     QString title;
@@ -196,21 +214,63 @@ struct UiAction
     std::vector<std::string> shortcuts;
 
     UiAction() = default;
-    UiAction(const actions::ActionCode& code, UiContext ctx, Checkable ch = Checkable::No)
-        : code(code), context(ctx), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, const QString& desc, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, const QString& desc, IconCode::Code icon,
+    UiAction(const actions::ActionCode& code, UiContext ctx, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
+        : code(code), context(ctx), checkable(ch), category(cat) {
+        UiAction::instances.insert(code);
+    }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(title), checkable(ch), category(cat) {
+        UiAction::instances.insert(code);
+    }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(desc), checkable(ch), category(cat) {
+        UiAction::instances.insert(code);
+    }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, const char* desc, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal,
              Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(desc), iconCode(icon), checkable(ch) {}
-    UiAction(const actions::ActionCode& code, UiContext ctx, const QString& title, IconCode::Code icon, Checkable ch = Checkable::No)
-        : code(code), context(ctx), title(title), description(title), iconCode(icon), checkable(ch) {}
+        : code(code), context(ctx), title(title), description(desc), iconCode(icon), checkable(ch), category(cat) {
+        UiAction::instances.insert(code);
+    }
+    UiAction(const actions::ActionCode& code, UiContext ctx, const char* title, IconCode::Code icon, ActionCategory cat = ActionCategory::Internal, Checkable ch = Checkable::No)
+        : code(code), context(ctx), title(title), description(title), iconCode(icon), checkable(ch), category(cat) {
+        UiAction::instances.insert(code);
+    }
 
     bool isValid() const
     {
         return !code.empty();
+    }
+
+    QString getCategory() const {
+        switch (category)
+        {
+        case ActionCategory::Undefined:
+            return "Undefined";
+        case ActionCategory::DialogsAndWindows:
+            return "Dialogues and Windows";
+        case ActionCategory::Internal:
+            return "Internal";
+        case ActionCategory::LayoutAndFormatting:
+            return "Layout and Formatting";
+        case ActionCategory::Lines:
+            return "Lines";
+        case ActionCategory::NoteInput:
+            return "NoteInput";
+        case ActionCategory::Playback:
+            return "Playback";
+        case ActionCategory::SelectionAndNavigation:
+            return "Selection And Navigation";
+        case ActionCategory::System:
+            return "System";
+        case ActionCategory::Tablature:
+            return "Tablature";
+        case ActionCategory::Text:
+            return "Text";
+        default:
+            return "Default";
+        };
+
+        return "Not possible";
     }
 
     QVariantMap toMap() const

@@ -21,11 +21,10 @@
  */
 
 #include "shortcutsmodel.h"
-
+#include "framework/ui/uitypes.h"
 #include "ui/view/iconcodes.h"
 #include "translation.h"
 #include "log.h"
-
 using namespace mu::shortcuts;
 using namespace mu::ui;
 
@@ -62,13 +61,13 @@ QVariant ShortcutsModel::data(const QModelIndex& index, int role) const
     case RoleSectionKey:
         return SectionName(shortcut).toString() + this->action(shortcut.action).title;
     }
-    
+
     return QVariant();
 }
 
 const QVariant ShortcutsModel::SectionName(const Shortcut& shortcut) const
 {
-    return this->action(shortcut.action).title.length() > 1 ? QString(this->action(shortcut.action).title.at(1)) : "NULL";
+    return this->action(shortcut.action).getCategory();
 }
 
 const UiAction& ShortcutsModel::action(const std::string& actionCode) const
@@ -120,7 +119,7 @@ void ShortcutsModel::load()
     });
 
     std::sort(m_shortcuts.begin(), m_shortcuts.end(), [this](const Shortcut& s1, const Shortcut& s2) {
-        return SectionName(s1).toString() + actionTitle(s1.action) < SectionName(s2).toString()  + actionTitle(s2.action);
+        return SectionName(s1).toString() + actionTitle(s1.action) < SectionName(s2).toString() + actionTitle(s2.action);
     });
 
     endResetModel();
