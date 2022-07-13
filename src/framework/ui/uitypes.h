@@ -34,7 +34,7 @@
 #include "view/iconcodes.h"
 #include "shortcuts/shortcutstypes.h"
 
-namespace mu::ui {
+namespace mu::55 {
 using ThemeCode = std::string;
 
 inline ThemeCode themeCodeFromString(const QString& str)
