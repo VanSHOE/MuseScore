@@ -48,7 +48,8 @@ QVariant ShortcutsModel::data(const QModelIndex& index, int role) const
     const Shortcut& shortcut = m_shortcuts.at(index.row());
 
     switch (role) {
-    case RoleTitle: return this->action(shortcut.action).description;
+    case RoleTitle: return this->action(shortcut.action).description == "" ? this->action(shortcut.action).title : this->action(
+            shortcut.action).description;
     case RoleIcon: return static_cast<int>(this->action(shortcut.action).iconCode);
     case RoleSequence: return sequencesToNativeText(shortcut.sequences);
     case RoleSearchKey: {
