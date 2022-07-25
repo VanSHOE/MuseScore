@@ -266,7 +266,7 @@ void ShortcutsModel::applySequenceToPalette(QString action, const QString& newSe
     LOGE() << "after size:" << m_shortcuts.size();
 
     if (conflictShortcutIndex >= 0 && conflictShortcutIndex < m_shortcuts.size()) {
-        m_shortcuts[conflictShortcutIndex].clear();
+        m_shortcuts[conflictShortcutIndex].sequences.clear();
         notifyAboutShortcutChanged(index(conflictShortcutIndex));
     }
 

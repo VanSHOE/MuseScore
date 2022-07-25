@@ -554,7 +554,7 @@ StyledGridView {
                 visible: !parent.paletteDrag || parent.dragCopy
             }
 
-            hint: model.cellID + ":" + model.cellAction
+            hint: model.toolTip
 
             navigation.accessible.name: model.accessibleText
 
@@ -650,7 +650,6 @@ StyledGridView {
                 property bool canEdit: true
 
                 property var items: [
-                    { id: "prep", title: qsTrc("palette", "Prepare"), enabled: true },
                     { id: "assign", title: qsTrc("palette", "Assign"), enabled: true },
                     { id: "delshortcut", title: qsTrc("palette", "Clear Current Shortcut"), enabled: true },
                     { id: "delete", title: qsTrc("palette", "Delete"), icon: IconCode.DELETE_TANK, enabled: contextMenu.canEdit },
@@ -659,13 +658,6 @@ StyledGridView {
 
                 onHandleMenuItem: {
                     switch(itemId) {
-                    case "prep":
-                        console.log("Context index: " + contextMenu.modelIndex)
-                        if(!paletteView.paletteController.connectOnPaletteCellConfigChange(contextMenu.modelIndex)) {
-                            console.log("Prepare failed")
-                        }
-
-                        break
                     case "assign":
                         paletteView.currentCellIdx = contextMenu.modelIndex
                         if(!paletteView.paletteController.connectOnPaletteCellConfigChange(contextMenu.modelIndex)) {
