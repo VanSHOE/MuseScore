@@ -130,9 +130,9 @@ bool ShortcutsModel::apply()
     ShortcutList shortcuts;
 
     for (const Shortcut& shortcut : qAsConst(m_shortcuts)) {
-        if (!shortcut.sequences.empty()) {
+        //if (!shortcut.sequences.empty()) {
             shortcuts.push_back(shortcut);
-        }
+        //}
     }
 
     Ret ret = shortcutsRegister()->setShortcuts(shortcuts);
