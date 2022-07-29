@@ -131,7 +131,7 @@ bool ShortcutsModel::apply()
 
     for (const Shortcut& shortcut : qAsConst(m_shortcuts)) {
         //if (!shortcut.sequences.empty()) {
-            shortcuts.push_back(shortcut);
+        shortcuts.push_back(shortcut);
         //}
     }
 
@@ -167,17 +167,12 @@ QVariant ShortcutsModel::currentShortcut() const
 
 QVariant ShortcutsModel::getShortcut(QString action) const
 {
-    for (const Shortcut& shortcut : qAsConst(m_shortcuts)) {
+    for (const Shortcut& shortcut : m_shortcuts) {
         if (action == QString::fromStdString(shortcut.action)) {
-            QVariantMap obj;
-            obj["title"] = actionTitle(shortcut.action);
-            obj["action"] = QString::fromStdString(shortcut.action);
-            obj["sequence"] = QString::fromStdString(shortcut.sequencesAsString());
-            obj["context"] = QString::fromStdString(shortcut.context);
-            LOGE() << "Action found in shortcutsmodel.cpp";
-            return obj;
+            return shortcutToObject(shortcut);
         }
     }
+
     LOGE() << "No action found in shortcutsmodel.cpp!";
     return QVariant();
 }
@@ -364,6 +359,7 @@ QVariant ShortcutsModel::shortcutToObject(const Shortcut& shortcut) const
 {
     QVariantMap obj;
     obj["title"] = actionText(shortcut.action);
+    obj["action"] = QString::fromStdString(shortcut.action);
     obj["sequence"] = QString::fromStdString(shortcut.sequencesAsString());
     obj["context"] = QString::fromStdString(shortcut.context);
 
